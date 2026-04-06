@@ -1,0 +1,65 @@
+.page {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4rem 1rem;
+}
+
+.heading {
+  font-family: var(--font-script);
+  font-size: 3.75rem;
+  color: var(--color-terracotta);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  width: 4rem;
+  height: 1px;
+  background-color: var(--color-terracotta);
+  margin: 0 auto 3rem;
+}
+
+.event {
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding-left: 1.5rem;
+}
+
+.dayRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.day {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-taupe);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: var(--color-taupe);
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  color: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+  line-height: 1.625;
+}

@@ -9,11 +9,10 @@ export default function Home() {
       {/* TODO match fonts to save the date */}
       <div className={styles.heroOverlay} />
       <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>Hanna &amp; Vishal</h1>
-        <p className={styles.heroSubtitle}>are getting married!</p>
-        <div className={styles.heroDivider} />
+        <h1 className={styles.heroTitle}>Vishal &amp; Hanna</h1>
         <div className={styles.heroDetails}>
-          <span>The Bowden in Keller, TX</span>
+          <span>The Bowden</span>
+          <span>Keller, TX</span>
           <span>October 17, 2026</span>
         </div>
       </div>

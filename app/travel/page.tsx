@@ -1,89 +1,169 @@
+import styles from "./page.module.css";
+
 const sections = [
   {
-    title: 'Venue',
-    icon: '📍',
+    title: "Venue",
+    icon: "📍",
+    iconBg: "bg-terracotta/10",
+    divider: "border-terracotta/30",
     content: (
       <>
         <p className="text-foreground/80 leading-relaxed">
-          <strong>Venue Name</strong><br />
-          123 Wedding Lane<br />
-          City, State, ZIP
+          <strong>The Bowden</strong>
+          <br />
+          1775 Keller Pkwy
+          <br />
+          Keller, TX, 76248
         </p>
         <p className="mt-3 text-foreground/70 text-sm">
-          Parking is available on site. Valet service will be offered during the reception.
+          Parking is available on site.
         </p>
       </>
     ),
   },
   {
-    title: 'Nearest Airports',
-    icon: '✈️',
+    title: "Nearest Airports",
+    icon: "✈️",
+    iconBg: "bg-brick/10",
+    divider: "border-brick/30",
     content: (
       <ul className="space-y-3 text-foreground/80">
         <li>
-          <strong>Airport Name (XYZ)</strong> — [X] miles from venue<br />
-          <span className="text-sm text-taupe">Recommended — most direct flights</span>
+          <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
+          venue
+          <br />
+          <span className="text-sm text-taupe">
+            Recommended — closest and has the most direct flights
+          </span>
         </li>
         <li>
-          <strong>Alternative Airport (ABC)</strong> — [X] miles from venue<br />
-          <span className="text-sm text-taupe">Additional options available</span>
+          <strong>Dallas Lovefield</strong> — 35 minutes driving from venue
+          <br />
         </li>
       </ul>
     ),
   },
   {
-    title: 'Recommended Hotels',
-    icon: '🏨',
+    title: "Recommended Hotels",
+    icon: "🏨",
+    iconBg: "bg-forest/10",
+    divider: "border-forest/30",
     content: (
       <div className="space-y-4">
-        <div className="border border-cream rounded-lg p-4">
-          <h3 className="font-semibold text-foreground">Hotel Name</h3>
-          <p className="text-sm text-taupe mt-1">123 Hotel Street · City, State</p>
-          <p className="text-sm text-foreground/70 mt-2">
-            We have reserved a room block at this hotel. Use code <strong>HANVISHAL</strong> when booking.
-            Rate: $XXX/night · Block expires [Date].
+        <div
+          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+        >
+          <p className={styles.hotelName}>
+            <a href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD">
+              Hilton Dallas | Southlake Town Square
+            </a>
+          </p>
+          <p className={styles.hotelAddress}>
+            1400 Plaza Pl, Southlake, TX 76092
+          </p>
+          <p className={styles.hotelNote}>
+            10 minute drive from The Bowden. There is a discounted rate for this
+            hotel when booking via WithJoy.
           </p>
         </div>
-        <div className="border border-cream rounded-lg p-4">
-          <h3 className="font-semibold text-foreground">Hotel Name 2</h3>
-          <p className="text-sm text-taupe mt-1">456 Other Street · City, State</p>
-          <p className="text-sm text-foreground/70 mt-2">
-            A more budget-friendly option near the venue. ~[X] minute drive.
+        <div
+          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+        >
+          <p className={styles.hotelName}>
+            <a href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD">
+              Hampton Inn & Suites Keller Town Center
+            </a>
           </p>
+          <p className={styles.hotelAddress}>
+            200 Town Center Lane Keller, Texas 76248
+          </p>
+          <p className={styles.hotelNote}>
+            2 minute drive from The Bowden. There is a discounted rate for this
+            hotel when booking via WithJoy.
+          </p>
+        </div>
+        <div
+          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+        >
+          <p className={styles.hotelName}>
+            <a href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/">
+              Delta Hotels Dallas Southlake
+            </a>
+          </p>
+          <p className={styles.hotelAddress}>
+            251 E State Hwy 114, Southlake, TX 76092
+          </p>
+          <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
+        </div>
+        <div
+          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+        >
+          <p className={styles.hotelName}>
+            <a href="https://www.marriott.com/en-us/hotels/dalwl-the-ricardo-marriott-dfw-westlake/overview/?cid=AFF_Affiliate">
+              The Marriott DFW - The Ricardo
+            </a>
+          </p>
+          <p className={styles.hotelAddress}>
+            1301 Solana Blvd Building 3, Westlake, TX 76262
+          </p>
+          <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
         </div>
       </div>
     ),
   },
   {
-    title: 'Getting Around',
-    icon: '🚗',
+    title: "Getting Around",
+    icon: "🚗",
+    iconBg: "bg-taupe/10",
+    divider: "border-taupe/30",
     content: (
       <ul className="list-disc list-inside space-y-2 text-foreground/80">
         <li>Rideshare services (Uber / Lyft) are available in the area.</li>
-        <li>Shuttle service will be provided between the hotel block and venue on the wedding day.</li>
-        <li>Rental cars available at the airport — [X] minute drive to venue.</li>
+        <li>Rental cars available at the airport.</li>
       </ul>
+    ),
+  },
+  {
+    title: "Activities",
+    icon: "🎭",
+    iconBg: "bg-coral/10",
+    divider: "border-coral/30",
+    iconBg: "bg-coral/10",
+    divider: "border-coral/30",
+    content: (
+      <div>
+        <p className="text-foreground/80 leading-relaxed">
+          If you have some time to explore, here are some of Vishal and Hanna's
+          suggested spots:
+        </p>
+        {/* TODO: map of activities */}
+      </div>
     ),
   },
 ];
 
 export default function TravelPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="font-script text-6xl text-terracotta text-center mb-2">Travel</h1>
-      <div className="w-16 h-px bg-terracotta mx-auto mb-4" />
-      <p className="text-center text-taupe mb-12 max-w-xl mx-auto">
-        We want to make it as easy as possible for you to join us. Here's everything you need to know to get here.
+    <div className={styles.page}>
+      <h1 className={styles.heading}>Travel</h1>
+      <div className={styles.divider} />
+      <p className={styles.intro}>
+        We want to make it as easy as possible for you to join us. Here&rsquo;s
+        everything you need to know to get here.
       </p>
 
       <div className="space-y-10">
         {sections.map((section) => (
           <div key={section.title}>
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2 mb-3">
-              <span>{section.icon}</span>
+            <h2 className={styles.sectionHeading}>
+              <span className={`${styles.iconCircle} ${section.iconBg}`}>
+                {section.icon}
+              </span>
               {section.title}
             </h2>
-            <div className="border-t border-cream pt-4">
+            <div
+              className={`${styles.sectionBody} border-t ${section.divider}`}
+            >
               {section.content}
             </div>
           </div>

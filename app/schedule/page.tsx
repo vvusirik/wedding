@@ -1,66 +1,127 @@
+import styles from "./page.module.css";
+
 const events = [
   {
-    day: 'Friday, [Month] [Day]',
-    title: 'Mehendi Night',
-    time: '6:00 PM – 10:00 PM',
-    location: 'Venue Name, City',
+    day: "Thursday, October 15",
+    title: "Haldi Night",
+    time: "12:00 PM - 3:00 PM",
+    location: "Frisco, TX",
     description:
-      'Join us for an evening of henna, music, and celebration as we kick off the wedding festivities. Traditional Indian mehndi designs, live dhol music, and delicious snacks await.',
-    palette: 'border-terracotta',
+      "Please join us at the Vusirikala's home for the colorful pre-wedding Indian ceremony, Haldi! Haldi is the Hindi word for turmeric, an ingredient known for its healing and purification properties. This ceremony prominently involves turmeric yellow colors and a ritual where Haldi paste is applied to the bride and groom to ward off the Buri Nazar, the Sanskrit term for evil eye.",
+    borderColor: "border-turmeric",
+    titleColor: "text-turmeric",
+    dotColor: "bg-turmeric",
   },
   {
-    day: 'Saturday, [Month] [Day]',
-    title: 'Sangeet',
-    time: '7:00 PM – 11:00 PM',
-    location: 'Venue Name, City',
+    day: "Thursday, October 15",
+    title: "Mehendi Night",
+    time: "6:00 PM – 10:00 PM",
+    location: "Frisco, TX",
     description:
-      'A night of song and dance! Families and friends from both sides come together to perform, celebrate, and fill the evening with joy. Dinner and dancing to follow.',
-    palette: 'border-brick',
+      "Please join us at the Vusirikala residence for the Mehndi! Mehndi is a ceremony meant to symbolize prosperity and joy in the couple's marriage. Mehndi, or henna, refers to the paste used to intricately decorate the bride's hands and feet. Guests are also welcome to get henna done at this event.",
+    borderColor: "border-terracotta",
+    titleColor: "text-terracotta",
+    dotColor: "bg-terracotta",
   },
   {
-    day: 'Sunday, [Month] [Day]',
-    title: 'Hindu Ceremony',
-    time: '10:00 AM – 12:00 PM',
-    location: 'Venue Name, City',
-    description:
-      'The traditional Hindu wedding ceremony (Vivah). Guests are welcome to attend and witness the sacred rituals including the Saptapadi (seven steps) and the tying of the sacred thread.',
-    palette: 'border-forest',
+    day: "Friday, October 16",
+    title: "Welcome Dinner",
+    time: "TBD",
+    location: "TBD",
+    description: "",
+    borderColor: "border-forest",
+    titleColor: "text-forest",
+    dotColor: "bg-forest",
   },
   {
-    day: 'Sunday, [Month] [Day]',
-    title: 'Jewish Ceremony',
-    time: '3:00 PM – 4:00 PM',
-    location: 'Venue Name, City',
+    day: "Saturday, October 17",
+    title: "Baraat",
+    time: "10:00 AM - 11:00 AM",
+    location: "The Bowden - Entrance",
     description:
-      'The traditional Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.',
-    palette: 'border-taupe',
+      "Kick off the wedding with us in style! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
+    borderColor: "border-forest",
+    titleColor: "text-forest",
+    dotColor: "bg-forest",
   },
   {
-    day: 'Sunday, [Month] [Day]',
-    title: 'Reception',
-    time: '5:00 PM – 10:00 PM',
-    location: 'Venue Name, City',
+    day: "Saturday, October 17",
+    title: "Hindu Ceremony",
+    time: "11:00 AM – 1:00 PM",
+    location: "The Bowden - Main Hall",
     description:
-      'Celebrate with us at the wedding reception! Cocktail hour, dinner, toasts, and dancing. A fusion menu reflecting both our cultures will be served.',
-    palette: 'border-terracotta',
+      "The Vusirikala family invites you to join as Hanna and Vishal take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
+    borderColor: "border-forest",
+    titleColor: "text-forest",
+    dotColor: "bg-forest",
+  },
+  {
+    day: "Saturday, October 17",
+    title: "Lunch",
+    time: "1:00 PM - 3:00 PM",
+    location: "The Bowden - Main Hall",
+    description: "",
+    borderColor: "border-taupe",
+    titleColor: "text-taupe",
+    dotColor: "bg-taupe",
+  },
+  {
+    day: "Saturday, October 17",
+    title: "Jewish Ceremony",
+    time: "5:00 PM – 6:00 PM",
+    location: "The Bowden - Chapel",
+    description:
+      "The Greenfield family invites you to join Hanna and Vishal for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
+    borderColor: "border-cerulean",
+    titleColor: "text-cerulean",
+    dotColor: "bg-cerulean",
+  },
+  {
+    day: "Saturday, October 17",
+    title: "Cocktail Hour",
+    time: "6:00 PM – 7:00 PM",
+    location: "The Bowden - Patio",
+    description:
+      "Come mingle with us and other guests following the Jewish ceremony! Light snacks and drinks will be provided.",
+    borderColor: "border-brick",
+    titleColor: "text-brick",
+    dotColor: "bg-brick",
+  },
+  {
+    day: "Saturday, October 17",
+    title: "Reception",
+    time: "7:00 PM – 10:00 PM",
+    location: "The Bowden",
+    description:
+      "Dance and dine with us as we end the night with dinner, speeches, a few performances, and a sendoff for Vishal and Hanna!",
+    borderColor: "border-brick",
+    titleColor: "text-brick",
+    dotColor: "bg-brick",
   },
 ];
 
 export default function SchedulePage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="font-script text-6xl text-terracotta text-center mb-2">Schedule</h1>
-      <div className="w-16 h-px bg-terracotta mx-auto mb-12" />
+    <div className={styles.page}>
+      <h1 className={styles.heading}>Schedule</h1>
+      <div className={styles.divider} />
 
       <div className="space-y-10">
         {events.map((event, i) => (
-          <div key={i} className={`border-l-4 ${event.palette} pl-6`}>
-            <p className="text-xs uppercase tracking-widest text-taupe mb-1">{event.day}</p>
-            <h2 className="text-2xl font-bold text-foreground mb-1">{event.title}</h2>
-            <p className="text-sm text-taupe mb-3">
+          <div key={i} className={`${styles.event} ${event.borderColor}`}>
+            <div className={styles.dayRow}>
+              <span className={`${styles.dot} ${event.dotColor}`} />
+              <p className={styles.day}>{event.day}</p>
+            </div>
+            <h2 className={`${styles.title} ${event.titleColor}`}>
+              {event.title}
+            </h2>
+            <p className={styles.meta}>
               {event.time} &nbsp;·&nbsp; {event.location}
             </p>
-            <p className="text-foreground/80 leading-relaxed">{event.description}</p>
+            {event.description && (
+              <p className={styles.description}>{event.description}</p>
+            )}
           </div>
         ))}
       </div>
