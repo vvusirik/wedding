@@ -128,8 +128,6 @@ const sections = [
     icon: "🎭",
     iconBg: "bg-coral/10",
     divider: "border-coral/30",
-    iconBg: "bg-coral/10",
-    divider: "border-coral/30",
     content: (
       <div>
         <p className="text-foreground/80 leading-relaxed">
