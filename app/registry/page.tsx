@@ -10,13 +10,12 @@ export default function RegistryPage() {
         from bringing physical gifts as we won&rsquo;t be able to take items
         back to New York.
       </p>
-      <div className={styles.subdivider} />
       <p className={styles.intro}>
         If you are feeling especially generous and truly insist, you may gift us
         in the Indian tradition of Shagun, an envelope with an odd numbered
         amount of dollars that symbolize good fortune.
       </p>
-      {/* TODO: icon */}
+      {/* TODO: image */}
     </div>
   );
 }

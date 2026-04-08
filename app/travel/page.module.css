@@ -54,10 +54,17 @@
   padding-top: 1rem;
 }
 
+.hotelTextBody {
+  margin-bottom: 1rem;
+}
+
 .hotelCard {
+  display: block;
   border: 1px solid var(--color-cream);
   border-radius: 0.5rem;
   padding: 1rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .hotelName {

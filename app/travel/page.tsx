@@ -37,7 +37,8 @@ const sections = [
           </span>
         </li>
         <li>
-          <strong>Dallas Lovefield</strong> — 35 minutes driving from venue
+          <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
+          venue
           <br />
         </li>
       </ul>
@@ -49,66 +50,73 @@ const sections = [
     iconBg: "bg-forest/10",
     divider: "border-forest/30",
     content: (
-      <div className="space-y-4">
-        <div
-          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-        >
-          <p className={styles.hotelName}>
-            <a href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD">
-              Hilton Dallas | Southlake Town Square
-            </a>
-          </p>
-          <p className={styles.hotelAddress}>
-            1400 Plaza Pl, Southlake, TX 76092
-          </p>
-          <p className={styles.hotelNote}>
-            10 minute drive from The Bowden. There is a discounted rate for this
-            hotel when booking via WithJoy.
-          </p>
+      <>
+        <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
+          There are several hotels in Southlake near the Bowden. AirBnB also has
+          several listings in the area and can be a good option for larger
+          groups planning on staying together.
+        </p>
+        <div className="space-y-4">
+          <a
+            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+            href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.hotelName}>
+              Hilton Dallas - Southlake Town Square
+            </p>
+            <p className={styles.hotelAddress}>
+              1400 Plaza Pl, Southlake, TX 76092
+            </p>
+            <p className={styles.hotelNote}>
+              10 minute drive from The Bowden. There is a discounted rate for
+              this hotel when booking via WithJoy.
+            </p>
+          </a>
+          <a
+            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+            href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.hotelName}>
+              Hampton Inn &amp; Suites - Keller Town Center
+            </p>
+            <p className={styles.hotelAddress}>
+              200 Town Center Lane Keller, Texas 76248
+            </p>
+            <p className={styles.hotelNote}>
+              2 minute drive from The Bowden. There is a discounted rate for
+              this hotel when booking via WithJoy.
+            </p>
+          </a>
+          <a
+            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+            href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.hotelName}>Delta Hotels - Dallas Southlake</p>
+            <p className={styles.hotelAddress}>
+              251 E State Hwy 114, Southlake, TX 76092
+            </p>
+            <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
+          </a>
+          <a
+            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+            href="https://www.marriott.com/en-us/hotels/dalwl-the-ricardo-marriott-dfw-westlake/overview/?cid=AFF_Affiliate"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.hotelName}>The Marriott DFW - The Ricardo</p>
+            <p className={styles.hotelAddress}>
+              1301 Solana Blvd Building 3, Westlake, TX 76262
+            </p>
+            <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
+          </a>
         </div>
-        <div
-          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-        >
-          <p className={styles.hotelName}>
-            <a href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD">
-              Hampton Inn & Suites Keller Town Center
-            </a>
-          </p>
-          <p className={styles.hotelAddress}>
-            200 Town Center Lane Keller, Texas 76248
-          </p>
-          <p className={styles.hotelNote}>
-            2 minute drive from The Bowden. There is a discounted rate for this
-            hotel when booking via WithJoy.
-          </p>
-        </div>
-        <div
-          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-        >
-          <p className={styles.hotelName}>
-            <a href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/">
-              Delta Hotels Dallas Southlake
-            </a>
-          </p>
-          <p className={styles.hotelAddress}>
-            251 E State Hwy 114, Southlake, TX 76092
-          </p>
-          <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
-        </div>
-        <div
-          className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-        >
-          <p className={styles.hotelName}>
-            <a href="https://www.marriott.com/en-us/hotels/dalwl-the-ricardo-marriott-dfw-westlake/overview/?cid=AFF_Affiliate">
-              The Marriott DFW - The Ricardo
-            </a>
-          </p>
-          <p className={styles.hotelAddress}>
-            1301 Solana Blvd Building 3, Westlake, TX 76262
-          </p>
-          <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
-        </div>
-      </div>
+      </>
     ),
   },
   {
@@ -126,6 +134,8 @@ const sections = [
   {
     title: "Activities",
     icon: "🎭",
+    iconBg: "bg-coral/10",
+    divider: "border-coral/30",
     iconBg: "bg-coral/10",
     divider: "border-coral/30",
     content: (

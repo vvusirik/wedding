@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 const events = [
   {
     day: "Thursday, October 15",
-    title: "Haldi Night",
+    title: "Haldi",
     time: "12:00 PM - 3:00 PM",
     location: "Frisco, TX",
     description:
@@ -14,7 +14,7 @@ const events = [
   },
   {
     day: "Thursday, October 15",
-    title: "Mehendi Night",
+    title: "Mehndi",
     time: "6:00 PM – 10:00 PM",
     location: "Frisco, TX",
     description:
@@ -50,7 +50,7 @@ const events = [
     time: "11:00 AM – 1:00 PM",
     location: "The Bowden - Main Hall",
     description:
-      "The Vusirikala family invites you to join as Hanna and Vishal take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
+      "The Vusirikala family invites you to join as Vishal and Hanna take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
     borderColor: "border-forest",
     titleColor: "text-forest",
     dotColor: "bg-forest",
@@ -71,7 +71,7 @@ const events = [
     time: "5:00 PM – 6:00 PM",
     location: "The Bowden - Chapel",
     description:
-      "The Greenfield family invites you to join Hanna and Vishal for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
+      "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
     borderColor: "border-cerulean",
     titleColor: "text-cerulean",
     dotColor: "bg-cerulean",

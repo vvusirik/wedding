@@ -1,8 +1,29 @@
 const faqs = [
   {
     question: "What is the dress code?",
-    answer:
-      "We'd love for guests to embrace the festive spirit of our cultural celebrations! For the Mehendi and Sangeet: colorful semi-formal attire is encouraged — think bright salwar kameez, lehengas, sarees, or cocktail dresses in jewel tones. For the ceremonies and reception: formal attire is requested. Guests are welcome to wear Indian, Western, or fusion formal wear. Please avoid white (reserved for Jewish ceremony traditions) and black if possible.",
+    answer: (
+      <>
+        <p>
+          We&apos;d love for guests to embrace the festive spirit of our
+          cultural celebrations!
+        </p>
+        <ul className="list-disc list-inside mt-2 space-y-1">
+          <li>
+            For the Mehndi and Sangeet: colorful semi-formal attire is
+            encouraged — think bright salwar kameez, lehengas, sarees, or
+            cocktail dresses in jewel tones.
+          </li>
+          <li>
+            For the ceremonies and reception: formal attire is requested. Guests
+            are welcome to wear Indian, Western, or fusion formal wear.
+          </li>
+          <li>
+            Please avoid white (reserved for Jewish ceremony traditions) and
+            black if possible.
+          </li>
+        </ul>
+      </>
+    ),
   },
   {
     question: "When is the RSVP deadline?",
@@ -16,8 +37,13 @@ const faqs = [
   },
   {
     question: "What is the gift policy?",
-    answer:
-      "Your presence truly is our greatest gift, and as such we do not have a registry. For those who still wish to give, please see the Registry section.",
+    answer: (
+      <p>
+        Your presence is all that we ask for, and as such we do not have a
+        registry. For those who still wish to give, please see the{" "}
+        <a href="/registry">Registry</a> section.
+      </p>
+    ),
   },
   {
     question: "Can I take photos during the events?",
