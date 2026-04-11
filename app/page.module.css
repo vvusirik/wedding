@@ -5,6 +5,12 @@
   background-color: var(--color-cream);
   position: relative;
   overflow: hidden;
+  animation: heroFadeIn 500ms ease-in;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .heroBg {

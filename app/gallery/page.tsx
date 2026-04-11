@@ -16,7 +16,6 @@ export default function GalleryPage() {
   return (
     <div className={styles.page}>
       <h1 className={styles.heading}>Gallery</h1>
-      <div className={styles.divider} />
 
       <div className={styles.grid}>
         {photos.map((photo) => (

@@ -10,14 +10,7 @@
   font-size: 3.75rem;
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.divider {
-  width: 4rem;
-  height: 1px;
-  background-color: var(--color-terracotta);
-  margin: 0 auto 1rem;
+  margin-bottom: 2rem;
 }
 
 .intro {
@@ -52,6 +45,19 @@
 
 .sectionBody {
   padding-top: 1rem;
+}
+
+.airportsRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.planeIcon {
+  float: right;
+  object-fit: contain;
+  opacity: 0.75;
+  flex-shrink: 0;
 }
 
 .hotelTextBody {

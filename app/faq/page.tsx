@@ -31,6 +31,26 @@ const faqs = [
       "Please RSVP by July 1st. We'd love to have an accurate headcount as early as possible to ensure everything goes smoothly. If you have any trouble submitting your RSVP, feel free to reach out to us directly.",
   },
   {
+    question: "Will there be parking available or a shuttle to the venue?",
+    answer:
+      "The Bowden has ample free parking available. We will not be providing a shuttle, but The Bowden is also easily accessible via rideshare.",
+  },
+  {
+    question: "Are there hotels nearby or any room blocks?",
+    answer: (
+      <p>
+        Please see the{" "}
+        <a href="/travel" className="underline">
+          Travel
+        </a>{" "}
+        section. There are several hotels and Airbnb options in Southlake and
+        the greater DFW area. We do not have a room block, but we have linked
+        some discounted options for nearby hotels when you use the website
+        referral link.
+      </p>
+    ),
+  },
+  {
     question: "Are kids welcome?",
     answer:
       "As much as we love your little ones, we will not be including them in the ceremony or reception. Please make arrangements for childcare if necessary.",
@@ -39,9 +59,12 @@ const faqs = [
     question: "What is the gift policy?",
     answer: (
       <p>
-        Your presence is all that we ask for, and as such we do not have a
-        registry. For those who still wish to give, please see the{" "}
-        <a href="/registry">Registry</a> section.
+        We do not have a registry. All we ask is that you come and have a good
+        time! For those who still wish to give, please see the note in the{" "}
+        <a href="/registry" className="underline">
+          Registry
+        </a>{" "}
+        section.
       </p>
     ),
   },
@@ -65,10 +88,9 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="font-script text-6xl text-terracotta text-center mb-2">
+      <h1 className="font-script text-6xl text-terracotta text-center mb-12">
         Frequently Asked Questions
       </h1>
-      <div className="w-16 h-px bg-terracotta mx-auto mb-4" />
       <p className="text-center text-taupe mb-12">
         Read the FAQ so you know what to do!
       </p>

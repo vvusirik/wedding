@@ -34,9 +34,9 @@ const renogare = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hanna & Vishal | Wedding",
+  title: "Vishal & Hanna | Wedding",
   description:
-    "Join us to celebrate the wedding of Hanna and Vishal — an Indian and Jewish fusion celebration of love.",
+    "Join us to celebrate the wedding of Vishal and Hanna — an Indian and Jewish fusion celebration of love.",
 };
 
 export default async function RootLayout({

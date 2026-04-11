@@ -1,10 +1,8 @@
-'use server';
-
+import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
-export async function login(formData: FormData) {
-  const password = formData.get('password');
+export async function POST(request: Request) {
+  const { password } = await request.json();
 
   if (password === 'hobbes') {
     const cookieStore = await cookies();
@@ -14,8 +12,8 @@ export async function login(formData: FormData) {
       maxAge: 60 * 60 * 24 * 90, // 90 days
       path: '/',
     });
-    redirect('/');
-  } else {
-    redirect('/login?error=1');
+    return NextResponse.json({ success: true });
   }
+
+  return NextResponse.json({ success: false });
 }

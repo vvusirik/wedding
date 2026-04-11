@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./page.module.css";
 
 const sections = [
@@ -9,7 +10,9 @@ const sections = [
     content: (
       <>
         <p className="text-foreground/80 leading-relaxed">
-          <strong>The Bowden</strong>
+          <a href="https://maps.app.goo.gl/gjbZ7UGEL6KSnmDk9">
+            <strong>The Bowden</strong>
+          </a>
           <br />
           1775 Keller Pkwy
           <br />
@@ -23,25 +26,29 @@ const sections = [
   },
   {
     title: "Nearest Airports",
-    icon: "✈️",
+    icon: "🛫",
+    hideIcon: true,
     iconBg: "bg-brick/10",
     divider: "border-brick/30",
     content: (
-      <ul className="space-y-3 text-foreground/80">
-        <li>
-          <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
-          venue
-          <br />
-          <span className="text-sm text-taupe">
-            Recommended — closest and has the most direct flights
-          </span>
-        </li>
-        <li>
-          <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
-          venue
-          <br />
-        </li>
-      </ul>
+      <div className={styles.airportsRow}>
+        <ul className="space-y-3 text-foreground/80">
+          <li>
+            <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
+            venue
+            <br />
+            <span className="text-sm text-taupe">
+              Recommended — closest and has the most direct flights
+            </span>
+          </li>
+          <li>
+            <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
+            venue
+            <br />
+          </li>
+        </ul>
+        <Image src="/images/icons/plane.png" alt="" width={160} height={160} className={styles.planeIcon} />
+      </div>
     ),
   },
   {
@@ -52,9 +59,9 @@ const sections = [
     content: (
       <>
         <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
-          There are several hotels in Southlake near the Bowden. AirBnB also has
-          several listings in the area and can be a good option for larger
-          groups planning on staying together.
+          For guests traveling from out of town, there are several hotels in
+          Southlake near the Bowden. Airbnb also has listings in the area which
+          can be good for larger groups planning on staying together.
         </p>
         <div className="space-y-4">
           <a
@@ -126,8 +133,12 @@ const sections = [
     divider: "border-taupe/30",
     content: (
       <ul className="list-disc list-inside space-y-2 text-foreground/80">
+        <li>
+          Public transit is sparse to non-existent in this part of Dallas, so
+          plan to get around by car
+        </li>
         <li>Rideshare services (Uber / Lyft) are available in the area.</li>
-        <li>Rental cars available at the airport.</li>
+        <li>Rental cars are available at the airport.</li>
       </ul>
     ),
   },
@@ -142,7 +153,7 @@ const sections = [
       <div>
         <p className="text-foreground/80 leading-relaxed">
           If you have some time to explore, here are some of Vishal and Hanna's
-          suggested spots:
+          suggested spots: TODO
         </p>
         {/* TODO: map of activities */}
       </div>
@@ -164,9 +175,11 @@ export default function TravelPage() {
         {sections.map((section) => (
           <div key={section.title}>
             <h2 className={styles.sectionHeading}>
-              <span className={`${styles.iconCircle} ${section.iconBg}`}>
-                {section.icon}
-              </span>
+              {!section.hideIcon && (
+                <span className={`${styles.iconCircle} ${section.iconBg}`}>
+                  {section.icon}
+                </span>
+              )}
               {section.title}
             </h2>
             <div
@@ -180,3 +193,4 @@ export default function TravelPage() {
     </div>
   );
 }
+
