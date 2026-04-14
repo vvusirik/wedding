@@ -13,7 +13,7 @@ export default function RegistryPage() {
       <p className={styles.intro}>
         If you are feeling especially generous and truly insist, you may gift us
         in the Indian tradition of Shagun, an envelope with an odd numbered
-        amount of dollars that symbolize good fortune.
+        amount of dollars that symbolizes good fortune.
       </p>
       {/* TODO: image */}
     </div>
