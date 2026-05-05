@@ -1,8 +1,5 @@
 .page {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 4rem 1rem;
+  padding-top: 4rem;
 }
 
 .heading {
@@ -10,62 +7,75 @@
   font-size: 3.75rem;
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.event {
-  border-left-width: 4px;
-  border-left-style: solid;
-  padding-left: 1.5rem;
+.panels {
+  display: flex;
+  flex-direction: column;
 }
 
-.dayRow {
+.panel {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.25rem;
+  justify-content: center;
+  padding: 3rem max(3rem, calc((100vw - 56rem) / 2));
+  color: var(--color-foreground);
+  gap: 3rem;
 }
 
-.dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 9999px;
-  flex-shrink: 0;
+.panelContent {
+  flex: 1;
+  min-width: 0;
 }
 
-.day {
-  font-size: 0.75rem;
+
+.panelLabel {
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-taupe);
+  letter-spacing: 0.18em;
+  opacity: 0.55;
+  margin-bottom: 0.4rem;
 }
 
-.title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.meta {
-  font-size: 0.875rem;
-  color: var(--color-taupe);
+.panelTitle {
+  font-family: var(--font-script);
+  font-size: 2.75rem;
+  line-height: 1.1;
   margin-bottom: 0.75rem;
 }
 
-.description {
-  color: color-mix(in srgb, var(--color-foreground) 80%, transparent);
-  line-height: 1.625;
+.panelDate {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.5;
+  margin-bottom: 2rem;
 }
 
-.eventWithIllustration {
-  position: relative;
+.eventList {
+  display: flex;
+  flex-direction: column;
 }
 
-.illustration {
-  position: absolute;
-  right: calc(100% + 1.5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  object-fit: contain;
-  opacity: 0.75;
+.eventItem {
+  padding: 1.25rem 0;
+}
+
+.eventTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: block;
+}
+
+.eventLocation {
+  font-size: 0.8rem;
+  opacity: 0.55;
+  margin-bottom: 0.5rem;
+}
+
+.eventDescription {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  line-height: 1.65;
 }
