@@ -175,11 +175,6 @@ export default function TravelPage() {
         {sections.map((section) => (
           <div key={section.title}>
             <h2 className={styles.sectionHeading}>
-              {!section.hideIcon && (
-                <span className={`${styles.iconCircle} ${section.iconBg}`}>
-                  {section.icon}
-                </span>
-              )}
               {section.title}
             </h2>
             <div

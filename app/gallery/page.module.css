@@ -38,6 +38,7 @@
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: var(--color-cream);
+  cursor: pointer;
 }
 
 .image {
@@ -49,4 +50,78 @@
 
 .item:hover .image {
   transform: scale(1.03);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.lightboxContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 150ms;
+  z-index: 110;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 150ms;
+  z-index: 110;
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.navPrev {
+  left: 1rem;
+}
+
+.navNext {
+  right: 1rem;
+}
+
+.counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-lato);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
 }

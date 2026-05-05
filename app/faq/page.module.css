@@ -10,7 +10,7 @@
   font-size: 3.75rem;
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .subtitle {
@@ -19,19 +19,34 @@
   margin-bottom: 3rem;
 }
 
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .accordion {
   border: 1px solid var(--color-cream);
-  border-left-width: 4px;
-  border-left-style: solid;
   border-radius: 0.5rem;
   overflow: hidden;
 }
 
 .summary {
+  cursor: pointer;
+  list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
+  transition: background-color 0.15s ease;
+}
+
+.summary:hover {
+  background-color: color-mix(in srgb, var(--color-cream) 40%, transparent);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
 }
 
 .question {
@@ -45,6 +60,11 @@
   color: var(--color-terracotta);
   font-size: 1.25rem;
   flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.accordion[open] .expandIcon {
+  transform: rotate(45deg);
 }
 
 .answer {
@@ -53,3 +73,17 @@
   color: color-mix(in srgb, var(--color-foreground) 80%, transparent);
   line-height: 1.625;
 }
+
+.answerList {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.answerLink {
+  text-decoration: underline;
+}
+
