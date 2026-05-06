@@ -41,6 +41,9 @@ export default function Navbar() {
                                 </Link>
                             );
                         })}
+                        <a href="/api/logout" className={`${styles.link} hover:text-terracotta transition-colors`}>
+                            Logout
+                        </a>
                     </div>
 
                     {/* Mobile menu */}
