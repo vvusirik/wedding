@@ -1,8 +1,10 @@
+import Image from "next/image";
 import styles from "./page.module.css";
 
 const morning = {
     label: "Morning",
     title: "Morning Ceremony",
+    illustration: { src: "/images/icons/haldi2.png", alt: "Haldi illustration" },
     date: "Saturday, October 17, 2026",
     events: [
         {
@@ -30,6 +32,7 @@ const morning = {
 const evening = {
     label: "Evening",
     title: "Evening Ceremony",
+    illustration: null,
     date: "Saturday, October 17, 2026",
     events: [
         {
@@ -78,6 +81,17 @@ function Panel({
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className={styles.illustrationSlot}>
+                {panel.illustration && (
+                    <Image
+                        src={panel.illustration.src}
+                        alt={panel.illustration.alt}
+                        width={300}
+                        height={300}
+                        style={{ width: "100%", height: "auto" }}
+                    />
+                )}
             </div>
         </div>
     );

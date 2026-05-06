@@ -1,5 +1,7 @@
 .page {
-  padding-top: 4rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
 }
 
 .heading {
@@ -13,20 +15,29 @@
 .panels {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }
 
 .panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem max(3rem, calc((100vw - 56rem) / 2));
+  padding: 3rem;
   color: var(--color-foreground);
   gap: 3rem;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 1.5rem;
 }
 
 .panelContent {
-  flex: 1;
+  flex: 2;
   min-width: 0;
+}
+
+.illustrationSlot {
+  flex: 1;
+  min-height: 300px;
 }
 
 
