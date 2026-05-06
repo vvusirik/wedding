@@ -1,26 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 
-export default function LoginPage() {
-  const [error, setError] = useState(false);
+function LoginForm() {
+  const searchParams = useSearchParams();
+  const [error, setError] = useState(searchParams.get("error") === "1");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setError(false);
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: formData.get("password") }),
-    });
-    const data = await res.json();
-    if (data.success) {
-      window.location.href = "/";
-    } else {
+    const firstName = (formData.get("firstName") as string).trim();
+    const lastName = (formData.get("lastName") as string).trim();
+    if (!firstName || !lastName) {
+      e.preventDefault();
       setError(true);
     }
+    // else: allow native form submission to proceed
   }
 
   return (
@@ -28,23 +24,50 @@ export default function LoginPage() {
       <div className={styles.card}>
         <h1 className={styles.heading}>Vishal &amp; Hanna</h1>
         <div className={styles.divider} />
-        <form onSubmit={handleSubmit}>
+        <form method="POST" action="/api/login" onSubmit={handleSubmit}>
+          <div className={styles.nameRow}>
+            <input
+              className={`${styles.input} ${styles.inputName}`}
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              autoFocus
+              autoComplete="given-name"
+              required
+            />
+            <input
+              className={`${styles.input} ${styles.inputName}`}
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              autoComplete="family-name"
+              required
+            />
+          </div>
           <input
             className={styles.input}
             type="password"
             name="password"
             placeholder="Password"
-            autoFocus
             autoComplete="current-password"
+            required
           />
           <button className={styles.button} type="submit">
             Enter
           </button>
         </form>
         {error && (
-          <p className={styles.error}>Incorrect password. Try again.</p>
+          <p className={styles.error}>We couldn&apos;t find your name or the password was incorrect. Please try again or contact us for help.</p>
         )}
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }

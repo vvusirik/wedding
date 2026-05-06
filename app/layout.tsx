@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./_components/navbar";
 import localFont from "next/font/local";
 import { cookies } from "next/headers";
+import { GuestProvider } from "./_context/guest";
 
 const greatVibes = Great_Vibes({
   variable: "--font-great-vibes",
@@ -46,6 +47,8 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const isAuthenticated = cookieStore.get("wedding-auth")?.value === "true";
+  const guestRaw = cookieStore.get("wedding-guest")?.value;
+  const guest = guestRaw ? JSON.parse(guestRaw) : { firstName: "", lastName: "", tags: [] };
 
   return (
     <html
@@ -53,8 +56,10 @@ export default async function RootLayout({
       className={`${greatVibes.variable} ${edLavonia.variable} ${renogare.variable} ${lato.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        {isAuthenticated && <Navbar />}
-        <main className="flex-1">{children}</main>
+        <GuestProvider guest={guest}>
+          {isAuthenticated && <Navbar />}
+          <main className="flex-1">{children}</main>
+        </GuestProvider>
       </body>
     </html>
   );

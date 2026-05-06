@@ -1,27 +1,27 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 import styles from "./page.module.css";
 
 const morning = {
-    label: "Morning",
     title: "Morning Ceremony",
     illustration: { src: "/images/icons/haldi2.png", alt: "Haldi illustration" },
-    date: "Saturday, October 17, 2026",
     events: [
         {
+            tag: "morning_ceremony",
             title: "Baraat",
             time: "10 AM",
             location: "Entrance",
-            description:
-                "Kick off the wedding with us in style! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
+            description: "Kick off the wedding with us in style! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
         },
         {
+            tag: "morning_ceremony",
             title: "Wedding Ceremony",
             time: "11 AM",
             location: "Main Hall",
-            description:
-                "The Vusirikala family invites you to join as Vishal and Hanna take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
+            description: "The Vusirikala family invites you to join as Vishal and Hanna take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
         },
         {
+            tag: "morning_ceremony",
             title: "Lunch",
             time: "1 PM",
             location: "Main Hall",
@@ -30,31 +30,29 @@ const morning = {
 };
 
 const evening = {
-    label: "Evening",
     title: "Evening Ceremony",
     illustration: null,
-    date: "Saturday, October 17, 2026",
     events: [
         {
+            tag: "evening_ceremony",
             title: "Wedding Ceremony",
             time: "5 PM",
             location: "Chapel",
-            description:
-                "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
+            description: "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
         },
         {
+            tag: "reception",
             title: "Cocktail Hour",
             time: "6 PM",
             location: "Patio",
-            description:
-                "Come mingle with us and other guests following the Jewish ceremony! Light snacks and drinks will be provided.",
+            description: "Come mingle with us and other guests following the Jewish ceremony! Light snacks and drinks will be provided.",
         },
         {
+            tag: "reception",
             title: "Reception",
             time: "7 PM",
             location: "The Bowden",
-            description:
-                "Dance and dine with us as we end the night with dinner, speeches, a few performances, and a sendoff for Vishal and Hanna!",
+            description: "Dance and dine with us as we end the night with dinner, speeches, a few performances, and a sendoff for Vishal and Hanna!",
         },
     ],
 };
@@ -97,13 +95,20 @@ function Panel({
     );
 }
 
-export default function SchedulePage() {
+export default async function SchedulePage() {
+    const cookieStore = await cookies();
+    const guestRaw = cookieStore.get("wedding-guest")?.value;
+    const tags: string[] = guestRaw ? (JSON.parse(guestRaw).tags ?? []) : [];
+
+    const visibleMorning = { ...morning, events: morning.events.filter((e) => tags.includes(e.tag)) };
+    const visibleEvening = { ...evening, events: evening.events.filter((e) => tags.includes(e.tag)) };
+
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Schedule</h1>
             <div className={styles.panels}>
-                <Panel panel={morning} variant="morning" />
-                <Panel panel={evening} variant="evening" />
+                {visibleMorning.events.length > 0 && <Panel panel={visibleMorning} variant="morning" />}
+                {visibleEvening.events.length > 0 && <Panel panel={visibleEvening} variant="evening" />}
             </div>
         </div>
     );
