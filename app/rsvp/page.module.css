@@ -7,44 +7,52 @@
 
 .heading {
   font-family: var(--font-script);
-  font-size: 3.75rem;
+  font-size: clamp(2rem, 8vw, 3.75rem);
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+
+.envelopeWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.envelopeLink {
+  display: inline-block;
+  border-radius: 0.5rem;
+  filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--color-foreground) 12%, transparent));
+  transition: transform 250ms ease-out, filter 250ms ease-out;
+  will-change: transform;
+}
+
+.envelopeLink:hover,
+.envelopeLink:focus-visible {
+  transform: translateY(-6px) rotate(-2deg);
+  filter: drop-shadow(0 14px 22px color-mix(in srgb, var(--color-foreground) 22%, transparent));
+}
+
+.envelopeLink:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 6px;
+}
+
+.envelopeLink:active {
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.envelope {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
 }
 
 .reminder {
   text-align: center;
   color: var(--color-taupe);
   font-style: italic;
-  margin-top: 1rem;
-  margin-bottom: 2.5rem;
   max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.buttonWrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
-.button {
-  display: inline-block;
-  padding: 2rem 5rem;
-  background-color: var(--color-terracotta);
-  color: var(--color-background);
-  border-radius: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background-color 150ms ease;
-}
-
-.button:hover {
-  background-color: var(--color-brick);
+  margin: 0 auto;
 }

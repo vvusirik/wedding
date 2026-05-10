@@ -73,7 +73,7 @@ const faqs = [
     {
         question: "Can I take photos during the events?",
         answer:
-            "Yes! We would love for you to take photos and share them. However, please refrain from taking photos during the Indian and Jewish ceremonies in particular.",
+            "Yes! We would love for you to take photos and share them. However, please refrain from taking photos during the wedding ceremonies in particular.",
     },
     {
         question: "What are the ceremony traditions I should know about?",
