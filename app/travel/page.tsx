@@ -2,190 +2,193 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 const sections = [
-  {
-    title: "Venue",
-    icon: "📍",
-    iconBg: "bg-terracotta/10",
-    divider: "border-terracotta/30",
-    content: (
-      <>
-        <p className="text-foreground/80 leading-relaxed">
-          <a href="https://maps.app.goo.gl/gjbZ7UGEL6KSnmDk9">
-            <strong>The Bowden</strong>
-          </a>
-          <br />
-          1775 Keller Pkwy
-          <br />
-          Keller, TX, 76248
-        </p>
-        <p className="mt-3 text-foreground/70 text-sm">
-          Parking is available on site.
-        </p>
-      </>
-    ),
-  },
-  {
-    title: "Nearest Airports",
-    icon: "🛫",
-    hideIcon: true,
-    iconBg: "bg-brick/10",
-    divider: "border-brick/30",
-    content: (
-      <div className={styles.airportsRow}>
-        <ul className="space-y-3 text-foreground/80">
-          <li>
-            <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
-            venue
-            <br />
-            <span className="text-sm text-taupe">
-              Recommended — closest and has the most direct flights
-            </span>
-          </li>
-          <li>
-            <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
-            venue
-            <br />
-          </li>
-        </ul>
-        <Image src="/images/icons/plane.png" alt="" width={160} height={160} className={styles.planeIcon} />
-      </div>
-    ),
-  },
-  {
-    title: "Recommended Hotels",
-    icon: "🏨",
-    iconBg: "bg-forest/10",
-    divider: "border-forest/30",
-    content: (
-      <>
-        <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
-          For guests traveling from out of town, there are several hotels in
-          Southlake near the Bowden. Airbnb also has listings in the area which
-          can be good for larger groups planning on staying together.
-        </p>
-        <div className="space-y-4">
-          <a
-            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-            href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p className={styles.hotelName}>
-              Hilton Dallas - Southlake Town Square
-            </p>
-            <p className={styles.hotelAddress}>
-              1400 Plaza Pl, Southlake, TX 76092
-            </p>
-            <p className={styles.hotelNote}>
-              10 minute drive from The Bowden. There is a discounted rate for
-              this hotel when booking via WithJoy.
-            </p>
-          </a>
-          <a
-            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-            href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p className={styles.hotelName}>
-              Hampton Inn &amp; Suites - Keller Town Center
-            </p>
-            <p className={styles.hotelAddress}>
-              200 Town Center Lane Keller, Texas 76248
-            </p>
-            <p className={styles.hotelNote}>
-              2 minute drive from The Bowden. There is a discounted rate for
-              this hotel when booking via WithJoy.
-            </p>
-          </a>
-          <a
-            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-            href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p className={styles.hotelName}>Delta Hotels - Dallas Southlake</p>
-            <p className={styles.hotelAddress}>
-              251 E State Hwy 114, Southlake, TX 76092
-            </p>
-            <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
-          </a>
-          <a
-            className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-            href="https://www.marriott.com/en-us/hotels/dalwl-the-ricardo-marriott-dfw-westlake/overview/?cid=AFF_Affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p className={styles.hotelName}>The Marriott DFW - The Ricardo</p>
-            <p className={styles.hotelAddress}>
-              1301 Solana Blvd Building 3, Westlake, TX 76262
-            </p>
-            <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
-          </a>
-        </div>
-      </>
-    ),
-  },
-  {
-    title: "Getting Around",
-    icon: "🚗",
-    iconBg: "bg-taupe/10",
-    divider: "border-taupe/30",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-foreground/80">
-        <li>
-          Public transit is sparse to non-existent in this part of Dallas, so
-          plan to get around by car
-        </li>
-        <li>Rideshare services (Uber / Lyft) are available in the area.</li>
-        <li>Rental cars are available at the airport.</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Activities",
-    icon: "🎭",
-    iconBg: "bg-coral/10",
-    divider: "border-coral/30",
-    iconBg: "bg-coral/10",
-    divider: "border-coral/30",
-    content: (
-      <div>
-        <p className="text-foreground/80 leading-relaxed">
-          If you have some time to explore, here are some of Vishal and Hanna's
-          suggested spots: TODO
-        </p>
-        {/* TODO: map of activities */}
-      </div>
-    ),
-  },
+    {
+        title: "Venue",
+        icon: "📍",
+        iconBg: "bg-terracotta/10",
+        divider: "border-terracotta/30",
+        content: (
+            <>
+                <p className="text-foreground/80 leading-relaxed">
+                    <a href="https://maps.app.goo.gl/gjbZ7UGEL6KSnmDk9">
+                        <strong>The Bowden</strong>
+                    </a>
+                    <br />
+                    1775 Keller Pkwy
+                    <br />
+                    Keller, TX, 76248
+                </p>
+                <p className="mt-3 text-foreground/70 text-sm">
+                    Parking is available on site.
+                </p>
+            </>
+        ),
+    },
+    {
+        title: "Nearest Airports",
+        icon: "🛫",
+        hideIcon: true,
+        iconBg: "bg-brick/10",
+        divider: "border-brick/30",
+        content: (
+            <div className={styles.airportsRow}>
+                <ul className="space-y-3 text-foreground/80">
+                    <li>
+                        <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
+                        venue
+                        <br />
+                        <span className="text-sm text-taupe">
+                            Recommended — closest and has the most direct flights
+                        </span>
+                    </li>
+                    <li>
+                        <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
+                        venue
+                        <br />
+                    </li>
+                </ul>
+                <Image
+                    src="/images/icons/plane.png"
+                    alt=""
+                    width={160}
+                    height={160}
+                    className={styles.planeIcon}
+                />
+            </div>
+        ),
+    },
+    {
+        title: "Recommended Hotels",
+        icon: "🏨",
+        iconBg: "bg-forest/10",
+        divider: "border-forest/30",
+        content: (
+            <>
+                <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
+                    For guests traveling from out of town, there are several hotels in
+                    Southlake near the Bowden. Airbnb also has listings in the area which
+                    can be good for larger groups planning on staying together.
+                </p>
+                <div className="space-y-4">
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>
+                            Hilton Dallas - Southlake Town Square
+                        </p>
+                        <p className={styles.hotelAddress}>
+                            1400 Plaza Pl, Southlake, TX 76092
+                        </p>
+                        <p className={styles.hotelNote}>
+                            10 minute drive from The Bowden. There is a discounted rate for
+                            this hotel when booking via WithJoy.
+                        </p>
+                    </a>
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>
+                            Hampton Inn &amp; Suites - Keller Town Center
+                        </p>
+                        <p className={styles.hotelAddress}>
+                            200 Town Center Lane Keller, Texas 76248
+                        </p>
+                        <p className={styles.hotelNote}>
+                            2 minute drive from The Bowden. There is a discounted rate for
+                            this hotel when booking via WithJoy.
+                        </p>
+                    </a>
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>Delta Hotels - Dallas Southlake</p>
+                        <p className={styles.hotelAddress}>
+                            251 E State Hwy 114, Southlake, TX 76092
+                        </p>
+                        <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
+                    </a>
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://www.marriott.com/en-us/hotels/dalwl-the-ricardo-marriott-dfw-westlake/overview/?cid=AFF_Affiliate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>The Marriott DFW - The Ricardo</p>
+                        <p className={styles.hotelAddress}>
+                            1301 Solana Blvd Building 3, Westlake, TX 76262
+                        </p>
+                        <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
+                    </a>
+                </div>
+            </>
+        ),
+    },
+    {
+        title: "Getting Around",
+        icon: "🚗",
+        iconBg: "bg-taupe/10",
+        divider: "border-taupe/30",
+        content: (
+            <ul className="list-disc list-inside space-y-2 text-foreground/80">
+                <li>
+                    Public transit is sparse to non-existent in this part of Dallas, so
+                    plan to get around by car.
+                </li>
+                <li>Rideshare services (Uber / Lyft) are available in the area.</li>
+                <li>Rental cars are available at the airport.</li>
+            </ul>
+        ),
+    },
+    {
+        title: "Activities",
+        icon: "🎭",
+        iconBg: "bg-coral/10",
+        divider: "border-coral/30",
+        iconBg: "bg-coral/10",
+        divider: "border-coral/30",
+        content: (
+            <div>
+                <p className="text-foreground/80 leading-relaxed">
+                    If you have some time to explore, here are some of Vishal and Hanna's
+                    suggested spots: TODO
+                </p>
+                {/* TODO: map of activities */}
+            </div>
+        ),
+    },
 ];
 
 export default function TravelPage() {
-  return (
-    <div className={styles.page}>
-      <h1 className={styles.heading}>Travel</h1>
-      <div className={styles.divider} />
-      <p className={styles.intro}>
-        We want to make it as easy as possible for you to join us. Here&rsquo;s
-        everything you need to know to get here.
-      </p>
+    return (
+        <div className={styles.page}>
+            <h1 className={styles.heading}>Travel</h1>
+            <div className={styles.divider} />
+            <p className={styles.intro}>
+                We want to make it as easy as possible for you to join us. Here&rsquo;s
+                everything you need to know to get here.
+            </p>
 
-      <div className="space-y-10">
-        {sections.map((section) => (
-          <div key={section.title}>
-            <h2 className={styles.sectionHeading}>
-              {section.title}
-            </h2>
-            <div
-              className={`${styles.sectionBody} border-t ${section.divider}`}
-            >
-              {section.content}
+            <div className="space-y-10">
+                {sections.map((section) => (
+                    <div key={section.title}>
+                        <h2 className={styles.sectionHeading}>{section.title}</h2>
+                        <div
+                            className={`${styles.sectionBody} border-t ${section.divider}`}
+                        >
+                            {section.content}
+                        </div>
+                    </div>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
-
