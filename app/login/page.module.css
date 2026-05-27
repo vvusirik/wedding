@@ -21,7 +21,7 @@
 
 .heading {
   font-family: var(--font-script);
-  font-size: 3rem;
+  font-size: clamp(2rem, 8vw, 3rem);
   color: var(--color-terracotta);
   margin-bottom: 0.25rem;
 }
@@ -36,6 +36,13 @@
 .nameRow {
   display: flex;
   gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .nameRow {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .inputName {

@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   const origin = `${proto}://${host}`;
 
   if (password === 'hobbes') {
-    const tags = lookup(firstName, lastName);
+    const tags = await lookup(firstName, lastName);
     if (tags !== null) {
       const maxAge = 60 * 60 * 24 * 90;
       const response = NextResponse.redirect(`${origin}/`, { status: 303 });
