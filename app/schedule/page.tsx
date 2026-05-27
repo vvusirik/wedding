@@ -2,7 +2,21 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import styles from "./page.module.css";
 
-const morning = {
+type ScheduleEvent = {
+    tag: string;
+    title: string;
+    time: string;
+    location: string;
+    description?: string;
+};
+
+type PanelData = {
+    title: string;
+    illustration: { src: string; alt: string } | null;
+    events: ScheduleEvent[];
+};
+
+const morning: PanelData = {
     title: "Morning",
     illustration: { src: "/images/icons/haldi2.png", alt: "Haldi illustration" },
     events: [
@@ -31,7 +45,7 @@ const morning = {
     ],
 };
 
-const evening = {
+const evening: PanelData = {
     title: "Evening",
     illustration: null,
     events: [
@@ -66,7 +80,7 @@ function Panel({
     panel,
     variant,
 }: {
-    panel: typeof morning;
+    panel: PanelData;
     variant: "morning" | "evening";
 }) {
     return (
