@@ -1,6 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
+// Paste the iframe `src` from Google My Maps (Share → Embed on my site).
+// Leave empty to hide the map until it's ready.
+const ACTIVITIES_MAP_EMBED_URL =
+    "https://www.google.com/maps/d/u/2/embed?mid=1rZg7ePLJVyV9P9joGevZoNpPdlhGACk&ehbc=2E312F&noprof=1";
+
 const sections = [
     {
         title: "Venue",
@@ -153,15 +158,22 @@ const sections = [
         icon: "🎭",
         iconBg: "bg-coral/10",
         divider: "border-coral/30",
-        iconBg: "bg-coral/10",
-        divider: "border-coral/30",
         content: (
             <div>
                 <p className="text-foreground/80 leading-relaxed">
-                    If you have some time to explore, here are some of Vishal and Hanna's
-                    suggested spots: TODO
+                    If you have some time to explore, here are some of Vishal and Hanna&rsquo;s
+                    suggested spots around the area.
                 </p>
-                {/* TODO: map of activities */}
+                {ACTIVITIES_MAP_EMBED_URL && (
+                    <iframe
+                        src={ACTIVITIES_MAP_EMBED_URL}
+                        title="Map of suggested activities"
+                        className={styles.mapEmbed}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        allowFullScreen
+                    />
+                )}
             </div>
         ),
     },
