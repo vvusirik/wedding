@@ -19,29 +19,6 @@
   margin-bottom: 2.5rem;
 }
 
-.envelopeLink {
-  display: inline-block;
-  border-radius: 0.5rem;
-  filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--color-foreground) 12%, transparent));
-  transition: transform 250ms ease-out, filter 250ms ease-out;
-  will-change: transform;
-}
-
-.envelopeLink:hover,
-.envelopeLink:focus-visible {
-  transform: translateY(-6px) rotate(-2deg);
-  filter: drop-shadow(0 14px 22px color-mix(in srgb, var(--color-foreground) 22%, transparent));
-}
-
-.envelopeLink:focus-visible {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 6px;
-}
-
-.envelopeLink:active {
-  transform: translateY(-2px) rotate(-1deg);
-}
-
 .envelope {
   display: block;
   width: 100%;

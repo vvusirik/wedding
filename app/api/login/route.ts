@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { lookup } from '../../../lib/guests';
+import { lookupGuest } from '../../../lib/guests';
 
 export async function POST(request: Request) {
   const contentType = request.headers.get('content-type') ?? '';
@@ -22,8 +22,8 @@ export async function POST(request: Request) {
   const origin = `${proto}://${host}`;
 
   if (password === 'hobbes') {
-    const tags = await lookup(firstName, lastName);
-    if (tags !== null) {
+    const guest = await lookupGuest(firstName, lastName);
+    if (guest !== null) {
       const maxAge = 60 * 60 * 24 * 90;
       const response = NextResponse.redirect(`${origin}/`, { status: 303 });
       response.cookies.set('wedding-auth', 'true', {
@@ -32,12 +32,21 @@ export async function POST(request: Request) {
         maxAge,
         path: '/',
       });
-      response.cookies.set('wedding-guest', JSON.stringify({ firstName, lastName, tags }), {
-        httpOnly: true,
-        sameSite: 'lax',
-        maxAge,
-        path: '/',
-      });
+      response.cookies.set(
+        'wedding-guest',
+        JSON.stringify({
+          firstName,
+          lastName,
+          tags: guest.tags,
+          slug: guest.slug,
+        }),
+        {
+          httpOnly: true,
+          sameSite: 'lax',
+          maxAge,
+          path: '/',
+        },
+      );
       return response;
     }
   }

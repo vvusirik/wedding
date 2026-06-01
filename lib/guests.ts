@@ -1,9 +1,10 @@
-import { google } from "googleapis";
+import { google, sheets_v4 } from "googleapis";
 
-interface GuestRecord {
+export interface GuestRecord {
     firstName: string;
     lastName: string;
     tags: string[];
+    slug: string;
 }
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
@@ -22,6 +23,7 @@ function parseRows(rows: string[][]): GuestRecord[] {
     const iFirst = headers.indexOf("first_name");
     const iLast = headers.indexOf("last_name");
     const iTags = headers.indexOf("tags");
+    const iSlug = headers.indexOf("slug"); // optional
     if (iFirst < 0 || iLast < 0 || iTags < 0) {
         throw new Error(
             `guest sheet missing required columns. need first_name, last_name, tags. got: ${headers.join(", ")}`,
@@ -37,20 +39,23 @@ function parseRows(rows: string[][]): GuestRecord[] {
                 .split(",")
                 .map((t) => t.trim().toLowerCase())
                 .filter((t) => t.length > 0);
-            return { firstName: first, lastName: last, tags };
+            const slug = iSlug >= 0 ? String(row[iSlug] ?? "").trim().toLowerCase() : "";
+            return { firstName: first, lastName: last, tags, slug };
         })
         .filter((g): g is GuestRecord => g !== null);
 }
 
-async function fetchFromSheet(): Promise<GuestRecord[]> {
+function readEnv(): { credentials: object; sheetId: string; range: string } {
     const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
     const sheetId = process.env.GUEST_SHEET_ID;
     const range = process.env.GUEST_SHEET_RANGE ?? DEFAULT_RANGE;
-
     if (!raw) throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON env var is not set");
     if (!sheetId) throw new Error("GUEST_SHEET_ID env var is not set");
+    return { credentials: JSON.parse(raw), sheetId, range };
+}
 
-    const credentials = JSON.parse(raw);
+async function fetchFromSheet(): Promise<GuestRecord[]> {
+    const { credentials, sheetId, range } = readEnv();
     const auth = new google.auth.GoogleAuth({
         credentials,
         scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
@@ -60,7 +65,6 @@ async function fetchFromSheet(): Promise<GuestRecord[]> {
         spreadsheetId: sheetId,
         range,
     });
-
     return parseRows(res.data.values ?? []);
 }
 
@@ -87,15 +91,52 @@ async function load(): Promise<GuestRecord[]> {
     return inflight;
 }
 
-export async function lookup(
+export async function lookupGuest(
     firstName: string,
     lastName: string,
-): Promise<string[] | null> {
+): Promise<GuestRecord | null> {
     const guests = await load();
     const match = guests.find(
         (g) =>
             g.firstName.toLowerCase() === firstName.toLowerCase() &&
             g.lastName.toLowerCase() === lastName.toLowerCase(),
     );
-    return match ? match.tags : null;
+    return match ?? null;
+}
+
+export async function lookupParty(slug: string): Promise<GuestRecord[]> {
+    const normalized = slug.trim().toLowerCase();
+    if (!normalized) return [];
+    const guests = await load();
+    return guests.filter((g) => g.slug === normalized);
+}
+
+/** Returns a write-scope Sheets client + spreadsheetId. For use in API routes
+ * that need to append to RSVPs (or any other sheet writes). */
+export async function getWritableSheetsClient(): Promise<{
+    sheets: sheets_v4.Sheets;
+    spreadsheetId: string;
+}> {
+    const { credentials, sheetId } = readEnv();
+    const auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+    const sheets = google.sheets({ version: "v4", auth });
+    return { sheets, spreadsheetId: sheetId };
+}
+
+/** True if any row in the RSVPs tab has the given slug. */
+export async function hasExistingRsvp(slug: string): Promise<boolean> {
+    const normalized = slug.trim().toLowerCase();
+    if (!normalized) return false;
+    const { sheets, spreadsheetId } = await getWritableSheetsClient();
+    const res = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: "RSVPs!B:B",
+    });
+    const values = res.data.values ?? [];
+    return values
+        .slice(1) // skip header
+        .some((row) => String(row[0] ?? "").trim().toLowerCase() === normalized);
 }

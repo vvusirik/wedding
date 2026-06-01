@@ -1,0 +1,380 @@
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 5rem;
+}
+
+.envelopeWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.envelope {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  height: auto;
+}
+
+.heading {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  color: var(--color-terracotta);
+  text-align: center;
+  margin: 0 0 0.75rem;
+}
+
+.intro {
+  text-align: center;
+  color: var(--color-taupe);
+  max-width: 30rem;
+  margin: 0 auto 2.5rem;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Accept / Decline — editorial script choices */
+.decisionPrompt {
+  text-align: center;
+  font-family: var(--font-renogare);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: 0.4rem;
+}
+
+.decisionGroup {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.1rem;
+  padding: 0.25rem 0 0.5rem;
+}
+
+.decisionChoice {
+  background: transparent;
+  border: 0;
+  padding: 0.4rem 0.2rem 0.5rem;
+  font-family: var(--font-renogare);
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-taupe) 85%, transparent);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.decisionChoice:hover {
+  color: var(--color-terracotta);
+}
+
+.decisionActive {
+  color: var(--color-terracotta);
+  border-bottom-color: var(--color-terracotta);
+}
+
+.decisionActive:hover {
+  color: var(--color-terracotta);
+}
+
+.decisionChoice:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.decisionSeparator {
+  color: color-mix(in srgb, var(--color-taupe) 50%, transparent);
+  font-size: 1rem;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Grid */
+.gridScroll {
+  overflow-x: auto;
+  margin: 0 -0.25rem;
+  padding: 0 0.25rem;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.gridCornerCell {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+}
+
+.gridMemberHeader {
+  padding: 0.75rem 0.5rem;
+  font-family: var(--font-renogare);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-foreground);
+  text-align: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  white-space: nowrap;
+}
+
+.gridEventHeader {
+  padding: 0.85rem 0.75rem 0.85rem 0;
+  text-align: left;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+.gridEventName {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  white-space: nowrap;
+}
+
+.gridEventTime {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-taupe);
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.gridCheckCell {
+  text-align: center;
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+.gridCheckLabel {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.visuallyHiddenCheckbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0;
+}
+
+.checkIndicator {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--color-foreground) 28%, transparent);
+  background: var(--color-background);
+  position: relative;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.gridCheckLabel:hover .checkIndicator {
+  border-color: var(--color-terracotta);
+}
+
+.visuallyHiddenCheckbox:checked + .checkIndicator {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+}
+
+.visuallyHiddenCheckbox:checked + .checkIndicator::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 0.32rem;
+  height: 0.62rem;
+  border: solid var(--color-background);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.visuallyHiddenCheckbox:focus-visible + .checkIndicator {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+
+.gridDash {
+  color: color-mix(in srgb, var(--color-foreground) 30%, transparent);
+}
+
+.gridInputCell {
+  padding: 0.65rem 0.4rem;
+}
+
+.gridInput {
+  width: 100%;
+  min-width: 7rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  border-radius: 0.35rem;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.gridInput:focus {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+/* Party-level fields */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldLabel {
+  display: block;
+  font-family: var(--font-renogare);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  border-radius: 0.4rem;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+
+.input:focus {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  border-radius: 0.4rem;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.textarea:focus {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.error {
+  background: color-mix(in srgb, var(--color-terracotta) 12%, transparent);
+  color: var(--color-brick);
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+.button {
+  align-self: center;
+  margin-top: 0.5rem;
+  padding: 1rem 3rem;
+  background: var(--color-terracotta);
+  color: var(--color-background);
+  border: 0;
+  border-radius: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-brick);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.updateHint {
+  align-self: center;
+  margin: -0.25rem 0 0;
+  text-align: center;
+  color: var(--color-taupe);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* ============================================================
+   SUCCESS STATE
+   ============================================================ */
+
+.success {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.successHeading {
+  font-family: var(--font-script);
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  color: var(--color-terracotta);
+  margin: 0 0 0.75rem;
+}
+
+.successBody {
+  color: var(--color-taupe);
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .page {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .gridEventHeader {
+    font-size: 0.85rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

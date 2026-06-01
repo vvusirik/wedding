@@ -6,12 +6,14 @@ export interface Guest {
     firstName: string;
     lastName: string;
     tags: string[];
+    slug: string;
 }
 
 const GuestContext = createContext<Guest>({
     firstName: "",
     lastName: "",
     tags: [],
+    slug: "",
 });
 
 export function GuestProvider({

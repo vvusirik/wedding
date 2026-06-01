@@ -23,7 +23,6 @@ function LoginForm() {
         <div className={styles.page}>
             <div className={styles.card}>
                 <h1 className={styles.heading}>Vishal &amp; Hanna</h1>
-                <div className={styles.divider} />
                 <form method="POST" action="/api/login" onSubmit={handleSubmit}>
                     <div className={styles.nameRow}>
                         <input
