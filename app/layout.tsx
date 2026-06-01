@@ -48,7 +48,13 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const isAuthenticated = cookieStore.get("wedding-auth")?.value === "true";
   const guestRaw = cookieStore.get("wedding-guest")?.value;
-  const guest = guestRaw ? JSON.parse(guestRaw) : { firstName: "", lastName: "", tags: [] };
+  const parsed = guestRaw ? JSON.parse(guestRaw) : {};
+  const guest = {
+    firstName: parsed.firstName ?? "",
+    lastName: parsed.lastName ?? "",
+    tags: parsed.tags ?? [],
+    slug: parsed.slug ?? "",
+  };
 
   return (
     <html
