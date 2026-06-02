@@ -27,12 +27,12 @@ export default async function RsvpSlugPage({ params }: PageProps) {
         <div className={styles.page}>
             <h1 className={styles.heading}>Hello, {joinNames(firstNames)}</h1>
             <p className={styles.intro}>
-                We&rsquo;re so excited to celebrate with you. Please let us know if you can
-                make it.
+                We&rsquo;re so excited to celebrate with you. Please let us know if you
+                can make it.
             </p>
             <div className={styles.envelopeWrap}>
                 <Image
-                    src="/images/envelope.png"
+                    src="/images/envelope-no-text.png"
                     alt=""
                     width={800}
                     height={494}

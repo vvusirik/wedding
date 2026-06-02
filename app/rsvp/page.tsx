@@ -22,7 +22,7 @@ export default async function RsvpPage() {
             <h1 className={styles.heading}>Responde Sil Vous Plait</h1>
             <div className={styles.envelopeWrap}>
                 <Image
-                    src="/images/envelope.png"
+                    src="/images/envelope-no-text.png"
                     alt=""
                     width={800}
                     height={494}
