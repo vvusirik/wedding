@@ -11,7 +11,6 @@
 .card {
   background-color: var(--color-background);
   border: 1px solid var(--color-cream);
-  border-radius: 1rem;
   padding: 3rem 2.5rem;
   width: 100%;
   max-width: 28rem;
@@ -53,7 +52,6 @@
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--color-cream);
-  border-radius: 0.5rem;
   font-size: 1rem;
   font-family: var(--font-sans);
   color: var(--color-foreground);
@@ -75,7 +73,6 @@
   background-color: var(--color-terracotta);
   color: var(--color-background);
   border: none;
-  border-radius: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   letter-spacing: 0.1em;

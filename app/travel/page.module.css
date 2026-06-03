@@ -10,13 +10,13 @@
   font-size: clamp(2rem, 8vw, 3.75rem);
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .intro {
   text-align: center;
   color: var(--color-taupe);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +25,7 @@
 .sectionHeading {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-forest);
+  color: var(--color-taupe);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -35,7 +35,6 @@
 .iconCircle {
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +75,6 @@
   height: 26rem;
   margin-top: 1.25rem;
   border: 1px solid var(--color-cream);
-  border-radius: 0.5rem;
 }
 
 @media (max-width: 640px) {
@@ -92,7 +90,6 @@
 .hotelCard {
   display: block;
   border: 1px solid var(--color-cream);
-  border-radius: 0.5rem;
   padding: 1rem;
   text-decoration: none;
   cursor: pointer;
@@ -104,13 +101,13 @@
 }
 
 .hotelAddress {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--color-taupe);
   margin-top: 0.25rem;
 }
 
 .hotelNote {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
   margin-top: 0.5rem;
 }

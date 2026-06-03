@@ -9,6 +9,9 @@ export default function Home() {
       {/* TODO match fonts to save the date */}
       <div className={styles.heroOverlay} />
       <div className={styles.heroContent}>
+        <p className={styles.heroInvite}>
+          You are warmly invited to the wedding of
+        </p>
         <h1 className={styles.heroTitle}>Vishal &amp; Hanna</h1>
         <div className={styles.heroDetails}>
           <span>The Bowden</span>

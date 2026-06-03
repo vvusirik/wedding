@@ -44,6 +44,16 @@
   justify-content: center;
 }
 
+.heroInvite {
+  font-family: var(--font-renogare);
+  font-size: clamp(0.75rem, 1.8vw, 1rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
 .heroTitle {
   font-family: var(--font-script);
   font-size: clamp(4rem, 10vw, 7.5rem);

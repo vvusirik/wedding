@@ -9,8 +9,6 @@ const ACTIVITIES_MAP_EMBED_URL =
 const sections = [
     {
         title: "Venue",
-        icon: "📍",
-        iconBg: "bg-terracotta/10",
         divider: "border-terracotta/30",
         content: (
             <>
@@ -31,9 +29,6 @@ const sections = [
     },
     {
         title: "Nearest Airports",
-        icon: "🛫",
-        hideIcon: true,
-        iconBg: "bg-brick/10",
         divider: "border-brick/30",
         content: (
             <div className={styles.airportsRow}>
@@ -64,8 +59,6 @@ const sections = [
     },
     {
         title: "Recommended Hotels",
-        icon: "🏨",
-        iconBg: "bg-forest/10",
         divider: "border-forest/30",
         content: (
             <>
@@ -139,8 +132,6 @@ const sections = [
     },
     {
         title: "Getting Around",
-        icon: "🚗",
-        iconBg: "bg-taupe/10",
         divider: "border-taupe/30",
         content: (
             <ul className="list-disc list-inside space-y-2 text-foreground/80">
@@ -155,14 +146,12 @@ const sections = [
     },
     {
         title: "Activities",
-        icon: "🎭",
-        iconBg: "bg-coral/10",
         divider: "border-coral/30",
         content: (
             <div>
                 <p className="text-foreground/80 leading-relaxed">
-                    If you have some time to explore, here are some of Vishal and Hanna&rsquo;s
-                    suggested spots around the area.
+                    If you have some time to explore, here are some of Vishal and
+                    Hanna&rsquo;s suggested spots around the area.
                 </p>
                 {ACTIVITIES_MAP_EMBED_URL && (
                     <iframe
@@ -183,7 +172,6 @@ export default function TravelPage() {
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Travel</h1>
-            <div className={styles.divider} />
             <p className={styles.intro}>
                 We want to make it as easy as possible for you to join us. Here&rsquo;s
                 everything you need to know to get here.
@@ -191,11 +179,9 @@ export default function TravelPage() {
 
             <div className="space-y-10">
                 {sections.map((section) => (
-                    <div key={section.title}>
-                        <h2 className={styles.sectionHeading}>{section.title}</h2>
-                        <div
-                            className={`${styles.sectionBody} border-t ${section.divider}`}
-                        >
+                    <div className={`${styles.sectionBody} border-t ${section.divider}`}>
+                        <div key={section.title}>
+                            <h2 className={styles.sectionHeading}>{section.title}</h2>
                             {section.content}
                         </div>
                     </div>

@@ -11,7 +11,11 @@ type Props = {
     alreadySubmitted: boolean;
 };
 
-const EVENT_ORDER = ["morning_ceremony", "evening_ceremony", "reception"] as const;
+const EVENT_ORDER = [
+    "morning_ceremony",
+    "evening_ceremony",
+    "reception",
+] as const;
 const EVENT_LABELS: Record<string, string> = {
     morning_ceremony: "Morning Ceremony",
     evening_ceremony: "Evening Ceremony",
@@ -29,16 +33,16 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
     const [decision, setDecision] = useState<Decision>(null);
 
     // Per-member attendance: { memberIndex: { eventTag: bool } }
-    const [attending, setAttending] = useState<Record<number, Record<string, boolean>>>(
-        () => {
-            const init: Record<number, Record<string, boolean>> = {};
-            party.forEach((m, i) => {
-                init[i] = {};
-                for (const tag of m.tags) init[i][tag] = true;
-            });
-            return init;
-        },
-    );
+    const [attending, setAttending] = useState<
+        Record<number, Record<string, boolean>>
+    >(() => {
+        const init: Record<number, Record<string, boolean>> = {};
+        party.forEach((m, i) => {
+            init[i] = {};
+            for (const tag of m.tags) init[i][tag] = true;
+        });
+        return init;
+    });
 
     // Party-level
     const [email, setEmail] = useState("");
@@ -83,8 +87,8 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 members: party.map((m, i) => {
                     const eventsAttending = accepting
                         ? visibleEvents.filter(
-                              (t) => m.tags.includes(t) && attending[i]?.[t],
-                          )
+                            (t) => m.tags.includes(t) && attending[i]?.[t],
+                        )
                         : [];
                     return {
                         firstName: m.firstName,
@@ -94,11 +98,15 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                     };
                 }),
             };
-            const res = await fetch("/api/rsvp", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
-            });
+            const minDelay = new Promise((r) => setTimeout(r, 600));
+            const [res] = await Promise.all([
+                fetch("/api/rsvp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
+                }),
+                minDelay,
+            ]);
             if (!res.ok) {
                 const txt = await res.text();
                 throw new Error(txt || `submission failed (${res.status})`);
@@ -137,22 +145,18 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 }
             }}
         >
-            <div className={styles.decisionPrompt}>Will you be joining us?</div>
             <div className={styles.decisionGroup}>
                 <button
                     type="button"
-                    className={`${styles.decisionChoice} ${decision === "accept" ? styles.decisionActive : ""}`}
+                    className={`${styles.decisionChoice} ${styles.decisionAccept} ${decision === "accept" ? styles.decisionActive : ""}`}
                     onClick={() => setDecision("accept")}
                     aria-pressed={decision === "accept"}
                 >
                     Joyfully accept
                 </button>
-                <span className={styles.decisionSeparator} aria-hidden="true">
-                    ·
-                </span>
                 <button
                     type="button"
-                    className={`${styles.decisionChoice} ${decision === "decline" ? styles.decisionActive : ""}`}
+                    className={`${styles.decisionChoice} ${styles.decisionDecline} ${decision === "decline" ? styles.decisionActive : ""}`}
                     onClick={() => setDecision("decline")}
                     aria-pressed={decision === "decline"}
                 >
@@ -190,10 +194,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                                     {party.map((m, i) => {
                                         const invited = m.tags.includes(tag);
                                         return (
-                                            <td
-                                                key={`${tag}-${i}`}
-                                                className={styles.gridCheckCell}
-                                            >
+                                            <td key={`${tag}-${i}`} className={styles.gridCheckCell}>
                                                 {invited ? (
                                                     <label className={styles.gridCheckLabel}>
                                                         <input
@@ -203,7 +204,10 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                                                             onChange={() => toggle(i, tag)}
                                                             aria-label={`${m.firstName} attending ${EVENT_LABELS[tag]}`}
                                                         />
-                                                        <span className={styles.checkIndicator} aria-hidden="true" />
+                                                        <span
+                                                            className={styles.checkIndicator}
+                                                            aria-hidden="true"
+                                                        />
                                                     </label>
                                                 ) : (
                                                     <span className={styles.gridDash}>—</span>
@@ -285,16 +289,17 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
 
             {decision !== null && (
                 <>
-                    <button
-                        type="submit"
-                        className={styles.button}
-                        disabled={submitting}
-                    >
-                        {submitting
-                            ? "Sending..."
-                            : alreadySubmitted
-                              ? "Update RSVP"
-                              : "Submit RSVP"}
+                    <button type="submit" className={styles.button} disabled={submitting}>
+                        {submitting ? (
+                            <span className={styles.buttonLoading}>
+                                <span className={styles.spinner} aria-hidden="true" />
+                                Sending
+                            </span>
+                        ) : alreadySubmitted ? (
+                            "Update RSVP"
+                        ) : (
+                            "Submit RSVP"
+                        )}
                     </button>
                     {alreadySubmitted && (
                         <p className={styles.updateHint}>

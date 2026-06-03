@@ -14,12 +14,14 @@
 }
 
 .intro {
-  text-align: center;
+  text-align: left;
   color: var(--color-taupe);
   margin-bottom: 2rem;
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 .imageWrapper {

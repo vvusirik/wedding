@@ -20,7 +20,9 @@ export default function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
 
-    useEffect(() => { setOpen(false); }, [pathname]);
+    useEffect(() => {
+        setOpen(false);
+    }, [pathname]);
 
     function handleLogout(e: React.MouseEvent<HTMLAnchorElement>) {
         if (!window.confirm("Log out?")) {
@@ -38,7 +40,7 @@ export default function Navbar() {
 
                     <div className={styles.links}>
                         {navLinks.map((link) => {
-                            const isActive = pathname === link.href;
+                            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
                             return (
                                 <Link
                                     key={link.href}
@@ -49,9 +51,6 @@ export default function Navbar() {
                                 </Link>
                             );
                         })}
-                        <a href="/api/logout" onClick={handleLogout} className={styles.link}>
-                            Logout
-                        </a>
                     </div>
 
                     <Drawer.Root open={open} onOpenChange={setOpen}>
@@ -61,7 +60,16 @@ export default function Navbar() {
                                 className={styles.toggle}
                                 aria-label="Open menu"
                             >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
                                     <path d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             </button>
@@ -79,7 +87,7 @@ export default function Navbar() {
                                 <div className={styles.drawerDivider} />
                                 <div className={styles.drawerNav}>
                                     {navLinks.map((link) => {
-                                        const isActive = pathname === link.href;
+                                        const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
                                         return (
                                             <Link
                                                 key={link.href}
@@ -93,7 +101,11 @@ export default function Navbar() {
                                     })}
                                 </div>
                                 <div className={styles.drawerFooter}>
-                                    <a href="/api/logout" onClick={handleLogout} className={styles.drawerLogout}>
+                                    <a
+                                        href="/api/logout"
+                                        onClick={handleLogout}
+                                        className={styles.drawerLogout}
+                                    >
                                         Logout
                                     </a>
                                 </div>

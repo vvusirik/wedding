@@ -27,7 +27,6 @@
   gap: 3rem;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 1.5rem;
 }
 
 .panelContent {
@@ -39,7 +38,6 @@
   flex: 1;
   min-height: 300px;
 }
-
 
 .panelLabel {
   font-size: 0.7rem;
@@ -93,13 +91,13 @@
 }
 
 .eventLocation {
-  font-size: 0.8rem;
+  font-size: 1rem;
   opacity: 0.55;
   margin-bottom: 0.5rem;
 }
 
 .eventDescription {
-  font-size: 0.875rem;
+  font-size: 1rem;
   opacity: 0.8;
   line-height: 1.65;
 }

@@ -1,0 +1,21 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.spinner {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--color-terracotta) 20%, transparent);
+  border-top-color: var(--color-terracotta);
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

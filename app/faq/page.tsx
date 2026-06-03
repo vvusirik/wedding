@@ -90,8 +90,8 @@ const faqs = [
 export default function FAQPage() {
     return (
         <div className={styles.page}>
-            <h1 className={styles.heading}>Frequently Asked Questions</h1>
-            <p className={styles.subtitle}>Read the FAQ so you know what to do!</p>
+            <h1 className={styles.heading}>Questions?</h1>
+            <p className={styles.subtitle}>We've got answers!</p>
 
             <div className={styles.faqList}>
                 {faqs.map((faq, i) => (
