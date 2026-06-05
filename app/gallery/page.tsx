@@ -15,6 +15,9 @@ const photos = [
   { src: "/images/gallery/rome-4.jpg", alt: "Rome" },
 ];
 
+const featuredPhotos = photos.filter((p) => p.alt === "Proposal").slice(0, 2);
+const otherPhotos = photos.filter((p) => !featuredPhotos.includes(p));
+
 export default function GalleryPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -45,26 +48,45 @@ export default function GalleryPage() {
   }, [activeIndex]);
 
   return (
-    <div className={styles.page}>
-      <h1 className={styles.heading}>Gallery</h1>
+    <div className={styles.background}><div className={styles.page}>
+      <div className={styles.featured}>
+        {featuredPhotos.map((photo) => {
+          const i = photos.indexOf(photo);
+          return (
+            <div key={photo.src} className={`${styles.item} ${styles.featuredItem}`} onClick={() => setActiveIndex(i)}>
+              <div className={styles.imageWrap}>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className={styles.image}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
       <div className={styles.grid}>
-        {photos.map((photo, i) => (
-          <div
-            key={photo.src}
-            className={styles.item}
-            onClick={() => setActiveIndex(i)}
-          >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={800}
-              height={600}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className={styles.image}
-            />
-          </div>
-        ))}
+        {otherPhotos.map((photo) => {
+          const i = photos.indexOf(photo);
+          return (
+            <div key={photo.src} className={styles.item} onClick={() => setActiveIndex(i)}>
+              <div className={styles.imageWrap}>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.image}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {activeIndex !== null && (
@@ -101,6 +123,6 @@ export default function GalleryPage() {
           </div>
         </div>
       )}
-    </div>
+    </div></div>
   );
 }

@@ -12,7 +12,7 @@ const sections = [
         divider: "border-terracotta/30",
         content: (
             <>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="leading-relaxed">
                     <a href="https://maps.app.goo.gl/gjbZ7UGEL6KSnmDk9">
                         <strong>The Bowden</strong>
                     </a>
@@ -21,7 +21,7 @@ const sections = [
                     <br />
                     Keller, TX, 76248
                 </p>
-                <p className="mt-3 text-foreground/70 text-sm">
+                <p className="mt-3">
                     Parking is available on site.
                 </p>
             </>
@@ -32,17 +32,17 @@ const sections = [
         divider: "border-brick/30",
         content: (
             <div className={styles.airportsRow}>
-                <ul className="space-y-3 text-foreground/80">
+                <ul className="space-y-3">
                     <li>
-                        <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
+                        <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from
                         venue
                         <br />
                         <span className="text-sm text-taupe">
-                            Recommended — closest and has the most direct flights
+                            Recommended - closest and has the most direct flights
                         </span>
                     </li>
                     <li>
-                        <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
+                        <strong>Dallas Lovefield (DAL)</strong> - 35 minutes driving from
                         venue
                         <br />
                     </li>
@@ -134,7 +134,7 @@ const sections = [
         title: "Getting Around",
         divider: "border-taupe/30",
         content: (
-            <ul className="list-disc list-inside space-y-2 text-foreground/80">
+            <ul className="list-disc list-inside space-y-2">
                 <li>
                     Public transit is sparse to non-existent in this part of Dallas, so
                     plan to get around by car.
@@ -149,7 +149,7 @@ const sections = [
         divider: "border-coral/30",
         content: (
             <div>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="leading-relaxed">
                     If you have some time to explore, here are some of Vishal and
                     Hanna&rsquo;s suggested spots around the area.
                 </p>
@@ -172,15 +172,11 @@ export default function TravelPage() {
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Travel</h1>
-            <p className={styles.intro}>
-                We want to make it as easy as possible for you to join us. Here&rsquo;s
-                everything you need to know to get here.
-            </p>
-
-            <div className="space-y-10">
-                {sections.map((section) => (
-                    <div className={`${styles.sectionBody} border-t ${section.divider}`}>
-                        <div key={section.title}>
+            <div>
+                {sections.map((section, i) => (
+                    <div key={section.title}>
+                        {i > 0 && <hr className={styles.divider} />}
+                        <div className={styles.sectionBody}>
                             <h2 className={styles.sectionHeading}>{section.title}</h2>
                             {section.content}
                         </div>

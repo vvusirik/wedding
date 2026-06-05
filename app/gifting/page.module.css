@@ -6,7 +6,7 @@
 }
 
 .heading {
-  font-family: var(--font-script);
+  font-family: var(--font-cormorant-upright);
   font-size: clamp(2rem, 8vw, 3.75rem);
   color: var(--color-terracotta);
   text-align: center;

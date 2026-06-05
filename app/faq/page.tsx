@@ -12,7 +12,7 @@ const faqs = [
                 <ul className={styles.answerList}>
                     <li>
                         For the Mehndi and Sangeet: colorful semi-formal attire is
-                        encouraged — think bright salwar kameez, lehengas, sarees, or
+                        encouraged - think bright salwar kameez, lehengas, sarees, or
                         cocktail dresses in jewel tones.
                     </li>
                     <li>
@@ -90,8 +90,7 @@ const faqs = [
 export default function FAQPage() {
     return (
         <div className={styles.page}>
-            <h1 className={styles.heading}>Questions?</h1>
-            <p className={styles.subtitle}>We've got answers!</p>
+            <h1 className={styles.heading}>Helpful Info</h1>
 
             <div className={styles.faqList}>
                 {faqs.map((faq, i) => (

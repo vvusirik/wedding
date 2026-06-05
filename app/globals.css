@@ -18,6 +18,8 @@
   --color-lavender: #c890e0;
   --font-script: var(--font-ed-lavonia);
   --font-sans: var(--font-lato);
+  --font-cormorant: var(--font-cormorant-garamond);
+  --font-cormorant-upright: var(--font-cormorant-upright);
 }
 
 body {

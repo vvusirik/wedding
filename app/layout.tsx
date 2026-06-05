@@ -34,6 +34,47 @@ const renogare = localFont({
   display: "swap",
 });
 
+const cormorantGaramond = localFont({
+  src: [
+    {
+      path: "../public/fonts/CormorantGaramond-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CormorantGaramond-Regular.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CormorantGaramond-Regular.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CormorantGaramond-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-cormorant-garamond",
+  display: "swap",
+});
+
+const cormorantUpright = localFont({
+  src: "../public/fonts/CormorantUpright-Bold.woff2",
+  variable: "--font-cormorant-upright",
+  weight: "700",
+  display: "swap",
+});
+
+const domLovesMaryPro = localFont({
+  src: "../public/fonts/DomLovesMaryPro.woff2",
+  variable: "--font-dom-loves-mary",
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Vishal & Hanna | Wedding",
   description:
@@ -59,7 +100,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${greatVibes.variable} ${edLavonia.variable} ${renogare.variable} ${lato.variable} h-full antialiased`}
+      className={`${greatVibes.variable} ${edLavonia.variable} ${renogare.variable} ${lato.variable} ${cormorantGaramond.variable} ${cormorantUpright.variable} ${domLovesMaryPro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <GuestProvider guest={guest}>
