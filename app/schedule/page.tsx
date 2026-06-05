@@ -18,7 +18,7 @@ type PanelData = {
 
 const morning: PanelData = {
     title: "Morning",
-    illustration: { src: "/images/icons/haldi2.png", alt: "Haldi illustration" },
+    illustration: { src: "/images/icons/dhol.png", alt: "Dhol illustration" },
     events: [
         {
             tag: "morning_ceremony",

@@ -11,7 +11,7 @@ const navLinks = [
     { label: "Schedule", href: "/schedule" },
     { label: "RSVP", href: "/rsvp" },
     { label: "Travel", href: "/travel" },
-    { label: "FAQ", href: "/faq" },
+    { label: "Info", href: "/faq" },
     { label: "Gifting", href: "/gifting" },
     { label: "Gallery", href: "/gallery" },
 ];
@@ -35,12 +35,13 @@ export default function Navbar() {
             <div className={styles.inner}>
                 <div className={styles.bar}>
                     <Link href="/" className={styles.logo}>
-                        Vishal &amp; Hanna
+                        {pathname === "/" ? "October 17, 2026" : "Vishal & Hanna"}
                     </Link>
 
                     <div className={styles.links}>
                         {navLinks.map((link) => {
-                            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+                            const isActive =
+                                pathname === link.href || pathname.startsWith(link.href + "/");
                             return (
                                 <Link
                                     key={link.href}
@@ -87,7 +88,9 @@ export default function Navbar() {
                                 <div className={styles.drawerDivider} />
                                 <div className={styles.drawerNav}>
                                     {navLinks.map((link) => {
-                                        const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+                                        const isActive =
+                                            pathname === link.href ||
+                                            pathname.startsWith(link.href + "/");
                                         return (
                                             <Link
                                                 key={link.href}

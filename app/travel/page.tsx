@@ -34,15 +34,15 @@ const sections = [
             <div className={styles.airportsRow}>
                 <ul className="space-y-3">
                     <li>
-                        <strong>Dallas Fort Worth (DFW)</strong> — 20 minutes driving from
+                        <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from
                         venue
                         <br />
                         <span className="text-sm text-taupe">
-                            Recommended — closest and has the most direct flights
+                            Recommended - closest and has the most direct flights
                         </span>
                     </li>
                     <li>
-                        <strong>Dallas Lovefield (DAL)</strong> — 35 minutes driving from
+                        <strong>Dallas Lovefield (DAL)</strong> - 35 minutes driving from
                         venue
                         <br />
                     </li>

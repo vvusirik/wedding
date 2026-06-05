@@ -12,7 +12,7 @@ const faqs = [
                 <ul className={styles.answerList}>
                     <li>
                         For the Mehndi and Sangeet: colorful semi-formal attire is
-                        encouraged — think bright salwar kameez, lehengas, sarees, or
+                        encouraged - think bright salwar kameez, lehengas, sarees, or
                         cocktail dresses in jewel tones.
                     </li>
                     <li>

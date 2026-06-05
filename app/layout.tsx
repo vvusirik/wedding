@@ -68,6 +68,13 @@ const cormorantUpright = localFont({
   display: "swap",
 });
 
+const domLovesMaryPro = localFont({
+  src: "../public/fonts/DomLovesMaryPro.woff2",
+  variable: "--font-dom-loves-mary",
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Vishal & Hanna | Wedding",
   description:
@@ -93,7 +100,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${greatVibes.variable} ${edLavonia.variable} ${renogare.variable} ${lato.variable} ${cormorantGaramond.variable} ${cormorantUpright.variable} h-full antialiased`}
+      className={`${greatVibes.variable} ${edLavonia.variable} ${renogare.variable} ${lato.variable} ${cormorantGaramond.variable} ${cormorantUpright.variable} ${domLovesMaryPro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <GuestProvider guest={guest}>
