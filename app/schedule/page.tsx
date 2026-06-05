@@ -55,7 +55,7 @@ const evening: PanelData = {
             time: "5 PM",
             location: "Chapel",
             description:
-                "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes the signing of the ketubah (marriage contract), exchange of rings, and the breaking of the glass.",
+                "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes a sharing of blessings, exchange of rings, and the breaking of the glass.",
         },
         {
             tag: "reception",

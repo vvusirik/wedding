@@ -3,10 +3,13 @@
   margin-left: auto;
   margin-right: auto;
   padding: 4rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-foreground);
 }
 
 .heading {
-  font-family: var(--font-script);
+  font-family: var(--font-cormorant-upright);
   font-size: clamp(2rem, 8vw, 3.75rem);
   color: var(--color-terracotta);
   text-align: center;
@@ -14,8 +17,11 @@
 }
 
 .intro {
+  font-family: var(--font-cormorant);
+  font-size: 1.2rem;
+  font-style: italic;
   text-align: center;
-  color: var(--color-taupe);
+  color: var(--color-foreground);
   margin-bottom: 2rem;
   max-width: 36rem;
   margin-left: auto;
@@ -23,9 +29,10 @@
 }
 
 .sectionHeading {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-taupe);
+  font-family: var(--font-cormorant);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-foreground);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -42,8 +49,14 @@
   flex-shrink: 0;
 }
 
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-terracotta);
+  margin: 2.5rem 0;
+}
+
 .sectionBody {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 .airportsRow {
@@ -96,18 +109,20 @@
 }
 
 .hotelName {
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-foreground);
 }
 
 .hotelAddress {
   font-size: 1rem;
-  color: var(--color-taupe);
+  color: var(--color-foreground);
   margin-top: 0.25rem;
 }
 
 .hotelNote {
   font-size: 1rem;
-  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+  color: var(--color-foreground);
   margin-top: 0.5rem;
 }

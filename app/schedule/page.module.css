@@ -5,7 +5,7 @@
 }
 
 .heading {
-  font-family: var(--font-script);
+  font-family: var(--font-cormorant-upright);
   font-size: clamp(2rem, 8vw, 3.75rem);
   color: var(--color-terracotta);
   text-align: center;
@@ -48,7 +48,7 @@
 }
 
 .panelTitle {
-  font-family: var(--font-script);
+  font-family: var(--font-cormorant-upright);
   font-size: clamp(1.75rem, 5vw, 2.75rem);
   line-height: 1.1;
   margin-bottom: 0.75rem;

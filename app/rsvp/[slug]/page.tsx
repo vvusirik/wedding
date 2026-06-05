@@ -1,17 +1,11 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { hasExistingRsvp, lookupParty } from "../../../lib/guests";
 import styles from "./page.module.css";
 import { RsvpForm } from "./rsvp-form";
 
 type PageProps = { params: Promise<{ slug: string }> };
-
-function joinNames(names: string[]): string {
-    if (names.length === 0) return "";
-    if (names.length === 1) return names[0];
-    if (names.length === 2) return `${names[0]} & ${names[1]}`;
-    return `${names.slice(0, -1).join(", ")} & ${names[names.length - 1]}`;
-}
 
 export default async function RsvpSlugPage({ params }: PageProps) {
     const { slug } = await params;
@@ -21,14 +15,44 @@ export default async function RsvpSlugPage({ params }: PageProps) {
     ]);
     if (party.length === 0) notFound();
 
-    const firstNames = party.map((g) => g.firstName);
+    // Put the logged-in guest first if we can identify them
+    const cookieStore = await cookies();
+    const guestRaw = cookieStore.get("wedding-guest")?.value;
+    let loggedInFirst = "";
+    let loggedInLast = "";
+    if (guestRaw) {
+        try {
+            const parsed = JSON.parse(guestRaw);
+            if (parsed.firstName && parsed.lastName) {
+                loggedInFirst = parsed.firstName.trim().toLowerCase();
+                loggedInLast = parsed.lastName.trim().toLowerCase();
+            }
+        } catch { /* fall through */ }
+    }
+    const loggedInIdx = party.findIndex(
+        (g) =>
+            g.firstName.toLowerCase() === loggedInFirst &&
+            g.lastName.toLowerCase() === loggedInLast,
+    );
+    const sorted =
+        loggedInIdx > 0
+            ? [party[loggedInIdx], ...party.filter((_, i) => i !== loggedInIdx)]
+            : party;
 
     return (
         <div className={styles.page}>
-            <h1 className={styles.heading}>Hello, {joinNames(firstNames)}</h1>
+            <p className={styles.dear}>Dear</p>
+            <h1 className={styles.heading}>
+                {sorted.map((g, i) => (
+                    <span key={`${g.firstName}-${g.lastName}`}>
+                        {i > 0 && <span className={styles.ampersand}>&amp;</span>}
+                        <span className={styles.guestName}>{g.firstName} {g.lastName}</span>
+                    </span>
+                ))}
+            </h1>
             <p className={styles.intro}>
-                We&rsquo;re so excited to celebrate with you! Please let us know if you
-                can make it.
+                We&rsquo;re excited to celebrate with you!<br />
+                Let us know if you can make it.
             </p>
             <div className={styles.envelopeWrap}>
                 <Image
@@ -43,7 +67,7 @@ export default async function RsvpSlugPage({ params }: PageProps) {
             <RsvpForm
                 slug={slug}
                 alreadySubmitted={alreadySubmitted}
-                party={party.map((g) => ({
+                party={sorted.map((g) => ({
                     firstName: g.firstName,
                     lastName: g.lastName,
                     tags: g.tags,
