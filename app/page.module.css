@@ -57,6 +57,12 @@
   opacity: 0.9;
 }
 
+@media (max-width: 640px) {
+  .heroInvite {
+    margin-top: 4rem;
+  }
+}
+
 .heroTitle {
   font-family: var(--font-dom-loves-mary);
   font-size: clamp(4rem, 10vw, 7.5rem);

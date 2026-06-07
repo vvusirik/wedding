@@ -85,7 +85,6 @@ export default function Navbar() {
                                 <Drawer.Description className="sr-only">
                                     Site navigation
                                 </Drawer.Description>
-                                <div className={styles.drawerDivider} />
                                 <div className={styles.drawerNav}>
                                     {navLinks.map((link) => {
                                         const isActive =
@@ -102,15 +101,6 @@ export default function Navbar() {
                                             </Link>
                                         );
                                     })}
-                                </div>
-                                <div className={styles.drawerFooter}>
-                                    <a
-                                        href="/api/logout"
-                                        onClick={handleLogout}
-                                        className={styles.drawerLogout}
-                                    >
-                                        Logout
-                                    </a>
                                 </div>
                             </Drawer.Content>
                         </Drawer.Portal>
