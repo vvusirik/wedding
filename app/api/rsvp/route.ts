@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getWritableSheetsClient, lookupParty } from "../../../lib/guests";
+import { sendRsvpConfirmation } from "../../../lib/email";
 
 const RSVP_SHEET_NAME = "RSVPs";
 
@@ -104,6 +105,16 @@ export async function POST(request: Request) {
         const message = err instanceof Error ? err.message : "sheets write failed";
         return NextResponse.json({ ok: false, error: message }, { status: 500 });
     }
+
+    const accepted = body.members.some((m) => m.attending);
+    await sendRsvpConfirmation({
+        to: body.email,
+        partyNames: body.members.map((m) => m.firstName),
+        accepted,
+        members: body.members,
+        dietaryNotes: body.dietaryNotes,
+        songRequest: body.songRequest,
+    });
 
     return NextResponse.json({ ok: true, count: rows.length });
 }
