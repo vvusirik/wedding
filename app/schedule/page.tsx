@@ -26,7 +26,7 @@ const morning: PanelData = {
             time: "10 AM",
             location: "Entrance",
             description:
-                "Kick off the wedding with us in style! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
+                "Kick off the wedding with us! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
         },
         {
             tag: "morning_ceremony",
@@ -47,7 +47,7 @@ const morning: PanelData = {
 
 const evening: PanelData = {
     title: "Evening",
-    illustration: null,
+    illustration: { src: "/images/icons/glasses.png", alt: "Glasses illustration" },
     events: [
         {
             tag: "evening_ceremony",
@@ -63,7 +63,7 @@ const evening: PanelData = {
             time: "6 PM",
             location: "Patio",
             description:
-                "Come mingle with us and other guests following the Jewish ceremony! Light snacks and drinks will be provided.",
+                "Come mingle with us and other guests following the Jewish ceremony. Light snacks and drinks will be provided.",
         },
         {
             tag: "reception",

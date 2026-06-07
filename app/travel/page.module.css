@@ -59,27 +59,11 @@
   padding-top: 0;
 }
 
-.airportsRow {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
 .planeIcon {
   object-fit: contain;
   opacity: 0.75;
-  flex-shrink: 0;
-}
-
-@media (max-width: 640px) {
-  .airportsRow {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .planeIcon {
-    margin: 0 auto;
-  }
+  display: block;
+  margin: 1.5rem auto 0;
 }
 
 .mapEmbed {
@@ -94,6 +78,13 @@
   .mapEmbed {
     height: 20rem;
   }
+}
+
+.bowdenIllustration {
+  width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+  opacity: 0.85;
 }
 
 .hotelTextBody {

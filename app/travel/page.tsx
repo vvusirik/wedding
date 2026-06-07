@@ -24,6 +24,13 @@ const sections = [
                 <p className="mt-3">
                     Parking is available on site.
                 </p>
+                <Image
+                    src="/images/icons/bowden.png"
+                    alt="The Bowden illustration"
+                    width={900}
+                    height={400}
+                    className={styles.bowdenIllustration}
+                />
             </>
         ),
     },
@@ -31,7 +38,7 @@ const sections = [
         title: "Nearest Airports",
         divider: "border-brick/30",
         content: (
-            <div className={styles.airportsRow}>
+            <>
                 <ul className="space-y-3">
                     <li>
                         <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from
@@ -50,11 +57,11 @@ const sections = [
                 <Image
                     src="/images/icons/plane.png"
                     alt=""
-                    width={160}
-                    height={160}
+                    width={220}
+                    height={220}
                     className={styles.planeIcon}
                 />
-            </div>
+            </>
         ),
     },
     {
