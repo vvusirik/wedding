@@ -96,6 +96,13 @@
   }
 }
 
+.bowdenIllustration {
+  width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+  opacity: 0.85;
+}
+
 .hotelTextBody {
   margin-bottom: 1rem;
 }

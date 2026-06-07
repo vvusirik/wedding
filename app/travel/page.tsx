@@ -24,6 +24,13 @@ const sections = [
                 <p className="mt-3">
                     Parking is available on site.
                 </p>
+                <Image
+                    src="/images/icons/bowden.png"
+                    alt="The Bowden illustration"
+                    width={900}
+                    height={400}
+                    className={styles.bowdenIllustration}
+                />
             </>
         ),
     },
