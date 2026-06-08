@@ -57,8 +57,8 @@ const sections = [
                 <Image
                     src="/images/icons/plane.png"
                     alt=""
-                    width={220}
-                    height={220}
+                    width={320}
+                    height={320}
                     className={styles.planeIcon}
                 />
             </>
