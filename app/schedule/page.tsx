@@ -32,22 +32,26 @@ const morning: PanelData = {
             tag: "morning_ceremony",
             title: "Wedding Ceremony",
             time: "11 AM",
-            location: "Main Hall",
+            location: "Ballroom",
             description:
-                "The Vusirikala family invites you to join as Vishal and Hanna take part in traditional Indian wedding rituals under the Mandaap in the main hall of the Bowden.",
+                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam.",
         },
         {
             tag: "morning_ceremony",
             title: "Lunch",
             time: "1 PM",
             location: "Main Hall",
+            description: "South Indian Vegetarian",
         },
     ],
 };
 
 const evening: PanelData = {
     title: "Evening",
-    illustration: { src: "/images/icons/glasses.png", alt: "Glasses illustration" },
+    illustration: {
+        src: "/images/icons/glasses.png",
+        alt: "Glasses illustration",
+    },
     events: [
         {
             tag: "evening_ceremony",
@@ -63,15 +67,15 @@ const evening: PanelData = {
             time: "6 PM",
             location: "Patio",
             description:
-                "Come mingle with us and other guests following the Jewish ceremony. Light snacks and drinks will be provided.",
+                "Please join us for drinks and hors d'oeuvres immediately following the ceremony. We look forward to mingling and celebrating this joyful moment with you before the evening festivities begin.",
         },
         {
             tag: "reception",
             title: "Reception",
             time: "7 PM",
-            location: "The Bowden",
+            location: "Ballroom",
             description:
-                "Dance and dine with us as we end the night with dinner, speeches, a few performances, and a sendoff for Vishal and Hanna!",
+                "Dance and dine with us! Please join us for dinner, speeches, and special performances as we honor the newlyweds and wrap up the evening with a memorable send-off for Vishal and Hanna-Mae.",
         },
     ],
 };

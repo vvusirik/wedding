@@ -7,7 +7,7 @@ export default function GiftingPage() {
             <h1 className={styles.heading}>Gifting</h1>
             <p className={styles.intro}>
                 Your attendance is the greatest gift you could give us! We don't have a
-                registry and ask that you please refrain from bringing physical gifts.
+                registry and ask that you please refrain from bringing boxed gifts.
             </p>
             <p className={styles.intro}>
                 If you are feeling especially generous, you may gift us in the Indian
