@@ -21,9 +21,9 @@ const sections = [
                     <br />
                     Keller, TX, 76248
                 </p>
-                <p className="mt-3">
+                <span className="text-sm text-taupe">
                     Parking is available on site.
-                </p>
+                </span>
                 <Image
                     src="/images/icons/bowden.png"
                     alt="The Bowden illustration"

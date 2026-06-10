@@ -5,8 +5,7 @@ export interface GuestRecord {
     lastName: string;
     tags: string[];
     slug: string;
-    plusOneFirstName?: string;
-    plusOneLastName?: string;
+    envelopeName?: string;
 }
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
@@ -22,40 +21,45 @@ function normalizeHeader(h: string): string {
 function parseRows(rows: string[][]): GuestRecord[] {
     if (rows.length === 0) return [];
     const headers = rows[0].map(normalizeHeader);
-    const iFirst = headers.findIndex((h) => h.replace(/_/g, "") === "firstname");
-    const iLast = headers.findIndex((h) => h.replace(/_/g, "") === "lastname");
+    const norm = (h: string) => h.replace(/[\s_]/g, "");
+
+    // Locate name column pairs: person 1 uses first_name/last_name,
+    // persons 2–4 use first_name_2/last_name_2, etc.
+    const nameColumns: Array<{ first: number; last: number }> = [];
+    const i1First = headers.findIndex((h) => norm(h) === "firstname");
+    const i1Last = headers.findIndex((h) => norm(h) === "lastname");
+    if (i1First >= 0 && i1Last >= 0) nameColumns.push({ first: i1First, last: i1Last });
+    for (let n = 2; n <= 4; n++) {
+        const iFirst = headers.findIndex((h) => norm(h) === `firstname${n}`);
+        const iLast = headers.findIndex((h) => norm(h) === `lastname${n}`);
+        if (iFirst >= 0 && iLast >= 0) nameColumns.push({ first: iFirst, last: iLast });
+    }
+
     const iTags = headers.indexOf("tags");
     const iSlug = headers.indexOf("slug");
-    const iPlusFirst = headers.findIndex((h) => h.replace(/_/g, "") === "plusonefirstname");
-    const iPlusLast = headers.findIndex((h) => h.replace(/_/g, "") === "plusonelastname");
-    if (iFirst < 0 || iLast < 0 || iTags < 0) {
+    const iEnvelope = headers.indexOf("envelope_name");
+    if (i1First < 0 || i1Last < 0 || iTags < 0) {
         throw new Error(
             `guest sheet missing required columns. need first_name, last_name, tags. got: ${headers.join(", ")}`,
         );
     }
-    return rows
-        .slice(1)
-        .map((row): GuestRecord | null => {
-            const first = String(row[iFirst] ?? "").trim();
-            const last = String(row[iLast] ?? "").trim();
-            if (!first && !last) return null;
-            const tags = String(row[iTags] ?? "")
-                .split(",")
-                .map((t) => t.trim().toLowerCase())
-                .filter((t) => t.length > 0);
-            const slug = iSlug >= 0 ? String(row[iSlug] ?? "").trim().toLowerCase() : "";
-            const plusOneFirstName = iPlusFirst >= 0 ? String(row[iPlusFirst] ?? "").trim() : undefined;
-            const plusOneLastName = iPlusLast >= 0 ? String(row[iPlusLast] ?? "").trim() : undefined;
-            return {
-                firstName: first,
-                lastName: last,
-                tags,
-                slug,
-                ...(plusOneFirstName ? { plusOneFirstName } : {}),
-                ...(plusOneLastName ? { plusOneLastName } : {}),
-            };
-        })
-        .filter((g): g is GuestRecord => g !== null);
+
+    const records: GuestRecord[] = [];
+    for (const row of rows.slice(1)) {
+        const tags = String(row[iTags] ?? "")
+            .split(",")
+            .map((t) => t.trim().toLowerCase())
+            .filter((t) => t.length > 0);
+        const slug = iSlug >= 0 ? String(row[iSlug] ?? "").trim().toLowerCase() : "";
+        const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : undefined;
+        for (const { first: fi, last: li } of nameColumns) {
+            const firstName = String(row[fi] ?? "").trim();
+            const lastName = String(row[li] ?? "").trim();
+            if (!firstName && !lastName) continue;
+            records.push({ firstName, lastName, tags, slug, ...(envelopeName ? { envelopeName } : {}) });
+        }
+    }
+    return records;
 }
 
 function readEnv(): { credentials: object; sheetId: string; range: string } {
@@ -111,30 +115,18 @@ export async function lookupGuest(
     const guests = await load();
     const fn = firstName.toLowerCase();
     const ln = lastName.toLowerCase();
-    const match = guests.find(
-        (g) =>
-            (g.firstName.toLowerCase() === fn && g.lastName.toLowerCase() === ln) ||
-            (g.plusOneFirstName?.toLowerCase() === fn && g.plusOneLastName?.toLowerCase() === ln),
+    return (
+        guests.find(
+            (g) => g.firstName.toLowerCase() === fn && g.lastName.toLowerCase() === ln,
+        ) ?? null
     );
-    return match ?? null;
 }
 
 export async function lookupParty(slug: string): Promise<GuestRecord[]> {
     const normalized = slug.trim().toLowerCase();
     if (!normalized) return [];
     const guests = await load();
-    const row = guests.find((g) => g.slug === normalized);
-    if (!row) return [];
-    const party: GuestRecord[] = [row];
-    if (row.plusOneFirstName && row.plusOneLastName) {
-        party.push({
-            firstName: row.plusOneFirstName,
-            lastName: row.plusOneLastName,
-            tags: row.tags,
-            slug: row.slug,
-        });
-    }
-    return party;
+    return guests.filter((g) => g.slug === normalized);
 }
 
 /** Returns a write-scope Sheets client + spreadsheetId. For use in API routes

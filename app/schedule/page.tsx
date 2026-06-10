@@ -21,7 +21,7 @@ const morning: PanelData = {
     illustration: { src: "/images/icons/dhol.png", alt: "Dhol illustration" },
     events: [
         {
-            tag: "morning_ceremony",
+            tag: "morning",
             title: "Baraat",
             time: "10 AM",
             location: "Entrance",
@@ -29,19 +29,20 @@ const morning: PanelData = {
                 "Kick off the wedding with us! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
         },
         {
-            tag: "morning_ceremony",
-            title: "Wedding Ceremony",
+            tag: "morning",
+            title: "Morning Ceremony",
             time: "11 AM",
             location: "Ballroom",
             description:
-                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam.",
+                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:19 PM.",
         },
         {
-            tag: "morning_ceremony",
+            tag: "morning",
             title: "Lunch",
             time: "1 PM",
-            location: "Main Hall",
-            description: "South Indian Vegetarian",
+            location: "Ballroom",
+            description:
+                "Please enjoy a South Indian vegetarian lunch following the morning ceremony.",
         },
     ],
 };
@@ -54,15 +55,15 @@ const evening: PanelData = {
     },
     events: [
         {
-            tag: "evening_ceremony",
-            title: "Wedding Ceremony",
+            tag: "evening",
+            title: "Evening Ceremony",
             time: "5 PM",
             location: "Chapel",
             description:
-                "The Greenfield family invites you to join Vishal and Hanna for a Jewish wedding ceremony under the chuppah. The ceremony includes a sharing of blessings, exchange of rings, and the breaking of the glass.",
+                "The Greenfield family invites you to join Vishal and Hanna for a wedding ceremony under the chuppah. The ceremony includes a sharing of blessings, exchange of rings, and the breaking of the glass.",
         },
         {
-            tag: "reception",
+            tag: "evening",
             title: "Cocktail Hour",
             time: "6 PM",
             location: "Patio",
@@ -70,7 +71,7 @@ const evening: PanelData = {
                 "Please join us for drinks and hors d'oeuvres immediately following the ceremony. We look forward to mingling and celebrating this joyful moment with you before the evening festivities begin.",
         },
         {
-            tag: "reception",
+            tag: "evening",
             title: "Reception",
             time: "7 PM",
             location: "Ballroom",
@@ -80,69 +81,57 @@ const evening: PanelData = {
     ],
 };
 
-function Panel({
-    panel,
-    variant,
-}: {
-    panel: PanelData;
-    variant: "morning" | "evening";
-}) {
-    return (
-        <div className={`${styles.panel} ${styles[variant]}`}>
-            <div className={styles.panelContent}>
-                <h2 className={styles.panelTitle}>{panel.title}</h2>
-                <div className={styles.eventList}>
-                    {panel.events.map((event) => (
-                        <div key={event.title} className={styles.eventItem}>
-                            <span className={styles.eventTitle}>{event.title}</span>
-                            <p className={styles.eventLocation}>
-                                {event.time} · {event.location}
-                            </p>
-                            {event.description && (
-                                <p className={styles.eventDescription}>{event.description}</p>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className={styles.illustrationSlot}>
-                {panel.illustration && (
-                    <Image
-                        src={panel.illustration.src}
-                        alt={panel.illustration.alt}
-                        width={300}
-                        height={300}
-                        style={{ width: "100%", height: "auto" }}
-                    />
-                )}
-            </div>
-        </div>
-    );
-}
-
 export default async function SchedulePage() {
     const cookieStore = await cookies();
     const guestRaw = cookieStore.get("wedding-guest")?.value;
     const tags: string[] = guestRaw ? (JSON.parse(guestRaw).tags ?? []) : [];
 
-    const visibleMorning = {
-        ...morning,
-        events: morning.events.filter((e) => tags.includes(e.tag)),
-    };
-    const visibleEvening = {
-        ...evening,
-        events: evening.events.filter((e) => tags.includes(e.tag)),
-    };
+    const allEvents = [
+        ...morning.events.filter((e) => tags.includes(e.tag)),
+        ...evening.events.filter((e) => tags.includes(e.tag)),
+    ];
+
+    const illustrations = [morning, evening]
+        .filter((p) => p.illustration && p.events.some((e) => tags.includes(e.tag)))
+        .map((p) => p.illustration!);
 
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Schedule</h1>
-            <div className={styles.panels}>
-                {visibleMorning.events.length > 0 && (
-                    <Panel panel={visibleMorning} variant="morning" />
-                )}
-                {visibleEvening.events.length > 0 && (
-                    <Panel panel={visibleEvening} variant="evening" />
+            <div className={styles.panel}>
+                <div className={styles.panelContent}>
+                    <h2 className={styles.panelTitle}>October 17, 2026</h2>
+                    <div className={styles.eventList}>
+                        {allEvents.map((event) => (
+                            <div
+                                key={`${event.tag}-${event.title}`}
+                                className={styles.eventItem}
+                            >
+                                <span className={styles.eventTitle}>{event.title}</span>
+                                <p className={styles.eventLocation}>
+                                    {event.time} · {event.location}
+                                </p>
+                                {event.description && (
+                                    <p className={styles.eventDescription}>{event.description}</p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {illustrations.length > 0 && (
+                    <div className={styles.illustrationSlot}>
+                        {illustrations.map((ill) => (
+                            <div key={ill.src} className={styles.illustrationHalf}>
+                                <Image
+                                    src={ill.src}
+                                    alt={ill.alt}
+                                    width={300}
+                                    height={300}
+                                    style={{ width: "100%", height: "auto" }}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>

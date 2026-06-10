@@ -12,19 +12,26 @@ type Props = {
 };
 
 const EVENT_ORDER = [
-    "morning_ceremony",
-    "evening_ceremony",
+    "morning",
+    "evening",
     "reception",
 ] as const;
 const EVENT_LABELS: Record<string, string> = {
-    morning_ceremony: "Morning Ceremony",
-    evening_ceremony: "Evening Ceremony",
+    morning: "Morning Ceremony",
+    evening: "Evening Ceremony",
     reception: "Reception",
 };
 const EVENT_TIMES: Record<string, string> = {
-    morning_ceremony: "Starts at 10 AM",
-    evening_ceremony: "Starts at 5 PM",
-    reception: "Cocktail hour at 6 PM",
+    morning: "Starts at 10 AM",
+    evening: "Starts at 5 PM",
+    reception: "6 PM Cocktail Hour · 7 PM Reception",
+};
+// Which guest tag grants an invitation to each event row.
+// Both evening ceremony and reception are unlocked by the "evening" tag.
+const EVENT_INVITED_BY: Record<string, string> = {
+    morning: "morning",
+    evening: "evening",
+    reception: "evening",
 };
 
 type Decision = "accept" | "decline" | null;
@@ -32,14 +39,16 @@ type Decision = "accept" | "decline" | null;
 export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
     const [decision, setDecision] = useState<Decision>(null);
 
-    // Per-member attendance: { memberIndex: { eventTag: bool } }
+    // Per-member attendance: { memberIndex: { eventRow: bool } }
     const [attending, setAttending] = useState<
         Record<number, Record<string, boolean>>
     >(() => {
         const init: Record<number, Record<string, boolean>> = {};
         party.forEach((m, i) => {
             init[i] = {};
-            for (const tag of m.tags) init[i][tag] = true;
+            for (const row of EVENT_ORDER) {
+                if (m.tags.includes(EVENT_INVITED_BY[row])) init[i][row] = true;
+            }
         });
         return init;
     });
@@ -56,9 +65,9 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
 
     // Only show event rows that at least one member is invited to
     const visibleEvents = useMemo(() => {
-        const present = new Set<string>();
-        for (const m of party) for (const t of m.tags) present.add(t);
-        return EVENT_ORDER.filter((e) => present.has(e));
+        return EVENT_ORDER.filter((e) =>
+            party.some((m) => m.tags.includes(EVENT_INVITED_BY[e])),
+        );
     }, [party]);
 
     function toggle(memberIdx: number, tag: string) {
@@ -192,7 +201,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                                         </span>
                                     </th>
                                     {party.map((m, i) => {
-                                        const invited = m.tags.includes(tag);
+                                        const invited = m.tags.includes(EVENT_INVITED_BY[tag]);
                                         return (
                                             <td key={`${tag}-${i}`} className={styles.gridCheckCell}>
                                                 {invited ? (

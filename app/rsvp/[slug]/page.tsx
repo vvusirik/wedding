@@ -43,12 +43,16 @@ export default async function RsvpSlugPage({ params }: PageProps) {
         <div className={styles.page}>
             <p className={styles.dear}>Dear</p>
             <h1 className={styles.heading}>
-                {sorted.map((g, i) => (
-                    <span key={`${g.firstName}-${g.lastName}`}>
-                        {i > 0 && <span className={styles.ampersand}>&amp;</span>}
-                        <span className={styles.guestName}>{g.firstName} {g.lastName}</span>
-                    </span>
-                ))}
+                {sorted[0].envelopeName ? (
+                    <span className={styles.guestName}>{sorted[0].envelopeName}</span>
+                ) : (
+                    sorted.map((g, i) => (
+                        <span key={`${g.firstName}-${g.lastName}`}>
+                            {i > 0 && <span className={styles.ampersand}>&amp;</span>}
+                            <span className={styles.guestName}>{g.firstName} {g.lastName}</span>
+                        </span>
+                    ))
+                )}
             </h1>
             <p className={styles.intro}>
                 We&rsquo;re excited to celebrate with you!<br />

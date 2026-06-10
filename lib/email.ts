@@ -5,15 +5,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
 
 const EVENT_LABELS: Record<string, string> = {
-    morning_ceremony: "Morning Ceremony",
-    evening_ceremony: "Evening Ceremony",
+    morning: "Morning Ceremony",
+    evening: "Evening Ceremony",
     reception: "Reception",
 };
 
 const EVENT_META: Record<string, string> = {
-    morning_ceremony: "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
-    evening_ceremony: "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
-    reception: "Saturday Oct 17 &nbsp;&middot;&nbsp; Cocktail hour 6 PM &nbsp;&middot;&nbsp; The Bowden",
+    morning: "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
+    evening: "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
+    reception: "Saturday Oct 17 &nbsp;&middot;&nbsp; 7 PM &nbsp;&middot;&nbsp; The Bowden",
 };
 
 type Member = {
@@ -41,7 +41,7 @@ function renderEventRows(members: Member[]): string {
         }
     }
 
-    const order = ["morning_ceremony", "evening_ceremony", "reception"];
+    const order = ["morning", "evening", "reception"];
     const rows = order
         .filter((ev) => eventToNames[ev]?.length)
         .map(
