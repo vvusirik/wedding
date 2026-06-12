@@ -16,6 +16,8 @@ const photos = [
     { src: "/images/gallery/rome-1.jpg", alt: "Rome" },
     { src: "/images/gallery/rome-2.jpg", alt: "Rome" },
     { src: "/images/gallery/rome-3.jpg", alt: "Rome" },
+    { src: "/images/gallery/rome-4.jpg", alt: "Rome" },
+    { src: "/images/gallery/rome-5.jpg", alt: "Rome" },
 ];
 
 const featuredPhotos = photos.filter((p) => p.alt === "Proposal").slice(0, 2);

@@ -32,7 +32,7 @@ export default async function RsvpPage() {
             </div>
             <p className={styles.reminder}>
                 Please use the personalized link from your invitation to RSVP. <br />
-                Replies appreciated by July 1st.
+                Replies appreciated by August 1st.
             </p>
         </div>
     );

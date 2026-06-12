@@ -156,10 +156,24 @@ const sections = [
         divider: "border-coral/30",
         content: (
             <div>
-                <p className="leading-relaxed">
+                <p className="leading-relaxed mb-4">
                     If you have some time to explore, here are some of Vishal and
                     Hanna&rsquo;s suggested spots around the area.
                 </p>
+                <ul className="space-y-3 mb-6">
+                    <li>
+                        <strong>Fort Worth Stockyards</strong>
+                    </li>
+                    <li>
+                        <strong>Dallas Arboretum and Botanical Garden</strong>
+                    </li>
+                    <li>
+                        <strong>Perot Museum of Nature and Science</strong>
+                    </li>
+                    <li>
+                        <strong>Grapevine Vintage Railroad</strong>
+                    </li>
+                </ul>
                 {ACTIVITIES_MAP_EMBED_URL && (
                     <iframe
                         src={ACTIVITIES_MAP_EMBED_URL}

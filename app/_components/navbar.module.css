@@ -23,6 +23,7 @@
 }
 
 .logo {
+  display: none;
   font-family: var(--font-cormorant-upright);
   font-size: 1.875rem;
   color: var(--color-terracotta);
@@ -75,6 +76,9 @@
 }
 
 @media (min-width: 640px) {
+  .logo {
+    display: inline;
+  }
   .links {
     display: flex;
   }

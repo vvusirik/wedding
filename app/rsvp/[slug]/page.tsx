@@ -61,7 +61,7 @@ export default async function RsvpSlugPage({ params }: PageProps) {
             <p className={styles.intro}>
                 We&rsquo;re excited to celebrate with you!
                 <br />
-                Please let us know if you can make it.
+                Replies appreciated by <strong>August 1st</strong>.
             </p>
             <div className={styles.envelopeWrap}>
                 <Image
