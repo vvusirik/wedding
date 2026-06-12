@@ -19,7 +19,7 @@
 }
 
 .heading {
-  font-family: var(--font-script);
+  font-family: var(--font-dom-loves-mary);
   font-size: clamp(2rem, 8vw, 3rem);
   color: var(--color-terracotta);
   margin-bottom: 0.25rem;

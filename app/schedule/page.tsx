@@ -34,7 +34,7 @@ const morning: PanelData = {
             time: "11 AM",
             location: "Ballroom",
             description:
-                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:19 PM.",
+                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:21 PM.",
         },
         {
             tag: "morning",

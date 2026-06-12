@@ -27,7 +27,9 @@ export default async function RsvpSlugPage({ params }: PageProps) {
                 loggedInFirst = parsed.firstName.trim().toLowerCase();
                 loggedInLast = parsed.lastName.trim().toLowerCase();
             }
-        } catch { /* fall through */ }
+        } catch {
+            /* fall through */
+        }
     }
     const loggedInIdx = party.findIndex(
         (g) =>
@@ -49,14 +51,17 @@ export default async function RsvpSlugPage({ params }: PageProps) {
                     sorted.map((g, i) => (
                         <span key={`${g.firstName}-${g.lastName}`}>
                             {i > 0 && <span className={styles.ampersand}>&amp;</span>}
-                            <span className={styles.guestName}>{g.firstName} {g.lastName}</span>
+                            <span className={styles.guestName}>
+                                {g.firstName} {g.lastName}
+                            </span>
                         </span>
                     ))
                 )}
             </h1>
             <p className={styles.intro}>
-                We&rsquo;re excited to celebrate with you!<br />
-                Let us know if you can make it.
+                We&rsquo;re excited to celebrate with you!
+                <br />
+                Please let us know if you can make it.
             </p>
             <div className={styles.envelopeWrap}>
                 <Image
