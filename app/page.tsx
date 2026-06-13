@@ -3,6 +3,8 @@ import styles from "./page.module.css";
 export default function Home() {
     return (
         <section className={styles.hero}>
+            <div className={styles.heroBg} />
+            <div className={styles.heroOverlay} />
             <div className={styles.heroContent}>
                 <p className={styles.heroInvite}>
                     You are warmly invited to the wedding of

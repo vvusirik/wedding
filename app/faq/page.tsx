@@ -3,13 +3,22 @@ import styles from "./page.module.css";
 const faqs = [
     {
         question: "When is the RSVP deadline?",
-        answer:
-            "Please RSVP by August 1st. We'd love to have an accurate headcount as early as possible to ensure everything goes smoothly. If you have any trouble submitting your RSVP, feel free to reach out to us directly.",
+        answer: (
+            <p>
+                Please{" "}
+                <a href="/rsvp" className={styles.answerLink}>
+                    RSVP
+                </a>{" "}
+                by August 1st. We&apos;d love to have an accurate headcount as early as
+                possible to ensure everything goes smoothly. If you have any trouble
+                submitting your RSVP, feel free to reach out to us directly.
+            </p>
+        ),
     },
     {
         question: "Will there be parking available or a shuttle to the venue?",
         answer:
-            "The Bowden has ample free parking available. We wilL not be providing a shuttle, but The Bowden is also easily accessible via rideshare.",
+            "The Bowden has ample free parking available. We will not be providing a shuttle, but The Bowden is also easily accessible via rideshare.",
     },
     {
         question: "Are there hotels nearby or any room blocks?",
@@ -46,8 +55,26 @@ const faqs = [
     },
     {
         question: "What are the ceremony traditions I should know about?",
-        answer:
-            "Program handouts will be provided at both ceremonies with an outline of the rituals. The Hindu ceremony will be performed in traditional South Indian style under the auspices of a purohit (priest). Rituals include mangalsutram (tying the knot) and Arundhathi darshanam (the symbol of marital harmony), etc. The Jewish ceremony includes the signing of the Ketubah (marriage contract), circling under the Chuppah, and the breaking of the glass.",
+        answer: (
+            <>
+                <p>
+                    Program handouts will be provided at both ceremonies with an outline
+                    of the rituals.
+                </p>
+                <br />
+                <p>
+                    The Hindu ceremony will be performed in traditional South Indian style
+                    under the auspices of a purohit (priest). Rituals include mangalsutram
+                    (tying the knot) and Arundhathi darshanam (the symbol of marital
+                    harmony), etc.
+                </p>
+                <br />
+                <p>
+                    The Jewish ceremony includes the signing of the Ketubah (marriage
+                    contract), circling under the Chuppah, and the breaking of the glass.
+                </p>
+            </>
+        ),
     },
     {
         question: "Will there be food for dietary restrictions?",

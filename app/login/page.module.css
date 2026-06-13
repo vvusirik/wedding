@@ -74,7 +74,7 @@
   color: var(--color-background);
   border: none;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -87,5 +87,5 @@
 .error {
   margin-top: 1rem;
   color: var(--color-brick);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }

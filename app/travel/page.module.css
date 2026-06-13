@@ -2,7 +2,7 @@
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   font-family: var(--font-sans);
   font-size: 1rem;
   color: var(--color-foreground);
@@ -10,10 +10,10 @@
 
 .heading {
   font-family: var(--font-cormorant-upright);
-  font-size: clamp(2rem, 8vw, 3.75rem);
+  font-size: clamp(1.5rem, 6vw, 2.75rem);
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .intro {
@@ -30,7 +30,7 @@
 
 .sectionHeading {
   font-family: var(--font-cormorant);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-terracotta);
   display: flex;

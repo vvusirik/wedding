@@ -8,6 +8,7 @@ type ScheduleEvent = {
     time: string;
     location: string;
     description?: string;
+    mobileIllustration?: { src: string; alt: string };
 };
 
 type PanelData = {
@@ -43,6 +44,7 @@ const morning: PanelData = {
             location: "Ballroom",
             description:
                 "Please enjoy a South Indian vegetarian lunch following the morning ceremony.",
+            mobileIllustration: { src: "/images/icons/dhol.png", alt: "Dhol illustration" },
         },
     ],
 };
@@ -77,6 +79,7 @@ const evening: PanelData = {
             location: "Ballroom",
             description:
                 "Dance and dine with us! Please join us for dinner, speeches, and special performances as we honor the newlyweds and wrap up the evening with a memorable send-off for Vishal and Hanna-Mae.",
+            mobileIllustration: { src: "/images/icons/glasses.png", alt: "Glasses illustration" },
         },
     ],
 };
@@ -103,16 +106,26 @@ export default async function SchedulePage() {
                     <h2 className={styles.panelTitle}>October 17, 2026</h2>
                     <div className={styles.eventList}>
                         {allEvents.map((event) => (
-                            <div
-                                key={`${event.tag}-${event.title}`}
-                                className={styles.eventItem}
-                            >
-                                <span className={styles.eventTitle}>{event.title}</span>
-                                <p className={styles.eventLocation}>
-                                    {event.time} · {event.location}
-                                </p>
-                                {event.description && (
-                                    <p className={styles.eventDescription}>{event.description}</p>
+                            <div key={`${event.tag}-${event.title}`}>
+                                <div className={styles.eventItem}>
+                                    <span className={styles.eventTitle}>{event.title}</span>
+                                    <p className={styles.eventLocation}>
+                                        {event.time} · {event.location}
+                                    </p>
+                                    {event.description && (
+                                        <p className={styles.eventDescription}>{event.description}</p>
+                                    )}
+                                </div>
+                                {event.mobileIllustration && (
+                                    <div className={styles.mobileIllustration}>
+                                        <Image
+                                            src={event.mobileIllustration.src}
+                                            alt={event.mobileIllustration.alt}
+                                            width={120}
+                                            height={120}
+                                            style={{ width: "100%", height: "auto" }}
+                                        />
+                                    </div>
                                 )}
                             </div>
                         ))}
