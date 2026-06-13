@@ -52,6 +52,11 @@ export default function Navbar() {
                                 </Link>
                             );
                         })}
+                        {process.env.NODE_ENV === "development" && (
+                            <a href="/api/logout" className={styles.devLogout}>
+                                Logout
+                            </a>
+                        )}
                     </div>
 
                     <Drawer.Root open={open} onOpenChange={setOpen}>

@@ -158,20 +158,66 @@ const sections = [
             <div>
                 <p className="leading-relaxed mb-4">
                     If you have some time to explore, here are some of Vishal and
-                    Hanna&rsquo;s suggested spots around the area.
+                    Hanna&rsquo;s suggested spots around the area. The map includes these
+                    attractions, our suggested hotels, and a few local favorite spots to
+                    eat.
                 </p>
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-4 mb-6">
                     <li>
-                        <strong>Fort Worth Stockyards</strong>
+                        <a
+                            href="https://www.fortworthstockyards.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Fort Worth Stockyards</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            A historic district with daily longhorn cattle drives, rodeos,
+                            live music, and amazing Texas BBQ.
+                        </span>
                     </li>
                     <li>
-                        <strong>Dallas Arboretum and Botanical Garden</strong>
+                        <a
+                            href="https://www.dallasarboretum.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Dallas Arboretum and Botanical Garden</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            66 acres of gardens on the shores of White Rock Lake. It's
+                            beautiful in October with fall color displays.
+                        </span>
                     </li>
                     <li>
-                        <strong>Perot Museum of Nature and Science</strong>
+                        <a
+                            href="https://www.perotmuseum.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Perot Museum of Nature and Science</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            A world-class science museum in downtown Dallas with exhibits on
+                            dinosaurs, space, energy, and more.
+                        </span>
                     </li>
                     <li>
-                        <strong>Grapevine Vintage Railroad</strong>
+                        <a
+                            href="https://www.grapevinetexasusa.com/gvrr/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Grapevine Vintage Railroad</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            A charming vintage train ride through the Texas countryside a
+                            short drive from The Bowden.
+                        </span>
                     </li>
                 </ul>
                 {ACTIVITIES_MAP_EMBED_URL && (
