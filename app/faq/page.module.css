@@ -85,3 +85,34 @@
 .answerLink {
   text-decoration: underline;
 }
+
+.attireGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.attireGridSingle {
+  grid-template-columns: minmax(0, 320px);
+}
+
+.attireItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attireLabel {
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--color-terracotta);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .attireGrid {
+    grid-template-columns: 1fr;
+  }
+}

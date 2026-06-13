@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: zoom-out;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 150ms;
+  z-index: 110;
+}
+
+.close:hover {
+  opacity: 1;
+}

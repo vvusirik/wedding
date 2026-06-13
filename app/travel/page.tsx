@@ -93,6 +93,7 @@ const sections = [
                         <p className={styles.hotelNote}>
                             Click here to reserve a discounted room from our room block.
                         </p>
+                        <p className={styles.hotelCta}>Book →</p>
                     </a>
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
@@ -110,6 +111,7 @@ const sections = [
                         <p className={styles.hotelNote}>
                             Click here to reserve a discounted room from our room block.
                         </p>
+                        <p className={styles.hotelCta}>Book →</p>
                     </a>
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
@@ -127,6 +129,7 @@ const sections = [
                         <p className={styles.hotelNote}>
                             Click here for a discounted rate on this hotel.
                         </p>
+                        <p className={styles.hotelCta}>Book →</p>
                     </a>
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
@@ -139,6 +142,7 @@ const sections = [
                             1301 Solana Blvd Building 3, Westlake, TX 76262
                         </p>
                         <p className={styles.hotelNote}>15 minute drive from The Bowden</p>
+                        <p className={styles.hotelCta}>Book →</p>
                     </a>
                 </div>
             </>

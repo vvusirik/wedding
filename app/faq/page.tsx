@@ -1,4 +1,21 @@
+import { cookies } from "next/headers";
+import { ClickableImage } from "../_components/image-lightbox";
 import styles from "./page.module.css";
+
+const ATTIRE = [
+    {
+        tag: "morning",
+        label: "Morning Attire",
+        src: "/images/indian_ceremony_lookbook.png",
+        alt: "Morning attire guide",
+    },
+    {
+        tag: "evening",
+        label: "Evening Attire",
+        src: "/images/western_ceremony_lookbook.png",
+        alt: "Evening attire guide",
+    },
+];
 
 const faqs = [
     {
@@ -83,13 +100,43 @@ const faqs = [
     },
 ];
 
-export default function FAQPage() {
+export default async function FAQPage() {
+    const cookieStore = await cookies();
+    const guestRaw = cookieStore.get("wedding-guest")?.value;
+    const tags: string[] = guestRaw ? (JSON.parse(guestRaw).tags ?? []) : [];
+
+    const visibleAttire = ATTIRE.filter((a) => tags.includes(a.tag));
+
+    const attireQuestion = visibleAttire.length > 0
+        ? {
+            question: "What should I wear?",
+            answer: (
+                <div className={`${styles.attireGrid} ${visibleAttire.length === 1 ? styles.attireGridSingle : ""}`}>
+                    {visibleAttire.map((a) => (
+                        <div key={a.tag} className={styles.attireItem}>
+                            <p className={styles.attireLabel}>{a.label}</p>
+                            <ClickableImage
+                                src={a.src}
+                                alt={a.alt}
+                                width={600}
+                                height={800}
+                                imageStyle={{ width: "100%", height: "auto" }}
+                            />
+                        </div>
+                    ))}
+                </div>
+            ),
+        }
+        : null;
+
+    const allFaqs = attireQuestion ? [attireQuestion, ...faqs] : faqs;
+
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Helpful Info</h1>
 
             <div className={styles.faqList}>
-                {faqs.map((faq, i) => (
+                {allFaqs.map((faq, i) => (
                     <details key={i} className={styles.accordion}>
                         <summary className={styles.summary}>
                             <span className={styles.question}>{faq.question}</span>

@@ -39,8 +39,6 @@ const morning: PanelData = {
             location: "Ballroom",
             description:
                 "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:21 PM.",
-            lookbookUrl: "/images/indian_ceremony_lookbook.png",
-            lookbookLabel: "Baraat & Indian Ceremony Attire",
         },
         {
             tag: "morning",
@@ -49,6 +47,8 @@ const morning: PanelData = {
             location: "Ballroom",
             description:
                 "We will be serving a South Indian vegetarian lunch following the morning ceremony.",
+            lookbookUrl: "/images/indian_ceremony_lookbook.png",
+            lookbookLabel: "Morning Attire",
             mobileIllustration: {
                 src: "/images/icons/dhol.png",
                 alt: "Dhol illustration",
@@ -87,6 +87,8 @@ const evening: PanelData = {
             location: "Ballroom",
             description:
                 "Dance and dine with us! Please join us for dinner, speeches, and special performances as we honor the newlyweds and wrap up the evening with a memorable send-off for Vishal and Hanna-Mae.",
+            lookbookUrl: "/images/western_ceremony_lookbook.png",
+            lookbookLabel: "Evening Attire",
             mobileIllustration: {
                 src: "/images/icons/glasses.png",
                 alt: "Glasses illustration",

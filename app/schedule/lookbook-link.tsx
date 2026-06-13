@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import { ClickableImage } from "../_components/image-lightbox";
 import styles from "./page.module.css";
 
 type Props = { src: string; label: string };
@@ -18,18 +18,17 @@ export function LookbookLink({ src, label }: Props) {
             >
                 <span>{label}</span>
                 <span className={`${styles.lookbookChevron} ${open ? styles.lookbookChevronOpen : ""}`}>
-                    ›
+                    {open ? "−" : "+"}
                 </span>
             </button>
             {open && (
                 <div className={styles.lookbookImageWrap}>
-                    <Image
+                    <ClickableImage
                         src={src}
                         alt={label}
                         width={800}
                         height={1100}
-                        style={{ width: "100%", height: "auto" }}
-                        priority
+                        imageStyle={{ width: "100%", height: "auto" }}
                     />
                 </div>
             )}
