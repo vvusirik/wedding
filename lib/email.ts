@@ -5,15 +5,18 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
 
 const EVENT_LABELS: Record<string, string> = {
-    morning: "Morning Ceremony",
-    evening: "Evening Ceremony",
+    morning: "Indian Ceremony",
+    evening: "Jewish Ceremony",
     reception: "Reception",
 };
 
 const EVENT_META: Record<string, string> = {
-    morning: "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
-    evening: "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
-    reception: "Saturday Oct 17 &nbsp;&middot;&nbsp; 7 PM &nbsp;&middot;&nbsp; The Bowden",
+    morning:
+        "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
+    evening:
+        "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
+    reception:
+        "Saturday Oct 17 &nbsp;&middot;&nbsp; 7 PM &nbsp;&middot;&nbsp; The Bowden",
 };
 
 type Member = {
@@ -70,7 +73,13 @@ function renderOptionalSection(label: string, value: string): string {
       <p style="margin:0 0 32px;font-size:16px;color:#2c2317;line-height:1.7;">${value}</p>`;
 }
 
-function buildHtml({ partyNames, accepted, members, dietaryNotes, songRequest }: RsvpEmailData): string {
+function buildHtml({
+    partyNames,
+    accepted,
+    members,
+    dietaryNotes,
+    songRequest,
+}: RsvpEmailData): string {
     const greeting = partyNames.join(" &amp; ");
     const attending = members.filter((m) => m.attending);
 

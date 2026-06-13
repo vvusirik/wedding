@@ -1,21 +1,53 @@
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
     return (
-        <section className={styles.hero}>
-            <div className={styles.heroBg} />
-            <div className={styles.heroOverlay} />
-            <div className={styles.heroContent}>
-                <p className={styles.heroInvite}>
-                    You are warmly invited to the wedding of
-                </p>
-                <h1 className={styles.heroTitle}>Vishal &amp; Hanna</h1>
-                <div className={styles.heroDetails}>
-                    <span>The Bowden</span>
-                    <span>Keller, TX</span>
-                    <span>October 17, 2026</span>
+        <>
+            <section className={styles.hero}>
+                <div className={styles.heroBg} />
+                <div className={styles.heroOverlay} />
+                <div className={styles.heroContent}>
+                    <p className={styles.heroInvite}>
+                        You are warmly invited to the wedding of
+                    </p>
+                    <h1 className={styles.heroTitle}>Vishal &amp; Hanna</h1>
+                    <div className={styles.heroDetails}>
+                        <span>The Bowden</span>
+                        <span>Keller, TX</span>
+                        <span>October 17, 2026</span>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section className={styles.about}>
+                <div className={styles.aboutInner}>
+                    <div className={styles.aboutPhotoWrap}>
+                        <Image
+                            src="/images/story.jpg"
+                            alt="Vishal and Hanna"
+                            width={600}
+                            height={800}
+                            className={styles.aboutPhoto}
+                        />
+                    </div>
+                    <div className={styles.aboutText}>
+                        <p className={styles.aboutBlurb}>
+                            We met in high school in Plano, TX and stayed close friends for
+                            many years even though we moved to different states. Six years
+                            ago, we got a chance to reconnect. Since then, we've been on some
+                            adventures, grown together, and called many cities home (San
+                            Francisco, Seattle, Philadelphia, New York). We love all these
+                            places, but most of all, we're excited to come home to Dallas and
+                            celebrate with you!
+                        </p>
+                        <Link href="/rsvp" className={styles.aboutButton}>
+                            Kindly RSVP
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </>
     );
 }

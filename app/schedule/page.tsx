@@ -31,7 +31,7 @@ const morning: PanelData = {
         },
         {
             tag: "morning",
-            title: "Morning Ceremony",
+            title: "Indian Ceremony",
             time: "11 AM",
             location: "Ballroom",
             description:
@@ -43,8 +43,11 @@ const morning: PanelData = {
             time: "1 PM",
             location: "Ballroom",
             description:
-                "Please enjoy a South Indian vegetarian lunch following the morning ceremony.",
-            mobileIllustration: { src: "/images/icons/dhol.png", alt: "Dhol illustration" },
+                "We will be serving a South Indian vegetarian lunch following the morning ceremony.",
+            mobileIllustration: {
+                src: "/images/icons/dhol.png",
+                alt: "Dhol illustration",
+            },
         },
     ],
 };
@@ -58,7 +61,7 @@ const evening: PanelData = {
     events: [
         {
             tag: "evening",
-            title: "Evening Ceremony",
+            title: "Jewish Ceremony",
             time: "5 PM",
             location: "Chapel",
             description:
@@ -79,7 +82,10 @@ const evening: PanelData = {
             location: "Ballroom",
             description:
                 "Dance and dine with us! Please join us for dinner, speeches, and special performances as we honor the newlyweds and wrap up the evening with a memorable send-off for Vishal and Hanna-Mae.",
-            mobileIllustration: { src: "/images/icons/glasses.png", alt: "Glasses illustration" },
+            mobileIllustration: {
+                src: "/images/icons/glasses.png",
+                alt: "Glasses illustration",
+            },
         },
     ],
 };
@@ -113,7 +119,9 @@ export default async function SchedulePage() {
                                         {event.time} · {event.location}
                                     </p>
                                     {event.description && (
-                                        <p className={styles.eventDescription}>{event.description}</p>
+                                        <p className={styles.eventDescription}>
+                                            {event.description}
+                                        </p>
                                     )}
                                 </div>
                                 {event.mobileIllustration && (
