@@ -26,7 +26,7 @@ const morning: PanelData = {
             time: "10 AM",
             location: "Entrance",
             description:
-                "Kick off the wedding with us! We'll welcome the groom during Baraat as he rides in with live music and dancing.",
+                "Help us welcome the groom during Baraat as he rides in with live music and dancing.",
         },
         {
             tag: "morning",

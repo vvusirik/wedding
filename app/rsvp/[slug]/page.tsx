@@ -63,16 +63,6 @@ export default async function RsvpSlugPage({ params }: PageProps) {
                 <br />
                 Replies appreciated by <strong>August 1st</strong>.
             </p>
-            <div className={styles.envelopeWrap}>
-                <Image
-                    src="/images/envelope-no-text.png"
-                    alt=""
-                    width={800}
-                    height={494}
-                    className={styles.envelope}
-                    priority
-                />
-            </div>
             <RsvpForm
                 slug={slug}
                 alreadySubmitted={alreadySubmitted}

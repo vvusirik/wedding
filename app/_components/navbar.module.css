@@ -25,7 +25,7 @@
 .logo {
   display: none;
   font-family: var(--font-cormorant-upright);
-  font-size: 1.875rem;
+  font-size: 1.4rem;
   color: var(--color-terracotta);
   text-decoration: none;
 }

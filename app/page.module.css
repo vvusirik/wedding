@@ -1,10 +1,17 @@
 .hero {
-  display: grid;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: calc(100vh - 4rem);
-  background-color: var(--color-cream);
-  position: relative;
-  overflow: hidden;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--color-foreground) 70%, transparent),
+      color-mix(in srgb, var(--color-foreground) 70%, transparent)
+    ),
+    url(/images/hero.jpg);
+  background-size: cover;
+  background-position: 65% center;
+  background-repeat: no-repeat;
   animation: heroFadeIn 500ms ease-in;
 }
 
@@ -15,25 +22,6 @@
   to {
     opacity: 1;
   }
-}
-
-.heroBg {
-  position: absolute;
-  inset: 0;
-  background-image: url(/images/hero.jpg);
-  background-size: cover;
-  background-position: 65% center;
-  background-repeat: no-repeat;
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background-color: color-mix(
-    in srgb,
-    var(--color-foreground) 70%,
-    transparent
-  );
 }
 
 .heroContent {

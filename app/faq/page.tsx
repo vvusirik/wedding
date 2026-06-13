@@ -47,7 +47,7 @@ const faqs = [
     {
         question: "What are the ceremony traditions I should know about?",
         answer:
-            "Program handouts will be provided at both ceremonies with an outline of the rituals. The Hindu ceremony will be performed in traditional South Indian style under the auspices of a purohit (priest). Rituals include mangalsutram (tying the knot), kanya danam (giving the girl in marriage to the boy), Arundhathi darshanam (the symbol of marital harmony, unwavering devotion, and equality in partnership), etc. The Jewish ceremony includes the signing of the Ketubah (marriage contract), circling under the Chuppah, and the breaking of the glass.",
+            "Program handouts will be provided at both ceremonies with an outline of the rituals. The Hindu ceremony will be performed in traditional South Indian style under the auspices of a purohit (priest). Rituals include mangalsutram (tying the knot) and Arundhathi darshanam (the symbol of marital harmony), etc. The Jewish ceremony includes the signing of the Ketubah (marriage contract), circling under the Chuppah, and the breaking of the glass.",
     },
     {
         question: "Will there be food for dietary restrictions?",
