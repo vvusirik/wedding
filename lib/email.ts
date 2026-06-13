@@ -106,7 +106,7 @@ function buildHtml({
 
       <hr style="border:none;border-top:1px solid #d4c4a8;margin:0 0 32px;" />
       <p style="margin:0 0 8px;font-size:16px;color:#2c2317;line-height:1.7;">
-        If you need to make any changes, use the link from your invitation to resubmit your RSVP.
+        If you need to make any changes, use <a href="https://vishalandhanna.com/rsvp" style="color:#dd523f;text-decoration:underline;">our website</a> to resubmit your RSVP.
       </p>`
         : `
       <p style="margin:0 0 24px;font-size:16px;color:#2c2317;line-height:1.7;">

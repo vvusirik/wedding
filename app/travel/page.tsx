@@ -77,6 +77,24 @@ const sections = [
                 <div className="space-y-4">
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://app.marriott.com/reslink?id=1777477387174&key=GRP&app=resvlink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>Delta Hotels - Dallas Southlake</p>
+                        <p className={styles.hotelAddress}>
+                            251 E State Hwy 114, Southlake, TX 76092
+                        </p>
+                        <p className={styles.hotelNote}>
+                            10 minute drive from The Bowden, and where the wedding party will
+                            be staying!
+                        </p>
+                        <p className={styles.hotelNote}>
+                            Use our link to reserve a discounted room from our room block.
+                        </p>
+                    </a>
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
                         href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -87,14 +105,14 @@ const sections = [
                         <p className={styles.hotelAddress}>
                             1400 Plaza Pl, Southlake, TX 76092
                         </p>
+                        <p className={styles.hotelNote}>10 minute drive from The Bowden.</p>
                         <p className={styles.hotelNote}>
-                            10 minute drive from The Bowden. There is a discounted rate for
-                            this hotel when booking via WithJoy.
+                            Use this link to reserve a discounted room from our room block.
                         </p>
                     </a>
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-                        href="https://withjoy.com/stays/4872f7e9-e5a4-409a-94e9-e48b74313d62?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+                        href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=DFWKEHX&groupCode=CHH90I&arrivaldate=2026-10-16&departuredate=2026-10-18&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -104,22 +122,10 @@ const sections = [
                         <p className={styles.hotelAddress}>
                             200 Town Center Lane Keller, Texas 76248
                         </p>
+                        <p className={styles.hotelNote}>2 minute drive from The Bowden.</p>
                         <p className={styles.hotelNote}>
-                            2 minute drive from The Bowden. There is a discounted rate for
-                            this hotel when booking via WithJoy.
+                            Use our link for a discounted rate on this hotel.
                         </p>
-                    </a>
-                    <a
-                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-                        href="https://www.marriott.com/en-us/hotels/dfwdl-delta-hotels-dallas-southlake/overview/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <p className={styles.hotelName}>Delta Hotels - Dallas Southlake</p>
-                        <p className={styles.hotelAddress}>
-                            251 E State Hwy 114, Southlake, TX 76092
-                        </p>
-                        <p className={styles.hotelNote}>10 minute drive from The Bowden</p>
                     </a>
                     <a
                         className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}

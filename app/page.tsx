@@ -19,6 +19,11 @@ export default function Home() {
                         <span>October 17, 2026</span>
                     </div>
                 </div>
+                <div className={styles.scrollIndicator} aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
             </section>
 
             <section className={styles.about}>

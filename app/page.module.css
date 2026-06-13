@@ -36,6 +36,22 @@
   }
 }
 
+.scrollIndicator {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-cream);
+  opacity: 0.9;
+  animation: scrollBounce 2s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
 .heroContent {
   position: relative;
   z-index: 10;
@@ -186,6 +202,10 @@
 }
 
 @media (max-width: 640px) {
+  .hero {
+    min-height: 65vh;
+  }
+
   .heroInvite {
     font-size: 0.95rem;
     margin-bottom: 1.25rem;

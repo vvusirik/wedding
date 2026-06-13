@@ -96,7 +96,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 members: party.map((m, i) => {
                     const eventsAttending = accepting
                         ? visibleEvents.filter(
-                            (t) => m.tags.includes(t) && attending[i]?.[t],
+                            (t) => m.tags.includes(EVENT_INVITED_BY[t]) && attending[i]?.[t],
                         )
                         : [];
                     return {
