@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cookies } from "next/headers";
 import styles from "./page.module.css";
+import { LookbookLink } from "./lookbook-link";
 
 type ScheduleEvent = {
     tag: string;
@@ -8,6 +9,8 @@ type ScheduleEvent = {
     time: string;
     location: string;
     description?: string;
+    lookbookUrl?: string;
+    lookbookLabel?: string;
     mobileIllustration?: { src: string; alt: string };
 };
 
@@ -36,6 +39,8 @@ const morning: PanelData = {
             location: "Ballroom",
             description:
                 "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:21 PM.",
+            lookbookUrl: "/images/indian_ceremony_lookbook.png",
+            lookbookLabel: "Baraat & Indian Ceremony Attire",
         },
         {
             tag: "morning",
@@ -122,6 +127,9 @@ export default async function SchedulePage() {
                                         <p className={styles.eventDescription}>
                                             {event.description}
                                         </p>
+                                    )}
+                                    {event.lookbookUrl && event.lookbookLabel && (
+                                        <LookbookLink src={event.lookbookUrl} label={event.lookbookLabel} />
                                     )}
                                 </div>
                                 {event.mobileIllustration && (
