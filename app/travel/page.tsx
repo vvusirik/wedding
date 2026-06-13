@@ -71,8 +71,10 @@ const sections = [
             <>
                 <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
                     For guests traveling from out of town, there are several hotels in
-                    Southlake near the Bowden. Airbnb also has listings in the area which
-                    can be good for larger groups planning on staying together.
+                    Southlake near the Bowden. For your convenience, we have also secured
+                    room blocks for some of our recommended hotels below. Airbnb also has
+                    listings in the area which can be good for larger groups planning on
+                    staying together.
                 </p>
                 <div className="space-y-4">
                     <a
