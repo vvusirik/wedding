@@ -90,24 +90,7 @@ const sections = [
                             be staying!
                         </p>
                         <p className={styles.hotelNote}>
-                            Use our link to reserve a discounted room from our room block.
-                        </p>
-                    </a>
-                    <a
-                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
-                        href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <p className={styles.hotelName}>
-                            Hilton Dallas - Southlake Town Square
-                        </p>
-                        <p className={styles.hotelAddress}>
-                            1400 Plaza Pl, Southlake, TX 76092
-                        </p>
-                        <p className={styles.hotelNote}>10 minute drive from The Bowden.</p>
-                        <p className={styles.hotelNote}>
-                            Use this link to reserve a discounted room from our room block.
+                            Click here to reserve a discounted room from our room block.
                         </p>
                     </a>
                     <a
@@ -124,7 +107,24 @@ const sections = [
                         </p>
                         <p className={styles.hotelNote}>2 minute drive from The Bowden.</p>
                         <p className={styles.hotelNote}>
-                            Use our link for a discounted rate on this hotel.
+                            Click here to reserve a discounted room from our room block.
+                        </p>
+                    </a>
+                    <a
+                        className={`${styles.hotelCard} hover:border-forest hover:shadow-md transition-all`}
+                        href="https://withjoy.com/stays/bbfb6c30-b2d1-454d-94a7-ecc51ad9cfd9?eventId=59f6056a-eae2-59d5-b2e5-5486e40e3dab&provider=nuitee&checkIn=2026-10-16&checkOut=2026-10-18&currency=USD"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className={styles.hotelName}>
+                            Hilton Dallas - Southlake Town Square
+                        </p>
+                        <p className={styles.hotelAddress}>
+                            1400 Plaza Pl, Southlake, TX 76092
+                        </p>
+                        <p className={styles.hotelNote}>10 minute drive from The Bowden.</p>
+                        <p className={styles.hotelNote}>
+                            Click here for a discounted rate on this hotel.
                         </p>
                     </a>
                     <a
