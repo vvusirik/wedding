@@ -3,7 +3,9 @@ import type { NextRequest } from 'next/server';
 
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const isAuthenticated = request.cookies.get('wedding-auth')?.value === 'true';
+  const isAuthenticated =
+    request.cookies.get('wedding-auth')?.value === 'true' &&
+    !!request.cookies.get('wedding-guest')?.value;
   const isLoginPage = pathname === '/login';
 
   if (!isAuthenticated && !isLoginPage) {
@@ -18,5 +20,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|fonts).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icon|images|fonts).*)'],
 };

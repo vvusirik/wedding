@@ -11,11 +11,7 @@ type Props = {
     alreadySubmitted: boolean;
 };
 
-const EVENT_ORDER = [
-    "morning",
-    "evening",
-    "reception",
-] as const;
+const EVENT_ORDER = ["morning", "evening", "reception"] as const;
 const EVENT_LABELS: Record<string, string> = {
     morning: "Morning Ceremony",
     evening: "Evening Ceremony",
@@ -96,7 +92,8 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 members: party.map((m, i) => {
                     const eventsAttending = accepting
                         ? visibleEvents.filter(
-                            (t) => m.tags.includes(EVENT_INVITED_BY[t]) && attending[i]?.[t],
+                            (t) =>
+                                m.tags.includes(EVENT_INVITED_BY[t]) && attending[i]?.[t],
                         )
                         : [];
                     return {
@@ -161,7 +158,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                     onClick={() => setDecision("accept")}
                     aria-pressed={decision === "accept"}
                 >
-                    Joyfully accept
+                    Delightfully Accept
                 </button>
                 <button
                     type="button"
@@ -169,66 +166,76 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                     onClick={() => setDecision("decline")}
                     aria-pressed={decision === "decline"}
                 >
-                    Regretfully decline
+                    Regretfully Decline
                 </button>
             </div>
 
             {decision === "accept" && (
-                <div className={styles.gridScroll}>
-                    <table className={styles.grid}>
-                        <thead>
-                            <tr>
-                                <th className={styles.gridCornerCell} />
-                                {party.map((m) => (
-                                    <th
-                                        key={`${m.firstName}-${m.lastName}`}
-                                        className={styles.gridMemberHeader}
-                                    >
-                                        {m.firstName}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {visibleEvents.map((tag) => (
-                                <tr key={tag}>
-                                    <th scope="row" className={styles.gridEventHeader}>
-                                        <span className={styles.gridEventName}>
-                                            {EVENT_LABELS[tag]}
-                                        </span>
-                                        <span className={styles.gridEventTime}>
-                                            {EVENT_TIMES[tag]}
-                                        </span>
-                                    </th>
-                                    {party.map((m, i) => {
-                                        const invited = m.tags.includes(EVENT_INVITED_BY[tag]);
-                                        return (
-                                            <td key={`${tag}-${i}`} className={styles.gridCheckCell}>
-                                                {invited ? (
-                                                    <label className={styles.gridCheckLabel}>
-                                                        <input
-                                                            type="checkbox"
-                                                            className={styles.visuallyHiddenCheckbox}
-                                                            checked={!!attending[i]?.[tag]}
-                                                            onChange={() => toggle(i, tag)}
-                                                            aria-label={`${m.firstName} attending ${EVENT_LABELS[tag]}`}
-                                                        />
-                                                        <span
-                                                            className={styles.checkIndicator}
-                                                            aria-hidden="true"
-                                                        />
-                                                    </label>
-                                                ) : (
-                                                    <span className={styles.gridDash}>—</span>
-                                                )}
-                                            </td>
-                                        );
-                                    })}
+                <>
+                    <p className={styles.gridIntro}>
+                        Please select which events you and any guests indicated below will
+                        be attending. Also, please note that as much as we love your little
+                        ones, we will not be including them in the ceremony or reception.
+                    </p>
+                    <div className={styles.gridScroll}>
+                        <table className={styles.grid}>
+                            <thead>
+                                <tr>
+                                    <th className={styles.gridCornerCell} />
+                                    {party.map((m) => (
+                                        <th
+                                            key={`${m.firstName}-${m.lastName}`}
+                                            className={styles.gridMemberHeader}
+                                        >
+                                            {m.firstName}
+                                        </th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {visibleEvents.map((tag) => (
+                                    <tr key={tag}>
+                                        <th scope="row" className={styles.gridEventHeader}>
+                                            <span className={styles.gridEventName}>
+                                                {EVENT_LABELS[tag]}
+                                            </span>
+                                            <span className={styles.gridEventTime}>
+                                                {EVENT_TIMES[tag]}
+                                            </span>
+                                        </th>
+                                        {party.map((m, i) => {
+                                            const invited = m.tags.includes(EVENT_INVITED_BY[tag]);
+                                            return (
+                                                <td
+                                                    key={`${tag}-${i}`}
+                                                    className={styles.gridCheckCell}
+                                                >
+                                                    {invited ? (
+                                                        <label className={styles.gridCheckLabel}>
+                                                            <input
+                                                                type="checkbox"
+                                                                className={styles.visuallyHiddenCheckbox}
+                                                                checked={!!attending[i]?.[tag]}
+                                                                onChange={() => toggle(i, tag)}
+                                                                aria-label={`${m.firstName} attending ${EVENT_LABELS[tag]}`}
+                                                            />
+                                                            <span
+                                                                className={styles.checkIndicator}
+                                                                aria-hidden="true"
+                                                            />
+                                                        </label>
+                                                    ) : (
+                                                        <span className={styles.gridDash}>—</span>
+                                                    )}
+                                                </td>
+                                            );
+                                        })}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
             )}
 
             {decision !== null && (
@@ -270,7 +277,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                                     id="song"
                                     type="text"
                                     className={styles.input}
-                                    placeholder="Help us build the playlist"
+                                    placeholder="Help us build the wedding playlist!"
                                     value={songRequest}
                                     onChange={(e) => setSongRequest(e.target.value)}
                                 />

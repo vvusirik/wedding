@@ -38,7 +38,7 @@ const morning: PanelData = {
             time: "11 AM",
             location: "Ballroom",
             description:
-                "The Vusirikala family cordially invites you to join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum at 12:21 PM.",
+                "Join Vishal and Hanna-Mae as they perform Indian wedding rituals under the Mandapam. Muhurtum is 12:21 PM.",
         },
         {
             tag: "morning",
@@ -46,7 +46,7 @@ const morning: PanelData = {
             time: "1 PM",
             location: "Ballroom",
             description:
-                "We will be serving a South Indian vegetarian lunch following the morning ceremony.",
+                "Please join us for a South Indian vegetarian lunch following the morning ceremony.",
             lookbookUrl: "/images/indian_ceremony_lookbook.png",
             lookbookLabel: "Morning Attire",
             mobileIllustration: {
@@ -70,7 +70,7 @@ const evening: PanelData = {
             time: "5 PM",
             location: "Chapel",
             description:
-                "The Greenfield family invites you to join Vishal and Hanna for a wedding ceremony under the chuppah. The ceremony includes a sharing of blessings, exchange of rings, and the breaking of the glass.",
+                "Join Vishal and Hanna for a wedding ceremony under the chuppah. The ceremony includes a sharing of blessings, exchange of rings, and the breaking of the glass.",
         },
         {
             tag: "evening",
@@ -78,7 +78,7 @@ const evening: PanelData = {
             time: "6 PM",
             location: "Patio",
             description:
-                "Please join us for drinks and hors d'oeuvres immediately following the ceremony. We look forward to mingling and celebrating this joyful moment with you before the evening festivities begin.",
+                "Please join us for drinks and hors d'oeuvres immediately following the ceremony.",
         },
         {
             tag: "evening",
@@ -116,7 +116,7 @@ export default async function SchedulePage() {
             <h1 className={styles.heading}>Schedule</h1>
             <div className={styles.panel}>
                 <div className={styles.panelContent}>
-                    <h2 className={styles.panelTitle}>October 17, 2026</h2>
+                    <h2 className={styles.panelTitle}>The Bowden - October 17, 2026</h2>
                     <div className={styles.eventList}>
                         {allEvents.map((event) => (
                             <div key={`${event.tag}-${event.title}`}>
@@ -131,7 +131,10 @@ export default async function SchedulePage() {
                                         </p>
                                     )}
                                     {event.lookbookUrl && event.lookbookLabel && (
-                                        <LookbookLink src={event.lookbookUrl} label={event.lookbookLabel} />
+                                        <LookbookLink
+                                            src={event.lookbookUrl}
+                                            label={event.lookbookLabel}
+                                        />
                                     )}
                                 </div>
                                 {event.mobileIllustration && (

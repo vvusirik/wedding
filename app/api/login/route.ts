@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   if (password === "vishanna") {
     const guest = await lookupGuest(firstName, lastName);
     if (guest !== null) {
-      const maxAge = 60 * 60 * 24;
+      const maxAge = 60 * 60 * 24 * 90;
       const response = NextResponse.redirect(`${origin}/`, { status: 303 });
       response.cookies.set("wedding-auth", "true", {
         httpOnly: true,
