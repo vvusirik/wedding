@@ -30,7 +30,7 @@ export default function Home() {
                 <div className={styles.aboutInner}>
                     <div className={styles.aboutPhotoWrap}>
                         <Image
-                            src="/images/story.jpg"
+                            src="/images/story.png"
                             alt="Vishal and Hanna"
                             width={600}
                             height={800}
