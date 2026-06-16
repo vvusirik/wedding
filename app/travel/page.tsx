@@ -24,13 +24,6 @@ const sections = [
                 <span className="text-sm text-taupe">
                     Parking is available on site.
                 </span>
-                <Image
-                    src="/images/icons/bowden.png"
-                    alt="The Bowden illustration"
-                    width={900}
-                    height={400}
-                    className={styles.bowdenIllustration}
-                />
             </>
         ),
     },
@@ -39,7 +32,7 @@ const sections = [
         divider: "border-brick/30",
         content: (
             <>
-                <ul className="space-y-3">
+                <ul className="space-y-1">
                     <li>
                         <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from
                         venue
@@ -152,7 +145,7 @@ const sections = [
         title: "Getting Around",
         divider: "border-taupe/30",
         content: (
-            <ul className="list-disc list-inside space-y-2">
+            <ul className="list-disc list-inside space-y-1">
                 <li>
                     Public transit is sparse to non-existent in this part of Dallas, so
                     plan to get around by car.
@@ -250,6 +243,13 @@ export default function TravelPage() {
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Travel</h1>
+            <Image
+                src="/images/icons/bowden.png"
+                alt="The Bowden illustration"
+                width={900}
+                height={400}
+                className={styles.bowdenIllustration}
+            />
             <div>
                 {sections.map((section, i) => (
                     <div key={section.title}>

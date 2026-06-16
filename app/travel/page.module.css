@@ -13,7 +13,7 @@
   font-size: clamp(1.5rem, 6vw, 2.75rem);
   color: var(--color-terracotta);
   text-align: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .intro {
@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.2rem;
 }
 
 .iconCircle {
@@ -83,13 +83,14 @@
 }
 
 .bowdenIllustration {
-  width: 60%;
+  width: 100%;
   height: auto;
-  margin-top: 1.5rem;
+  margin-top: 0;
   opacity: 0.85;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
 }
 
 .hotelTextBody {
