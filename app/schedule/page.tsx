@@ -86,7 +86,7 @@ const evening: PanelData = {
             time: "7 PM",
             location: "Ballroom",
             description:
-                "Dance and dine with us! Please join us for dinner, speeches, and special performances as we honor the newlyweds and wrap up the evening with a memorable send-off for Vishal and Hanna-Mae.",
+                "Dance and dine with us! Please join us for performances, speeches, dinner, and a send-off for the bride and groom.",
             lookbookUrl: "/images/western_ceremony_lookbook.png",
             lookbookLabel: "Evening Attire",
             mobileIllustration: {
