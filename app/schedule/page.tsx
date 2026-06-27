@@ -45,8 +45,7 @@ const morning: PanelData = {
             title: "Lunch",
             time: "1 PM",
             location: "Ballroom",
-            description:
-                "Please join us for a South Indian vegetarian lunch following the morning ceremony.",
+            description: "Please join us for lunch following the morning ceremony.",
             lookbookUrl: "/images/indian_ceremony_lookbook.png",
             lookbookLabel: "Morning Attire",
             mobileIllustration: {

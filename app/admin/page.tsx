@@ -60,6 +60,8 @@ export default function AdminPage() {
                 firstName: party.head.firstName,
                 email: party.email,
                 slug: party.slug,
+                envelopeName: party.envelopeName || undefined,
+                members: [party.head, ...party.otherMembers],
             }),
         });
         if (res.ok) {
@@ -71,9 +73,9 @@ export default function AdminPage() {
     }
 
     async function previewInvite(party: Party) {
-        const res = await fetch("/api/admin/preview?" + new URLSearchParams({
-            firstName: party.head.firstName,
-        }));
+        const params: Record<string, string> = { firstName: party.head.firstName };
+        if (party.envelopeName) params.envelopeName = party.envelopeName;
+        const res = await fetch("/api/admin/preview?" + new URLSearchParams(params));
         const html = await res.text();
         setPreviewHtml(html);
     }

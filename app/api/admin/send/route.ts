@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { google } from "googleapis";
 import { Resend } from "resend";
-import * as fs from "fs";
-import * as path from "path";
+import { buildInviteHtml } from "../../../../lib/invite";
 
 function readEnv() {
     const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
@@ -13,15 +12,12 @@ function readEnv() {
 }
 
 export async function POST(request: Request) {
-    const { firstName, email, slug } = await request.json();
+    const { firstName, email, slug, envelopeName, members } = await request.json();
     if (!firstName || !email || !slug) {
         return NextResponse.json({ ok: false, error: "missing fields" }, { status: 400 });
     }
 
-    const template = fs.readFileSync(path.join(process.cwd(), "emails/invitation.html"), "utf-8");
-    const html = template
-        .replace(/\{\{FIRST_NAME\}\}/g, firstName)
-        .replace(/\{\{WEBSITE_URL\}\}/g, "https://vishalandhanna.com");
+    const html = buildInviteHtml({ envelopeName, members: members ?? [{ firstName, lastName: "" }] });
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const from = process.env.RESEND_FROM_EMAIL
