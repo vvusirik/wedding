@@ -27,8 +27,12 @@ export async function GET() {
 
     const [guestRes, rsvpRes, logRes] = await Promise.all([
         sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "A:Z" }),
-        sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "RSVPs!B:B" }).catch(() => ({ data: { values: [] } })),
-        sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "InviteLog!A:B" }).catch(() => ({ data: { values: [] } })),
+        sheets.spreadsheets.values
+            .get({ spreadsheetId: sheetId, range: "RSVPs!B:B" })
+            .catch(() => ({ data: { values: [] } })),
+        sheets.spreadsheets.values
+            .get({ spreadsheetId: sheetId, range: "InviteLog!A:B" })
+            .catch(() => ({ data: { values: [] } })),
     ]);
 
     const guestRows = guestRes.data.values ?? [];
@@ -52,45 +56,68 @@ export async function GET() {
     }
 
     const rsvpSlugs = new Set(
-        (rsvpRes.data.values ?? []).slice(1).map((r) => String(r[0] ?? "").trim().toLowerCase()).filter(Boolean)
+        (rsvpRes.data.values ?? [])
+            .slice(1)
+            .map((r) =>
+                String(r[0] ?? "")
+                    .trim()
+                    .toLowerCase(),
+            )
+            .filter(Boolean),
     );
     const sentSlugs = new Set(
-        (logRes.data.values ?? []).slice(1).map((r) => String(r[1] ?? "").trim().toLowerCase()).filter(Boolean)
+        (logRes.data.values ?? [])
+            .slice(1)
+            .map((r) =>
+                String(r[1] ?? "")
+                    .trim()
+                    .toLowerCase(),
+            )
+            .filter(Boolean),
     );
 
-    const parties = guestRows.slice(1).map((row) => {
-        const slug = String(row[iSlug] ?? "").trim().toLowerCase();
-        const email = String(row[iEmail] ?? "").trim();
-        const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : "";
-        const tags = iTags >= 0
-            ? String(row[iTags] ?? "").split(",").map((t) => t.trim()).filter(Boolean)
-            : [];
+    const parties = guestRows
+        .slice(1)
+        .map((row) => {
+            const slug = String(row[iSlug] ?? "")
+                .trim()
+                .toLowerCase();
+            const email = String(row[iEmail] ?? "").trim();
+            const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : "";
+            const tags =
+                iTags >= 0
+                    ? String(row[iTags] ?? "")
+                          .split(",")
+                          .map((t) => t.trim())
+                          .filter(Boolean)
+                    : [];
 
-        const members = personCols
-            .map(({ first, last }) => ({
-                firstName: String(row[first] ?? "").trim(),
-                lastName: String(row[last] ?? "").trim(),
-            }))
-            .filter((m) => m.firstName || m.lastName);
+            const members = personCols
+                .map(({ first, last }) => ({
+                    firstName: String(row[first] ?? "").trim(),
+                    lastName: String(row[last] ?? "").trim(),
+                }))
+                .filter((m) => m.firstName || m.lastName);
 
-        if (members.length === 0 || !slug) return null;
+            if (members.length === 0 || !slug) return null;
 
-        const status = rsvpSlugs.has(slug)
-            ? "rsvp_received"
-            : sentSlugs.has(slug)
-            ? "sent"
-            : "not_sent";
+            const status = rsvpSlugs.has(slug)
+                ? "rsvp_received"
+                : sentSlugs.has(slug)
+                  ? "sent"
+                  : "not_sent";
 
-        return {
-            slug,
-            email,
-            envelopeName,
-            tags,
-            head: members[0],
-            otherMembers: members.slice(1),
-            status,
-        };
-    }).filter(Boolean);
+            return {
+                slug,
+                email,
+                envelopeName,
+                tags,
+                head: members[0],
+                otherMembers: members.slice(1),
+                status,
+            };
+        })
+        .filter(Boolean);
 
     return NextResponse.json(parties);
 }

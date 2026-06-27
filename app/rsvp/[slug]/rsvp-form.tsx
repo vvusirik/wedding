@@ -36,9 +36,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
     const [decision, setDecision] = useState<Decision>(null);
 
     // Per-member attendance: { memberIndex: { eventRow: bool } }
-    const [attending, setAttending] = useState<
-        Record<number, Record<string, boolean>>
-    >(() => {
+    const [attending, setAttending] = useState<Record<number, Record<string, boolean>>>(() => {
         const init: Record<number, Record<string, boolean>> = {};
         party.forEach((m, i) => {
             init[i] = {};
@@ -61,9 +59,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
 
     // Only show event rows that at least one member is invited to
     const visibleEvents = useMemo(() => {
-        return EVENT_ORDER.filter((e) =>
-            party.some((m) => m.tags.includes(EVENT_INVITED_BY[e])),
-        );
+        return EVENT_ORDER.filter((e) => party.some((m) => m.tags.includes(EVENT_INVITED_BY[e])));
     }, [party]);
 
     function toggle(memberIdx: number, tag: string) {
@@ -92,9 +88,8 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 members: party.map((m, i) => {
                     const eventsAttending = accepting
                         ? visibleEvents.filter(
-                            (t) =>
-                                m.tags.includes(EVENT_INVITED_BY[t]) && attending[i]?.[t],
-                        )
+                              (t) => m.tags.includes(EVENT_INVITED_BY[t]) && attending[i]?.[t],
+                          )
                         : [];
                     return {
                         firstName: m.firstName,
@@ -143,10 +138,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
             className={styles.form}
             onSubmit={handleSubmit}
             onKeyDown={(e) => {
-                if (
-                    e.key === "Enter" &&
-                    (e.target as HTMLElement).tagName === "INPUT"
-                ) {
+                if (e.key === "Enter" && (e.target as HTMLElement).tagName === "INPUT") {
                     e.preventDefault();
                 }
             }}
@@ -173,9 +165,9 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
             {decision === "accept" && (
                 <>
                     <p className={styles.gridIntro}>
-                        Please select which events you and any guests indicated below will
-                        be attending. Also, please note that as much as we love your little
-                        ones, we will not be including them in the ceremony or reception.
+                        Please select which events you and any guests indicated below will be
+                        attending. Also, please note that as much as we love your little ones, we
+                        will not be including them in the ceremony or reception.
                     </p>
                     <div className={styles.gridScroll}>
                         <table className={styles.grid}>
@@ -214,7 +206,9 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                                                         <label className={styles.gridCheckLabel}>
                                                             <input
                                                                 type="checkbox"
-                                                                className={styles.visuallyHiddenCheckbox}
+                                                                className={
+                                                                    styles.visuallyHiddenCheckbox
+                                                                }
                                                                 checked={!!attending[i]?.[tag]}
                                                                 onChange={() => toggle(i, tag)}
                                                                 aria-label={`${m.firstName} attending ${EVENT_LABELS[tag]}`}

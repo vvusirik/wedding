@@ -6,13 +6,13 @@ export default function GiftingPage() {
         <div className={styles.page}>
             <h1 className={styles.heading}>Gifting</h1>
             <p className={styles.intro}>
-                Your presence is the greatest gift you could give us! We don't have a
-                registry and ask that you please refrain from bringing boxed gifts.
+                Your presence is the greatest gift you could give us! We don't have a registry and
+                ask that you please refrain from bringing boxed gifts.
             </p>
             <p className={styles.intro}>
-                If you would still like to gift us, you can do so in the Indian
-                tradition of Shagun, an envelope with a gift card or an odd numbered
-                amount of dollars that symbolizes good fortune.
+                If you would still like to gift us, you can do so in the Indian tradition of Shagun,
+                an envelope with a gift card or an odd numbered amount of dollars that symbolizes
+                good fortune.
             </p>
             <div className={styles.imageWrapper}>
                 <Image

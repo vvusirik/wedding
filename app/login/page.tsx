@@ -57,8 +57,8 @@ function LoginForm() {
                 </form>
                 {error && (
                     <p className={styles.error}>
-                        We couldn&apos;t find your name or the password was incorrect.
-                        Please try again or contact us for help.
+                        We couldn&apos;t find your name or the password was incorrect. Please try
+                        again or contact us for help.
                     </p>
                 )}
             </div>

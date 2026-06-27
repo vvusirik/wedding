@@ -21,9 +21,7 @@ const sections = [
                     <br />
                     Keller, TX, 76248
                 </p>
-                <span className="text-sm text-taupe">
-                    Parking is available on site.
-                </span>
+                <span className="text-sm text-taupe">Parking is available on site.</span>
             </>
         ),
     },
@@ -34,16 +32,14 @@ const sections = [
             <>
                 <ul className="space-y-1">
                     <li>
-                        <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from
-                        venue
+                        <strong>Dallas Fort Worth (DFW)</strong> - 20 minutes driving from venue
                         <br />
                         <span className="text-sm text-taupe">
                             Recommended - closest and has the most direct flights
                         </span>
                     </li>
                     <li>
-                        <strong>Dallas Lovefield (DAL)</strong> - 35 minutes driving from
-                        venue
+                        <strong>Dallas Lovefield (DAL)</strong> - 35 minutes driving from venue
                         <br />
                     </li>
                 </ul>
@@ -63,10 +59,10 @@ const sections = [
         content: (
             <>
                 <p className={`${styles.hotelTextBody} text-foreground/80 mb-4`}>
-                    For guests traveling from out of town, there are several hotels near
-                    the Bowden. For your convenience, we have also secured room blocks for
-                    some of our recommended hotels below. Airbnb also has listings in the
-                    area which can be good for larger groups planning on staying together.
+                    For guests traveling from out of town, there are several hotels near the Bowden.
+                    For your convenience, we have also secured room blocks for some of our
+                    recommended hotels below. Airbnb also has listings in the area which can be good
+                    for larger groups planning on staying together.
                 </p>
                 <div className="space-y-4">
                     <a
@@ -80,8 +76,8 @@ const sections = [
                             251 E State Hwy 114, Southlake, TX 76092
                         </p>
                         <p className={styles.hotelNote}>
-                            10 minute drive from The Bowden, and where the wedding party will
-                            be staying!
+                            10 minute drive from The Bowden, and where the wedding party will be
+                            staying!
                         </p>
                         <p className={styles.hotelNote}>
                             Click here to reserve a discounted room from our room block.
@@ -112,12 +108,8 @@ const sections = [
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <p className={styles.hotelName}>
-                            Hilton Dallas - Southlake Town Square
-                        </p>
-                        <p className={styles.hotelAddress}>
-                            1400 Plaza Pl, Southlake, TX 76092
-                        </p>
+                        <p className={styles.hotelName}>Hilton Dallas - Southlake Town Square</p>
+                        <p className={styles.hotelAddress}>1400 Plaza Pl, Southlake, TX 76092</p>
                         <p className={styles.hotelNote}>10 minute drive from The Bowden.</p>
                         <p className={styles.hotelNote}>
                             Click here for a discounted rate on this hotel.
@@ -147,8 +139,8 @@ const sections = [
         content: (
             <ul className="list-disc list-inside space-y-1">
                 <li>
-                    Public transit is sparse to non-existent in this part of Dallas, so
-                    plan to get around by car.
+                    Public transit is sparse to non-existent in this part of Dallas, so plan to get
+                    around by car.
                 </li>
                 <li>Rideshare services (Uber / Lyft) are available in the area.</li>
                 <li>Rental cars are available at the airport.</li>
@@ -161,10 +153,9 @@ const sections = [
         content: (
             <div>
                 <p className="leading-relaxed mb-4">
-                    If you have some time to explore, here are some of Vishal and
-                    Hanna&rsquo;s suggested spots around the area. The map includes these
-                    attractions, our suggested hotels, and a few local favorite spots to
-                    eat.
+                    If you have some time to explore, here are some of Vishal and Hanna&rsquo;s
+                    suggested spots around the area. The map includes these attractions, our
+                    suggested hotels, and a few local favorite spots to eat.
                 </p>
                 <ul className="space-y-4 mb-6">
                     <li>
@@ -177,8 +168,8 @@ const sections = [
                         </a>
                         <br />
                         <span className="text-sm text-taupe">
-                            A historic district with daily longhorn cattle drives, rodeos,
-                            live music, and amazing Texas BBQ.
+                            A historic district with daily longhorn cattle drives, rodeos, live
+                            music, and amazing Texas BBQ.
                         </span>
                     </li>
                     <li>
@@ -191,8 +182,8 @@ const sections = [
                         </a>
                         <br />
                         <span className="text-sm text-taupe">
-                            66 acres of gardens on the shores of White Rock Lake. It's
-                            beautiful in October with fall color displays.
+                            66 acres of gardens on the shores of White Rock Lake. It's beautiful in
+                            October with fall color displays.
                         </span>
                     </li>
                     <li>
@@ -219,8 +210,8 @@ const sections = [
                         </a>
                         <br />
                         <span className="text-sm text-taupe">
-                            A charming vintage train ride through the Texas countryside a
-                            short drive from The Bowden.
+                            A charming vintage train ride through the Texas countryside a short
+                            drive from The Bowden.
                         </span>
                     </li>
                 </ul>

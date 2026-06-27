@@ -61,11 +61,7 @@ export default function Navbar() {
 
                     <Drawer.Root open={open} onOpenChange={setOpen}>
                         <Drawer.Trigger asChild>
-                            <button
-                                type="button"
-                                className={styles.toggle}
-                                aria-label="Open menu"
-                            >
+                            <button type="button" className={styles.toggle} aria-label="Open menu">
                                 <svg
                                     width="24"
                                     height="24"

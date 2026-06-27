@@ -17,7 +17,9 @@ export function LookbookLink({ src, label }: Props) {
                 aria-expanded={open}
             >
                 <span>{label}</span>
-                <span className={`${styles.lookbookChevron} ${open ? styles.lookbookChevronOpen : ""}`}>
+                <span
+                    className={`${styles.lookbookChevron} ${open ? styles.lookbookChevronOpen : ""}`}
+                >
                     {open ? "−" : "+"}
                 </span>
             </button>

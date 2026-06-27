@@ -1,46 +1,46 @@
 .page {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1rem;
 }
 
 .heading {
-  font-family: var(--font-cormorant-upright);
-  font-size: clamp(1.5rem, 6vw, 2.75rem);
-  color: var(--color-terracotta);
-  text-align: center;
-  margin-bottom: 0.75rem;
+    font-family: var(--font-cormorant-upright);
+    font-size: clamp(1.5rem, 6vw, 2.75rem);
+    color: var(--color-terracotta);
+    text-align: center;
+    margin-bottom: 0.75rem;
 }
 
 .intro {
-  text-align: left;
-  color: var(--color-taupe);
-  margin-bottom: 2rem;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.2rem;
-  line-height: 1.6;
+    text-align: left;
+    color: var(--color-taupe);
+    margin-bottom: 2rem;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
 @media (max-width: 640px) {
-  .intro {
-    font-size: 1rem;
-  }
+    .intro {
+        font-size: 1rem;
+    }
 
-  .image {
-    width: 130px;
-  }
+    .image {
+        width: 130px;
+    }
 }
 
 .imageWrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .image {
-  width: 200px;
-  height: auto;
+    width: 200px;
+    height: auto;
 }

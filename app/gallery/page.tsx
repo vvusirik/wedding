@@ -26,10 +26,7 @@ export default function GalleryPage() {
 
     const close = useCallback(() => setActiveIndex(null), []);
     const prev = useCallback(
-        () =>
-            setActiveIndex((i) =>
-                i !== null ? (i - 1 + photos.length) % photos.length : null,
-            ),
+        () => setActiveIndex((i) => (i !== null ? (i - 1 + photos.length) % photos.length : null)),
         [],
     );
     const next = useCallback(

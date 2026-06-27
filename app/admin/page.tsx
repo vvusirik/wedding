@@ -97,7 +97,9 @@ export default function AdminPage() {
                         onChange={(e) => setPw(e.target.value)}
                         autoFocus
                     />
-                    <button type="submit" className={styles.loginButton}>Enter</button>
+                    <button type="submit" className={styles.loginButton}>
+                        Enter
+                    </button>
                 </form>
             </div>
         );
@@ -130,18 +132,30 @@ export default function AdminPage() {
                                         <td className={styles.td}>
                                             {party.head.firstName} {party.head.lastName}
                                             {party.envelopeName && (
-                                                <span className={styles.envelope}>{party.envelopeName}</span>
+                                                <span className={styles.envelope}>
+                                                    {party.envelopeName}
+                                                </span>
                                             )}
                                         </td>
-                                        <td className={styles.td}>{party.email || <span className={styles.empty}>—</span>}</td>
-                                        <td className={styles.td}><code className={styles.slug}>{party.slug}</code></td>
                                         <td className={styles.td}>
-                                            {party.otherMembers.length > 0
-                                                ? party.otherMembers.map((m) => `${m.firstName} ${m.lastName}`).join(", ")
-                                                : <span className={styles.empty}>—</span>}
+                                            {party.email || <span className={styles.empty}>—</span>}
                                         </td>
                                         <td className={styles.td}>
-                                            <span className={`${styles.status} ${STATUS_CLASS[status]}`}>
+                                            <code className={styles.slug}>{party.slug}</code>
+                                        </td>
+                                        <td className={styles.td}>
+                                            {party.otherMembers.length > 0 ? (
+                                                party.otherMembers
+                                                    .map((m) => `${m.firstName} ${m.lastName}`)
+                                                    .join(", ")
+                                            ) : (
+                                                <span className={styles.empty}>—</span>
+                                            )}
+                                        </td>
+                                        <td className={styles.td}>
+                                            <span
+                                                className={`${styles.status} ${STATUS_CLASS[status]}`}
+                                            >
                                                 {STATUS_LABEL[status]}
                                             </span>
                                         </td>
@@ -157,7 +171,11 @@ export default function AdminPage() {
                                                 <button
                                                     className={styles.btnSend}
                                                     onClick={() => sendInvite(party)}
-                                                    disabled={!party.email || sending === party.slug || status === "rsvp_received"}
+                                                    disabled={
+                                                        !party.email ||
+                                                        sending === party.slug ||
+                                                        status === "rsvp_received"
+                                                    }
                                                 >
                                                     {sending === party.slug ? "Sending…" : "Send"}
                                                 </button>
@@ -174,7 +192,12 @@ export default function AdminPage() {
             {previewHtml && (
                 <div className={styles.previewOverlay} onClick={() => setPreviewHtml(null)}>
                     <div className={styles.previewModal} onClick={(e) => e.stopPropagation()}>
-                        <button className={styles.previewClose} onClick={() => setPreviewHtml(null)}>×</button>
+                        <button
+                            className={styles.previewClose}
+                            onClick={() => setPreviewHtml(null)}
+                        >
+                            ×
+                        </button>
                         <iframe
                             srcDoc={previewHtml}
                             className={styles.previewFrame}

@@ -1,134 +1,134 @@
 .page {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--color-foreground);
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-foreground);
 }
 
 .heading {
-  font-family: var(--font-cormorant-upright);
-  font-size: clamp(1.5rem, 6vw, 2.75rem);
-  color: var(--color-terracotta);
-  text-align: center;
-  margin-bottom: 0.25rem;
+    font-family: var(--font-cormorant-upright);
+    font-size: clamp(1.5rem, 6vw, 2.75rem);
+    color: var(--color-terracotta);
+    text-align: center;
+    margin-bottom: 0.25rem;
 }
 
 .intro {
-  font-family: var(--font-cormorant);
-  font-size: 1.2rem;
-  font-style: italic;
-  text-align: center;
-  color: var(--color-foreground);
-  margin-bottom: 2rem;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
+    font-family: var(--font-cormorant);
+    font-size: 1.2rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--color-foreground);
+    margin-bottom: 2rem;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sectionHeading {
-  font-family: var(--font-cormorant);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-terracotta);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.2rem;
+    font-family: var(--font-cormorant);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.2rem;
 }
 
 .iconCircle {
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
 }
 
 .divider {
-  border: none;
-  border-top: 1px solid var(--color-terracotta);
-  margin: 2.5rem 0;
+    border: none;
+    border-top: 1px solid var(--color-terracotta);
+    margin: 2.5rem 0;
 }
 
 .sectionBody {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .planeIcon {
-  width: 220px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.75;
-  display: block;
-  margin: 1.5rem auto 0;
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.75;
+    display: block;
+    margin: 1.5rem auto 0;
 }
 
 .mapEmbed {
-  display: block;
-  width: 100%;
-  height: 26rem;
-  margin-top: 1.25rem;
-  border: 1px solid var(--color-cream);
+    display: block;
+    width: 100%;
+    height: 26rem;
+    margin-top: 1.25rem;
+    border: 1px solid var(--color-cream);
 }
 
 @media (max-width: 640px) {
-  .mapEmbed {
-    height: 20rem;
-  }
+    .mapEmbed {
+        height: 20rem;
+    }
 }
 
 .bowdenIllustration {
-  width: 100%;
-  height: auto;
-  margin-top: 0;
-  opacity: 0.85;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    opacity: 0.85;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
 }
 
 .hotelTextBody {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .hotelCard {
-  display: block;
-  border: 1px solid var(--color-cream);
-  padding: 1rem;
-  text-decoration: none;
-  cursor: pointer;
+    display: block;
+    border: 1px solid var(--color-cream);
+    padding: 1rem;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .hotelName {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-foreground);
 }
 
 .hotelAddress {
-  font-size: 0.8rem;
-  color: var(--color-taupe);
-  margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--color-taupe);
+    margin-top: 0.25rem;
 }
 
 .hotelCta {
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-terracotta);
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
 }
 
 .hotelNote {
-  font-size: 1rem;
-  color: var(--color-foreground);
-  margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-foreground);
+    margin-top: 0.5rem;
 }

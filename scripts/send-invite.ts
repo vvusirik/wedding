@@ -11,7 +11,7 @@ for (const line of envLines) {
     }
 }
 
-const [,, firstName, email, slugArg] = process.argv;
+const [, , firstName, email, slugArg] = process.argv;
 
 if (!firstName || !email) {
     console.error("Usage: npx tsx scripts/send-invite.ts <firstName> <email> [slug]");
@@ -23,7 +23,10 @@ import { buildInviteHtml } from "../lib/invite";
 async function getPartyData(slug: string) {
     const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON!;
     const sheetId = process.env.GUEST_SHEET_ID!;
-    const auth = new google.auth.GoogleAuth({ credentials: JSON.parse(raw), scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"] });
+    const auth = new google.auth.GoogleAuth({
+        credentials: JSON.parse(raw),
+        scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    });
     const sheets = google.sheets({ version: "v4", auth });
     const res = await sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "A:Z" });
     const rows = res.data.values ?? [];
@@ -43,12 +46,20 @@ async function getPartyData(slug: string) {
         if (f >= 0 && l >= 0) personCols.push({ first: f, last: l });
     }
 
-    const row = rows.slice(1).find((r) => String(r[iSlug] ?? "").trim().toLowerCase() === slug.toLowerCase());
+    const row = rows.slice(1).find(
+        (r) =>
+            String(r[iSlug] ?? "")
+                .trim()
+                .toLowerCase() === slug.toLowerCase(),
+    );
     if (!row) return null;
 
     const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : undefined;
     const members = personCols
-        .map(({ first, last }) => ({ firstName: String(row[first] ?? "").trim(), lastName: String(row[last] ?? "").trim() }))
+        .map(({ first, last }) => ({
+            firstName: String(row[first] ?? "").trim(),
+            lastName: String(row[last] ?? "").trim(),
+        }))
         .filter((m) => m.firstName || m.lastName);
 
     return { envelopeName, members };

@@ -50,13 +50,24 @@ function parseRows(rows: string[][]): GuestRecord[] {
             .split(",")
             .map((t) => t.trim().toLowerCase())
             .filter((t) => t.length > 0);
-        const slug = iSlug >= 0 ? String(row[iSlug] ?? "").trim().toLowerCase() : "";
+        const slug =
+            iSlug >= 0
+                ? String(row[iSlug] ?? "")
+                      .trim()
+                      .toLowerCase()
+                : "";
         const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : undefined;
         for (const { first: fi, last: li } of nameColumns) {
             const firstName = String(row[fi] ?? "").trim();
             const lastName = String(row[li] ?? "").trim();
             if (!firstName && !lastName) continue;
-            records.push({ firstName, lastName, tags, slug, ...(envelopeName ? { envelopeName } : {}) });
+            records.push({
+                firstName,
+                lastName,
+                tags,
+                slug,
+                ...(envelopeName ? { envelopeName } : {}),
+            });
         }
     }
     return records;
@@ -116,9 +127,8 @@ export async function lookupGuest(
     const fn = firstName.toLowerCase();
     const ln = lastName.toLowerCase();
     return (
-        guests.find(
-            (g) => g.firstName.toLowerCase() === fn && g.lastName.toLowerCase() === ln,
-        ) ?? null
+        guests.find((g) => g.firstName.toLowerCase() === fn && g.lastName.toLowerCase() === ln) ??
+        null
     );
 }
 
@@ -156,5 +166,10 @@ export async function hasExistingRsvp(slug: string): Promise<boolean> {
     const values = res.data.values ?? [];
     return values
         .slice(1) // skip header
-        .some((row) => String(row[0] ?? "").trim().toLowerCase() === normalized);
+        .some(
+            (row) =>
+                String(row[0] ?? "")
+                    .trim()
+                    .toLowerCase() === normalized,
+        );
 }

@@ -124,8 +124,12 @@ async function main() {
 
     const iFirst = existingHeaders.findIndex((h) => h.replace(/[\s_]/g, "") === "firstname");
     const iLast = existingHeaders.findIndex((h) => h.replace(/[\s_]/g, "") === "lastname");
-    const iPlusFirst = existingHeaders.findIndex((h) => h.replace(/[\s_]/g, "") === "plusonefirstname");
-    const iPlusLast = existingHeaders.findIndex((h) => h.replace(/[\s_]/g, "") === "plusonelastname");
+    const iPlusFirst = existingHeaders.findIndex(
+        (h) => h.replace(/[\s_]/g, "") === "plusonefirstname",
+    );
+    const iPlusLast = existingHeaders.findIndex(
+        (h) => h.replace(/[\s_]/g, "") === "plusonelastname",
+    );
     const iTags = existingHeaders.indexOf("tags");
     const iSlug = existingHeaders.indexOf("slug");
     const iEmail = existingHeaders.indexOf("email");

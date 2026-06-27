@@ -14,10 +14,13 @@ export function buildInviteHtml({
     if (envelopeName) {
         greeting = envelopeName;
     } else {
-        greeting = members
-            .map((m) => m.firstName)
-            .filter(Boolean)
-            .join(" & ") || members[0]?.firstName || "Guest";
+        greeting =
+            members
+                .map((m) => m.firstName)
+                .filter(Boolean)
+                .join(" & ") ||
+            members[0]?.firstName ||
+            "Guest";
     }
 
     return template

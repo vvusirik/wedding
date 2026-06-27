@@ -16,16 +16,8 @@ const GuestContext = createContext<Guest>({
     slug: "",
 });
 
-export function GuestProvider({
-    guest,
-    children,
-}: {
-    guest: Guest;
-    children: React.ReactNode;
-}) {
-    return (
-        <GuestContext.Provider value={guest}>{children}</GuestContext.Provider>
-    );
+export function GuestProvider({ guest, children }: { guest: Guest; children: React.ReactNode }) {
+    return <GuestContext.Provider value={guest}>{children}</GuestContext.Provider>;
 }
 
 export function useGuest() {

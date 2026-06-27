@@ -18,7 +18,9 @@ export function ClickableImage({ src, alt, width, height, imageStyle, className 
 
     useEffect(() => {
         if (!open) return;
-        const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setOpen(false);
+        };
         window.addEventListener("keydown", onKey);
         document.body.style.overflow = "hidden";
         return () => {
@@ -40,14 +42,25 @@ export function ClickableImage({ src, alt, width, height, imageStyle, className 
             />
             {open && (
                 <div className={styles.overlay} onClick={() => setOpen(false)}>
-                    <button className={styles.close} onClick={() => setOpen(false)} aria-label="Close">×</button>
+                    <button
+                        className={styles.close}
+                        onClick={() => setOpen(false)}
+                        aria-label="Close"
+                    >
+                        ×
+                    </button>
                     <div className={styles.content} onClick={(e) => e.stopPropagation()}>
                         <Image
                             src={src}
                             alt={alt}
                             width={width}
                             height={height}
-                            style={{ maxWidth: "90vw", maxHeight: "90vh", width: "auto", height: "auto" }}
+                            style={{
+                                maxWidth: "90vw",
+                                maxHeight: "90vh",
+                                width: "auto",
+                                height: "auto",
+                            }}
                             priority
                         />
                     </div>

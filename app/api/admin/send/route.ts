@@ -17,7 +17,10 @@ export async function POST(request: Request) {
         return NextResponse.json({ ok: false, error: "missing fields" }, { status: 400 });
     }
 
-    const html = buildInviteHtml({ envelopeName, members: members ?? [{ firstName, lastName: "" }] });
+    const html = buildInviteHtml({
+        envelopeName,
+        members: members ?? [{ firstName, lastName: "" }],
+    });
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const from = process.env.RESEND_FROM_EMAIL

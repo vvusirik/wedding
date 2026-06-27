@@ -13,12 +13,9 @@ const EVENT_LABELS: Record<string, string> = {
 };
 
 const EVENT_META: Record<string, string> = {
-    morning:
-        "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
-    evening:
-        "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
-    reception:
-        "Saturday Oct 17 &nbsp;&middot;&nbsp; 7 PM &nbsp;&middot;&nbsp; The Bowden",
+    morning: "Saturday Oct 17 &nbsp;&middot;&nbsp; 10 AM &nbsp;&middot;&nbsp; Main Hall",
+    evening: "Saturday Oct 17 &nbsp;&middot;&nbsp; 5 PM &nbsp;&middot;&nbsp; Chapel",
+    reception: "Saturday Oct 17 &nbsp;&middot;&nbsp; 7 PM &nbsp;&middot;&nbsp; The Bowden",
 };
 
 type Member = {

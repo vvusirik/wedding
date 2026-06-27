@@ -9,10 +9,7 @@ type PageProps = { params: Promise<{ slug: string }> };
 
 export default async function RsvpSlugPage({ params }: PageProps) {
     const { slug } = await params;
-    const [party, alreadySubmitted] = await Promise.all([
-        lookupParty(slug),
-        hasExistingRsvp(slug),
-    ]);
+    const [party, alreadySubmitted] = await Promise.all([lookupParty(slug), hasExistingRsvp(slug)]);
     if (party.length === 0) notFound();
 
     // Put the logged-in guest first if we can identify them

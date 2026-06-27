@@ -1,35 +1,35 @@
 .page {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 4rem 1rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4rem 1rem;
 }
 
 .heading {
-  font-family: var(--font-script);
-  font-size: clamp(2rem, 8vw, 3.75rem);
-  color: var(--color-terracotta);
-  text-align: center;
-  margin-bottom: 3rem;
+    font-family: var(--font-script);
+    font-size: clamp(2rem, 8vw, 3.75rem);
+    color: var(--color-terracotta);
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .envelopeWrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
 }
 
 .envelope {
-  display: block;
-  width: 100%;
-  max-width: 22rem;
-  height: auto;
+    display: block;
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
 }
 
 .reminder {
-  text-align: center;
-  color: var(--color-taupe);
-  font-style: italic;
-  max-width: 36rem;
-  margin: 0 auto;
+    text-align: center;
+    color: var(--color-taupe);
+    font-style: italic;
+    max-width: 36rem;
+    margin: 0 auto;
 }

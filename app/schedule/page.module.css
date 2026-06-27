@@ -1,165 +1,163 @@
 .page {
-  max-width: 56rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
 }
 
 .heading {
-  font-family: var(--font-cormorant-upright);
-  font-size: clamp(1.5rem, 6vw, 2.75rem);
-  color: var(--color-terracotta);
-  text-align: center;
-  margin-bottom: 1.25rem;
+    font-family: var(--font-cormorant-upright);
+    font-size: clamp(1.5rem, 6vw, 2.75rem);
+    color: var(--color-terracotta);
+    text-align: center;
+    margin-bottom: 1.25rem;
 }
 
-
 .panel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  color: var(--color-foreground);
-  gap: 3rem;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: var(--color-foreground);
+    gap: 3rem;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .panelContent {
-  flex: 2;
-  min-width: 0;
+    flex: 2;
+    min-width: 0;
 }
 
 .illustrationSlot {
-  flex: 1;
-  min-height: 300px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
+    flex: 1;
+    min-height: 300px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
 }
 
 .illustrationHalf {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
 .mobileIllustration {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 640px) {
-  .panel {
-    flex-direction: column;
-    padding: 1.5rem 1rem;
-    gap: 1.5rem;
-  }
+    .panel {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
 
-  .illustrationSlot {
-    display: none;
-  }
+    .illustrationSlot {
+        display: none;
+    }
 
-  .mobileIllustration {
-    display: flex;
-    justify-content: center;
-    padding: 0.75rem 0;
-    width: 140px;
-    margin: 0 auto;
-  }
+    .mobileIllustration {
+        display: flex;
+        justify-content: center;
+        padding: 0.75rem 0;
+        width: 140px;
+        margin: 0 auto;
+    }
 }
 
 .panelTitle {
-  font-family: var(--font-cormorant-upright);
-  font-size: clamp(1.25rem, 4vw, 2rem);
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
+    font-family: var(--font-cormorant-upright);
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
 }
 
 .panelDate {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.5;
-  margin-bottom: 2rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 2rem;
 }
 
 .eventList {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .eventItem {
-  padding: 1.25rem 0;
+    padding: 1.25rem 0;
 }
 
 .eventTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
 }
 
 .eventLocation {
-  font-size: 1rem;
-  opacity: 0.55;
-  margin-bottom: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.55;
+    margin-bottom: 0.5rem;
 }
 
 .eventDescription {
-  font-size: 1rem;
-  opacity: 0.8;
-  line-height: 1.65;
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.65;
 }
 
 .lookbookDrawer {
-  margin-top: 0.75rem;
+    margin-top: 0.75rem;
 }
 
 .lookbookLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-cormorant);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--color-terracotta);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: none;
-  opacity: 0.85;
-  transition: opacity 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-cormorant);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-terracotta);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 150ms ease;
 }
 
 .lookbookLink:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .lookbookChevron {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.1rem;
-  height: 1.1rem;
-  border: 1px solid var(--color-terracotta);
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-style: normal;
-  line-height: 1;
-  flex-shrink: 0;
-  transition: background-color 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 1px solid var(--color-terracotta);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-style: normal;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: background-color 150ms ease;
 }
 
 .lookbookChevronOpen {
-  background-color: var(--color-terracotta);
-  color: var(--color-background);
+    background-color: var(--color-terracotta);
+    color: var(--color-background);
 }
 
 .lookbookImageWrap {
-  margin-top: 1rem;
-  max-width: 26rem;
-  border-left: 2px solid color-mix(in srgb, var(--color-terracotta) 25%, transparent);
-  padding-left: 1rem;
+    margin-top: 1rem;
+    max-width: 26rem;
+    border-left: 2px solid color-mix(in srgb, var(--color-terracotta) 25%, transparent);
+    padding-left: 1rem;
 }

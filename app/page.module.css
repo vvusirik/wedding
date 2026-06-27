@@ -1,112 +1,113 @@
 .hero {
-  display: grid;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  min-height: calc(100vh - 4rem);
-  background-color: var(--color-cream);
-  position: relative;
-  overflow: hidden;
-  animation: heroFadeIn 500ms ease-in;
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    min-height: calc(100vh - 4rem);
+    background-color: var(--color-cream);
+    position: relative;
+    overflow: hidden;
+    animation: heroFadeIn 500ms ease-in;
 }
 
 .heroBg {
-  position: absolute;
-  inset: 0;
-  background-image: url(/images/hero.jpg);
-  background-size: cover;
-  background-position: 65% center;
-  background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
+    background-image: url(/images/hero.jpg);
+    background-size: cover;
+    background-position: 65% center;
+    background-repeat: no-repeat;
 }
 
 .heroOverlay {
-  position: absolute;
-  inset: 0;
-  background-color: color-mix(
-    in srgb,
-    var(--color-foreground) 70%,
-    transparent
-  );
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
 }
 
 @keyframes heroFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .scrollIndicator {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--color-cream);
-  opacity: 0.9;
-  animation: scrollBounce 2s ease-in-out infinite;
-  z-index: 10;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-cream);
+    opacity: 0.9;
+    animation: scrollBounce 2s ease-in-out infinite;
+    z-index: 10;
 }
 
 @keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(6px);
+    }
 }
 
 .heroContent {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 2rem 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .heroInvite {
-  font-family: var(--font-cormorant-garamond);
-  font-style: italic;
-  font-size: clamp(0.95rem, 2.2vw, 1.31rem);
-  color: var(--color-cream);
-  margin-bottom: 2.5rem;
-  opacity: 0.9;
+    font-family: var(--font-cormorant-garamond);
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.2vw, 1.31rem);
+    color: var(--color-cream);
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
 }
 
 .heroTitle {
-  font-family: var(--font-dom-loves-mary);
-  font-size: clamp(2.95rem, 7.35vw, 5.5rem);
-  color: var(--color-cream);
-  line-height: 1.25;
-  margin-top: 1.5rem;
+    font-family: var(--font-dom-loves-mary);
+    font-size: clamp(2.95rem, 7.35vw, 5.5rem);
+    color: var(--color-cream);
+    line-height: 1.25;
+    margin-top: 1.5rem;
 }
 
 /* TODO remove  */
 .heroSubtitle {
-  margin-top: 1rem;
-  font-size: clamp(1.25rem, 3vw, 1.875rem);
-  color: var(--color-cream);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+    margin-top: 1rem;
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    color: var(--color-cream);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
 }
 
 /* TODO remove  */
 .heroDivider {
-  margin-top: 2.5rem;
-  width: 6rem;
-  height: 1px;
-  background-color: var(--color-terracotta);
+    margin-top: 2.5rem;
+    width: 6rem;
+    height: 1px;
+    background-color: var(--color-terracotta);
 }
 
 .heroDetails {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  color: var(--color-cream);
-  font-size: clamp(0.74rem, 2.95vw, 1.15rem);
-  letter-spacing: 0.04em;
-  font-family: var(--font-cormorant);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    color: var(--color-cream);
+    font-size: clamp(0.74rem, 2.95vw, 1.15rem);
+    letter-spacing: 0.04em;
+    font-family: var(--font-cormorant);
 }
 
 /* ============================================================
@@ -114,106 +115,106 @@
    ============================================================ */
 
 .about {
-  background-color: #f2ebe0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.18'/%3E%3C/svg%3E");
-  padding: 5rem 1.5rem;
+    background-color: #f2ebe0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.18'/%3E%3C/svg%3E");
+    padding: 5rem 1.5rem;
 }
 
 .aboutInner {
-  max-width: 56rem;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 4rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
 }
 
 .aboutPhotoWrap {
-  flex-shrink: 0;
-  background-color: #ffffff;
-  padding: 0.6rem 0.6rem 2.75rem;
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.12),
-    0 1px 3px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    background-color: #ffffff;
+    padding: 0.6rem 0.6rem 2.75rem;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .aboutPhoto {
-  display: block;
-  width: 200px;
-  height: auto;
-  object-fit: cover;
+    display: block;
+    width: 200px;
+    height: auto;
+    object-fit: cover;
 }
 
 .aboutText {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .aboutBlurb {
-  font-family: var(--font-cormorant);
-  font-style: italic;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  line-height: 1.7;
-  color: var(--color-foreground);
+    font-family: var(--font-cormorant);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.7;
+    color: var(--color-foreground);
 }
 
 .aboutButton {
-  display: inline-block;
-  align-self: flex-start;
-  padding: 0.85rem 2.5rem;
-  background-color: var(--color-terracotta);
-  color: var(--color-background);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background-color 150ms ease;
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.85rem 2.5rem;
+    background-color: var(--color-terracotta);
+    color: var(--color-background);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 150ms ease;
 }
 
 .aboutButton:hover {
-  background-color: var(--color-brick);
+    background-color: var(--color-brick);
 }
 
 @media (max-width: 640px) {
-  .about {
-    padding: 3rem 1.25rem;
-  }
+    .about {
+        padding: 3rem 1.25rem;
+    }
 
-  .aboutInner {
-    flex-direction: column;
-    gap: 2rem;
-  }
+    .aboutInner {
+        flex-direction: column;
+        gap: 2rem;
+    }
 
-  .aboutPhotoWrap {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
+    .aboutPhotoWrap {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
 
-  .aboutPhoto {
-    width: 100%;
-  }
+    .aboutPhoto {
+        width: 100%;
+    }
 
-  .aboutButton {
-    align-self: center;
-  }
+    .aboutButton {
+        align-self: center;
+    }
 }
 
 @media (max-width: 640px) {
-  .heroInvite {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-  }
+    .heroInvite {
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+    }
 
-  .heroTitle {
-    font-size: 3.25rem;
-    margin-top: 0.75rem;
-  }
+    .heroTitle {
+        font-size: 3.25rem;
+        margin-top: 0.75rem;
+    }
 
-  .heroDetails {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-  }
+    .heroDetails {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+    }
 }

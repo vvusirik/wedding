@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #fbf7f2;
-  --color-foreground: #2c2317;
-  /* --color-terracotta: #c95d2a; */
-  --color-terracotta: #dd523f;
-  --color-taupe: #7a6e5f;
-  --color-brick: #9e4040;
-  --color-cream: #d4c4a8;
-  --color-forest: #4a5e30;
-  --color-cerulean: #1a78c2;
-  --color-turmeric: #c8960c;
-  --color-chartreuse: #8fa814;
-  --color-coral: #f07548;
-  --color-berry: #a83878;
-  --color-mint: #7ed4c0;
-  --color-lavender: #c890e0;
-  --font-script: var(--font-ed-lavonia);
-  --font-sans: var(--font-lato);
-  --font-cormorant: var(--font-cormorant-garamond);
-  --font-cormorant-upright: var(--font-cormorant-upright);
+    --color-background: #fbf7f2;
+    --color-foreground: #2c2317;
+    /* --color-terracotta: #c95d2a; */
+    --color-terracotta: #dd523f;
+    --color-taupe: #7a6e5f;
+    --color-brick: #9e4040;
+    --color-cream: #d4c4a8;
+    --color-forest: #4a5e30;
+    --color-cerulean: #1a78c2;
+    --color-turmeric: #c8960c;
+    --color-chartreuse: #8fa814;
+    --color-coral: #f07548;
+    --color-berry: #a83878;
+    --color-mint: #7ed4c0;
+    --color-lavender: #c890e0;
+    --font-script: var(--font-ed-lavonia);
+    --font-sans: var(--font-lato);
+    --font-cormorant: var(--font-cormorant-garamond);
+    --font-cormorant-upright: var(--font-cormorant-upright);
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-size: 1rem;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-size: 1rem;
 }
