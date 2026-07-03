@@ -49,7 +49,6 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
 
     // Party-level
     const [email, setEmail] = useState("");
-    const [dietaryNotes, setDietaryNotes] = useState("");
     const [songRequest, setSongRequest] = useState("");
     const [message, setMessage] = useState("");
 
@@ -82,7 +81,7 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
             const body = {
                 slug,
                 email: email.trim(),
-                dietaryNotes: accepting ? dietaryNotes.trim() : "",
+                dietaryNotes: "",
                 songRequest: accepting ? songRequest.trim() : "",
                 message: message.trim(),
                 members: party.map((m, i) => {
@@ -250,19 +249,6 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
 
                     {decision === "accept" && (
                         <>
-                            <div className={styles.field}>
-                                <label className={styles.fieldLabel} htmlFor="dietary">
-                                    Dietary Notes
-                                </label>
-                                <input
-                                    id="dietary"
-                                    type="text"
-                                    className={styles.input}
-                                    placeholder="Any allergies or restrictions in your party"
-                                    value={dietaryNotes}
-                                    onChange={(e) => setDietaryNotes(e.target.value)}
-                                />
-                            </div>
                             <div className={styles.field}>
                                 <label className={styles.fieldLabel} htmlFor="song">
                                     Song Request
