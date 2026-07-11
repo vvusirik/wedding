@@ -13,8 +13,8 @@ type Props = {
 
 const EVENT_ORDER = ["morning", "evening", "reception"] as const;
 const EVENT_LABELS: Record<string, string> = {
-    morning: "Morning Ceremony",
-    evening: "Evening Ceremony",
+    morning: "Indian Ceremony",
+    evening: "Jewish Ceremony",
     reception: "Reception",
 };
 const EVENT_TIMES: Record<string, string> = {
