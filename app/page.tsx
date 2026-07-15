@@ -53,6 +53,17 @@ export default function Home() {
                             Philadelphia, New York). We love all these places, but most of all,
                             we're excited to come home to Dallas and celebrate with you!
                         </p>
+                        <div className={styles.exploreLinks}>
+                            <Link href="/schedule" className={styles.exploreLink}>Schedule</Link>
+                            <span className={styles.exploreDot}>·</span>
+                            <Link href="/travel" className={styles.exploreLink}>Travel</Link>
+                            <span className={styles.exploreDot}>·</span>
+                            <Link href="/faq" className={styles.exploreLink}>Info</Link>
+                            <span className={styles.exploreDot}>·</span>
+                            <Link href="/gifting" className={styles.exploreLink}>Gifting</Link>
+                            <span className={styles.exploreDot}>·</span>
+                            <Link href="/gallery" className={styles.exploreLink}>Gallery</Link>
+                        </div>
                         <Link href="/rsvp" className={styles.aboutButton}>
                             Kindly RSVP
                         </Link>

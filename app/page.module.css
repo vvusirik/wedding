@@ -177,6 +177,32 @@
     background-color: var(--color-brick);
 }
 
+.exploreLinks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.5rem;
+}
+
+.exploreLink {
+    font-family: var(--font-cormorant);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-taupe);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.exploreLink:hover {
+    color: var(--color-terracotta);
+}
+
+.exploreDot {
+    color: var(--color-taupe);
+    opacity: 0.5;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 640px) {
     .about {
         padding: 3rem 1.25rem;
