@@ -12,7 +12,8 @@ export default function GiftingPage() {
             <p className={styles.intro}>
                 If you would still like to gift us, you can do so in the Indian tradition of Shagun
                 (an envelope with a gift card or an odd dollar amount symbolizing good fortune) or
-                the Jewish tradition of gifting in multiples of 18.
+                the Jewish tradition of gifting in multiples of 18 (symbolizing a long life and good
+                luck).
             </p>
             <div className={styles.imageWrapper}>
                 <Image
