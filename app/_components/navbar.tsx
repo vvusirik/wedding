@@ -74,6 +74,7 @@ export default function Navbar() {
                                 >
                                     <path d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
+                                <span className={styles.toggleLabel}>Menu</span>
                             </button>
                         </Drawer.Trigger>
                         <Drawer.Portal>

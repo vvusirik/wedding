@@ -107,26 +107,26 @@ export default async function FAQPage() {
     const attireQuestion =
         visibleAttire.length > 0
             ? {
-                  question: "What should I wear?",
-                  answer: (
-                      <div
-                          className={`${styles.attireGrid} ${visibleAttire.length === 1 ? styles.attireGridSingle : ""}`}
-                      >
-                          {visibleAttire.map((a) => (
-                              <div key={a.tag} className={styles.attireItem}>
-                                  <p className={styles.attireLabel}>{a.label}</p>
-                                  <ClickableImage
-                                      src={a.src}
-                                      alt={a.alt}
-                                      width={600}
-                                      height={800}
-                                      imageStyle={{ width: "100%", height: "auto" }}
-                                  />
-                              </div>
-                          ))}
-                      </div>
-                  ),
-              }
+                question: "What should I wear?",
+                answer: (
+                    <div
+                        className={`${styles.attireGrid} ${visibleAttire.length === 1 ? styles.attireGridSingle : ""}`}
+                    >
+                        {visibleAttire.map((a) => (
+                            <div key={a.tag} className={styles.attireItem}>
+                                <p className={styles.attireLabel}>{a.label}</p>
+                                <ClickableImage
+                                    src={a.src}
+                                    alt={a.alt}
+                                    width={600}
+                                    height={800}
+                                    imageStyle={{ width: "100%", height: "auto" }}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                ),
+            }
             : null;
 
     const allFaqs = attireQuestion ? [attireQuestion, ...faqs] : faqs;
