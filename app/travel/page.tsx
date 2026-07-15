@@ -214,6 +214,34 @@ const sections = [
                             drive from The Bowden.
                         </span>
                     </li>
+                    <li>
+                        <a
+                            href="https://www.dma.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Dallas Museum of Art</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            One of the largest art museums in the country, with a permanent
+                            collection spanning 5,000 years of history. Free general admission.
+                        </span>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.nashersculpturecenter.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <strong>Nasher Sculpture Center</strong>
+                        </a>
+                        <br />
+                        <span className="text-sm text-taupe">
+                            A stunning sculpture garden and museum in the Dallas Arts District,
+                            just a short walk from the DMA.
+                        </span>
+                    </li>
                 </ul>
                 {ACTIVITIES_MAP_EMBED_URL && (
                     <iframe
