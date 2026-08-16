@@ -58,7 +58,7 @@ export default async function RsvpSlugPage({ params }: PageProps) {
             <p className={styles.intro}>
                 We&rsquo;re excited to celebrate with you!
                 <br />
-                Replies appreciated by <strong>August 15th</strong>.
+                Replies appreciated by <strong>September 15th</strong>.
             </p>
             <RsvpForm
                 slug={slug}
