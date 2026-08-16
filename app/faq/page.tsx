@@ -26,7 +26,7 @@ const faqs = [
                 <a href="/rsvp" className={styles.answerLink}>
                     RSVP
                 </a>{" "}
-                by August 15th. We&apos;d love to have an accurate headcount as early as possible to
+                by September 15th. We&apos;d love to have an accurate headcount as early as possible to
                 ensure everything goes smoothly. If you have any trouble submitting your RSVP, feel
                 free to reach out to us directly.
             </p>
