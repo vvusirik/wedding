@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { hasExistingRsvp, lookupParty } from "../../../lib/guests";
+import { getLatestRsvp, lookupParty } from "../../../lib/guests";
 import styles from "./page.module.css";
 import { RsvpForm } from "./rsvp-form";
 
@@ -9,7 +9,7 @@ type PageProps = { params: Promise<{ slug: string }> };
 
 export default async function RsvpSlugPage({ params }: PageProps) {
     const { slug } = await params;
-    const [party, alreadySubmitted] = await Promise.all([lookupParty(slug), hasExistingRsvp(slug)]);
+    const [party, existingRsvp] = await Promise.all([lookupParty(slug), getLatestRsvp(slug)]);
     if (party.length === 0) notFound();
 
     // Put the logged-in guest first if we can identify them
@@ -62,7 +62,8 @@ export default async function RsvpSlugPage({ params }: PageProps) {
             </p>
             <RsvpForm
                 slug={slug}
-                alreadySubmitted={alreadySubmitted}
+                alreadySubmitted={!!existingRsvp}
+                existingRsvp={existingRsvp}
                 party={sorted.map((g) => ({
                     firstName: g.firstName,
                     lastName: g.lastName,

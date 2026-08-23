@@ -5,10 +5,22 @@ import styles from "./page.module.css";
 
 type Member = { firstName: string; lastName: string; tags: string[] };
 
+type RsvpRecord = {
+    firstName: string;
+    lastName: string;
+    attending: boolean;
+    eventsAttending: string[];
+    songRequest: string;
+    message: string;
+    email: string;
+    timestamp: string;
+};
+
 type Props = {
     slug: string;
     party: Member[];
     alreadySubmitted: boolean;
+    existingRsvp: RsvpRecord[] | null;
 };
 
 const EVENT_ORDER = ["morning", "evening", "reception"] as const;
@@ -32,7 +44,74 @@ const EVENT_INVITED_BY: Record<string, string> = {
 
 type Decision = "accept" | "decline" | null;
 
-export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
+function RsvpSummary({
+    existingRsvp,
+    onUpdate,
+}: {
+    existingRsvp: RsvpRecord[];
+    onUpdate: () => void;
+}) {
+    const anyAttending = existingRsvp.some((r) => r.attending);
+    const songRequest = existingRsvp.find((r) => r.songRequest)?.songRequest ?? "";
+    const message = existingRsvp.find((r) => r.message)?.message ?? "";
+
+    return (
+        <div className={styles.summary}>
+            <p className={styles.summaryStatus}>
+                {anyAttending ? "You're attending!" : "You've declined."}
+            </p>
+
+            <div className={styles.summaryMembers}>
+                {existingRsvp.map((r) => (
+                    <div key={`${r.firstName}-${r.lastName}`} className={styles.summaryMember}>
+                        <div className={styles.summaryMemberHeader}>
+                            <span className={styles.summaryMemberName}>
+                                {r.firstName} {r.lastName}
+                            </span>
+                            <span
+                                className={
+                                    r.attending
+                                        ? styles.summaryBadgeAttending
+                                        : styles.summaryBadgeDeclined
+                                }
+                            >
+                                {r.attending ? "Attending" : "Not attending"}
+                            </span>
+                        </div>
+                        {r.attending && r.eventsAttending.length > 0 && (
+                            <ul className={styles.summaryEvents}>
+                                {r.eventsAttending.map((ev) => (
+                                    <li key={ev}>{EVENT_LABELS[ev] ?? ev}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            {songRequest && (
+                <div className={styles.summaryField}>
+                    <span className={styles.summaryFieldLabel}>Song Request</span>
+                    <span className={styles.summaryFieldValue}>{songRequest}</span>
+                </div>
+            )}
+
+            {message && (
+                <div className={styles.summaryField}>
+                    <span className={styles.summaryFieldLabel}>Your Note</span>
+                    <span className={styles.summaryFieldValue}>{message}</span>
+                </div>
+            )}
+
+            <button type="button" className={styles.updateButton} onClick={onUpdate}>
+                Update RSVP
+            </button>
+        </div>
+    );
+}
+
+export function RsvpForm({ slug, party, alreadySubmitted, existingRsvp }: Props) {
+    const [showForm, setShowForm] = useState(!existingRsvp);
     const [decision, setDecision] = useState<Decision>(null);
 
     // Per-member attendance: { memberIndex: { eventRow: bool } }
@@ -125,11 +204,15 @@ export function RsvpForm({ slug, party, alreadySubmitted }: Props) {
                 <h2 className={styles.successHeading}>Thank you!</h2>
                 <p className={styles.successBody}>
                     {decision === "accept"
-                        ? "Your response is in. We can’t wait to see you."
-                        : "Thank you for letting us know. We’ll miss you."}
+                        ? "Your response is in. We can't wait to see you."
+                        : "Thank you for letting us know. We'll miss you."}
                 </p>
             </div>
         );
+    }
+
+    if (!showForm && existingRsvp) {
+        return <RsvpSummary existingRsvp={existingRsvp} onUpdate={() => setShowForm(true)} />;
     }
 
     return (
