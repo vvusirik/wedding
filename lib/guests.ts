@@ -154,52 +154,22 @@ export async function getWritableSheetsClient(): Promise<{
     return { sheets, spreadsheetId: sheetId };
 }
 
-export interface RsvpRecord {
-    firstName: string;
-    lastName: string;
-    attending: boolean;
-    eventsAttending: string[];
-    songRequest: string;
-    message: string;
-    email: string;
-    timestamp: string;
-}
-
-/** Returns the most recent RSVP submission for a slug, or null if none exists. */
-export async function getLatestRsvp(slug: string): Promise<RsvpRecord[] | null> {
+/** True if any row in the RSVPs tab has the given slug. */
+export async function hasExistingRsvp(slug: string): Promise<boolean> {
     const normalized = slug.trim().toLowerCase();
-    if (!normalized) return null;
+    if (!normalized) return false;
     const { sheets, spreadsheetId } = await getWritableSheetsClient();
     const res = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: "RSVPs!A:J",
+        range: "RSVPs!B:B",
     });
     const values = res.data.values ?? [];
-    if (values.length < 2) return null;
-
-    const slugRows = values
-        .slice(1)
-        .filter((row) => String(row[1] ?? "").trim().toLowerCase() === normalized);
-    if (slugRows.length === 0) return null;
-
-    const latestTs = slugRows.reduce((max, row) => {
-        const ts = String(row[0] ?? "");
-        return ts > max ? ts : max;
-    }, "");
-
-    return slugRows
-        .filter((row) => String(row[0] ?? "") === latestTs)
-        .map((row) => ({
-            timestamp: String(row[0] ?? ""),
-            firstName: String(row[2] ?? "").trim(),
-            lastName: String(row[3] ?? "").trim(),
-            attending: String(row[4] ?? "").trim().toLowerCase() === "yes",
-            eventsAttending: String(row[5] ?? "")
-                .split(",")
-                .map((s) => s.trim())
-                .filter(Boolean),
-            songRequest: String(row[7] ?? "").trim(),
-            message: String(row[9] ?? "").trim(),
-            email: String(row[8] ?? "").trim(),
-        }));
+    return values
+        .slice(1) // skip header
+        .some(
+            (row) =>
+                String(row[0] ?? "")
+                    .trim()
+                    .toLowerCase() === normalized,
+        );
 }
