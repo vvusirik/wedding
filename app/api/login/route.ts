@@ -7,6 +7,7 @@ export async function POST(request: Request) {
         lastName = "",
         password = "";
 
+    let next = "";
     if (
         contentType.includes("application/x-www-form-urlencoded") ||
         contentType.includes("multipart/form-data")
@@ -15,12 +16,17 @@ export async function POST(request: Request) {
         firstName = (formData.get("firstName") as string)?.trim() ?? "";
         lastName = (formData.get("lastName") as string)?.trim() ?? "";
         password = (formData.get("password") as string) ?? "";
+        next = (formData.get("next") as string) ?? "";
     } else {
         const body = await request.json();
         firstName = body.firstName?.trim() ?? "";
         lastName = body.lastName?.trim() ?? "";
         password = body.password ?? "";
+        next = body.next ?? "";
     }
+
+    // Only allow safe relative paths to prevent open redirect
+    const redirectTo = next.startsWith("/") && !next.startsWith("//") ? next : "/";
 
     const host =
         request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "localhost:3000";
@@ -31,7 +37,7 @@ export async function POST(request: Request) {
         const guest = await lookupGuest(firstName, lastName);
         if (guest !== null) {
             const maxAge = 60 * 60 * 24 * 90;
-            const response = NextResponse.redirect(`${origin}/`, { status: 303 });
+            const response = NextResponse.redirect(`${origin}${redirectTo}`, { status: 303 });
             response.cookies.set("wedding-auth", "true", {
                 httpOnly: true,
                 sameSite: "lax",
@@ -57,5 +63,8 @@ export async function POST(request: Request) {
         }
     }
 
-    return NextResponse.redirect(`${origin}/login?error=1`, { status: 303 });
+    const errorUrl = new URL("/login", origin);
+    errorUrl.searchParams.set("error", "1");
+    if (next) errorUrl.searchParams.set("next", next);
+    return NextResponse.redirect(errorUrl.toString(), { status: 303 });
 }

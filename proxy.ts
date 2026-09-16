@@ -9,7 +9,9 @@ export function proxy(request: NextRequest) {
     const isLoginPage = pathname === "/login";
 
     if (!isAuthenticated && !isLoginPage) {
-        return NextResponse.redirect(new URL("/login", request.url));
+        const loginUrl = new URL("/login", request.url);
+        loginUrl.searchParams.set("next", pathname);
+        return NextResponse.redirect(loginUrl);
     }
 
     return NextResponse.next();
