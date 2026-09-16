@@ -55,3 +55,6 @@ venv/
 
 # claude
 .claude/
+
+# scratch
+/scratch/

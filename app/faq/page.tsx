@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { ClickableImage } from "../_components/image-lightbox";
+import { FaqAccordion } from "./faq-accordion";
 import styles from "./page.module.css";
 
 const ATTIRE = [
@@ -135,15 +136,18 @@ export default async function FAQPage() {
             <h1 className={styles.heading}>Helpful Info</h1>
 
             <div className={styles.faqList}>
-                {allFaqs.map((faq, i) => (
-                    <details key={i} className={styles.accordion}>
-                        <summary className={styles.summary}>
-                            <span className={styles.question}>{faq.question}</span>
-                            <span className={styles.expandIcon}>+</span>
-                        </summary>
-                        <div className={styles.answer}>{faq.answer}</div>
-                    </details>
-                ))}
+                {allFaqs.map((faq, i) => {
+                    const id =
+                        faq.question === "What should I wear?" ? "attire" : undefined;
+                    return (
+                        <FaqAccordion
+                            key={i}
+                            id={id}
+                            question={faq.question}
+                            answer={faq.answer}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
