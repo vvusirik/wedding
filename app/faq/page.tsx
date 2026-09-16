@@ -19,16 +19,15 @@ const ATTIRE = [
 
 const faqs = [
     {
-        question: "When is the RSVP deadline?",
+        question: "How do I RSVP?",
         answer: (
             <p>
                 Please{" "}
                 <a href="/rsvp" className={styles.answerLink}>
                     RSVP
                 </a>{" "}
-                by September 15th. We&apos;d love to have an accurate headcount as early as possible to
-                ensure everything goes smoothly. If you have any trouble submitting your RSVP, feel
-                free to reach out to us directly.
+                using the link in your invitation or via the RSVP tab on this site. If you have any
+                trouble, feel free to reach out to us directly.
             </p>
         ),
     },
