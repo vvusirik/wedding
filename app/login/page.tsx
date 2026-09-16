@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 function LoginForm() {
     const searchParams = useSearchParams();
     const [error, setError] = useState(searchParams.get("error") === "1");
+    const next = searchParams.get("next") ?? "";
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         const formData = new FormData(e.currentTarget);
@@ -24,6 +25,7 @@ function LoginForm() {
             <div className={styles.card}>
                 <h1 className={styles.heading}>Vishal &amp; Hanna</h1>
                 <form method="POST" action="/api/login" onSubmit={handleSubmit}>
+                    {next && <input type="hidden" name="next" value={next} />}
                     <div className={styles.nameRow}>
                         <input
                             className={`${styles.input} ${styles.inputName}`}
