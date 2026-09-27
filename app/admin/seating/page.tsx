@@ -17,6 +17,14 @@ type SeatingTable = {
     guestIds: string[];
 };
 
+type GuestStatus = "yellow" | "red";
+
+type ContextMenuState = {
+    guestId: string;
+    x: number;
+    y: number;
+};
+
 const MIN_SEATS = 8;
 const MAX_SEATS = 12;
 const DRAG_MIME = "text/x-guest-id";
@@ -38,10 +46,12 @@ export default function SeatingChartPage() {
     const [loading, setLoading] = useState(false);
     const [people, setPeople] = useState<Person[]>([]);
     const [tables, setTables] = useState<SeatingTable[]>([]);
+    const [statuses, setStatuses] = useState<Record<string, GuestStatus>>({});
     const [search, setSearch] = useState("");
     const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
     const [dragOverTableId, setDragOverTableId] = useState<string | null>(null);
     const [dragOverSidebar, setDragOverSidebar] = useState(false);
+    const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
 
     const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const skipNextSave = useRef(true);
@@ -60,6 +70,7 @@ export default function SeatingChartPage() {
             .then((data) => {
                 setPeople(data.people ?? []);
                 setTables(data.tables ?? []);
+                setStatuses(data.statuses ?? {});
             })
             .finally(() => setLoading(false));
     }, [authed]);
@@ -88,7 +99,7 @@ export default function SeatingChartPage() {
             .sort((a, b) => a.firstName.localeCompare(b.firstName));
     }, [people, seatedIds, search]);
 
-    // Debounced autosave whenever tables change (skip the initial load).
+    // Debounced autosave whenever tables or statuses change (skip the initial load).
     useEffect(() => {
         if (skipNextSave.current) {
             skipNextSave.current = false;
@@ -101,7 +112,7 @@ export default function SeatingChartPage() {
                 const res = await fetch("/api/admin/seating", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ tables }),
+                    body: JSON.stringify({ tables, statuses }),
                 });
                 setSaveState(res.ok ? "saved" : "error");
             } catch {
@@ -111,7 +122,18 @@ export default function SeatingChartPage() {
         return () => {
             if (saveTimer.current) clearTimeout(saveTimer.current);
         };
-    }, [tables]);
+    }, [tables, statuses]);
+
+    useEffect(() => {
+        if (!contextMenu) return;
+        const close = () => setContextMenu(null);
+        window.addEventListener("click", close);
+        window.addEventListener("scroll", close, true);
+        return () => {
+            window.removeEventListener("click", close);
+            window.removeEventListener("scroll", close, true);
+        };
+    }, [contextMenu]);
 
     const addTable = useCallback(() => {
         setTables((prev) => [
@@ -149,6 +171,21 @@ export default function SeatingChartPage() {
             });
         });
     }, []);
+
+    function openContextMenu(e: React.MouseEvent, guestId: string) {
+        e.preventDefault();
+        setContextMenu({ guestId, x: e.clientX, y: e.clientY });
+    }
+
+    function setStatus(guestId: string, status: GuestStatus | null) {
+        setStatuses((prev) => {
+            const next = { ...prev };
+            if (status) next[guestId] = status;
+            else delete next[guestId];
+            return next;
+        });
+        setContextMenu(null);
+    }
 
     function onDragStartPerson(e: React.DragEvent, guestId: string) {
         e.dataTransfer.setData(DRAG_MIME, guestId);
@@ -258,9 +295,10 @@ export default function SeatingChartPage() {
                             {unseatedPeople.map((p) => (
                                 <div
                                     key={p.id}
-                                    className={styles.guestChip}
+                                    className={`${styles.guestChip} ${statuses[p.id] === "yellow" ? styles.guestChipYellow : ""} ${statuses[p.id] === "red" ? styles.guestChipRed : ""}`}
                                     draggable
                                     onDragStart={(e) => onDragStartPerson(e, p.id)}
+                                    onContextMenu={(e) => openContextMenu(e, p.id)}
                                 >
                                     <span className={styles.guestName}>
                                         {p.firstName} {p.lastName}
@@ -343,6 +381,37 @@ export default function SeatingChartPage() {
                             </p>
                         )}
                     </main>
+                </div>
+            )}
+
+            {contextMenu && (
+                <div
+                    className={styles.contextMenu}
+                    style={{ top: contextMenu.y, left: contextMenu.x }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <button
+                        className={styles.contextMenuItem}
+                        onClick={() => setStatus(contextMenu.guestId, "yellow")}
+                    >
+                        <span className={`${styles.statusDot} ${styles.statusDotYellow}`} />
+                        Not Sure
+                    </button>
+                    <button
+                        className={styles.contextMenuItem}
+                        onClick={() => setStatus(contextMenu.guestId, "red")}
+                    >
+                        <span className={`${styles.statusDot} ${styles.statusDotRed}`} />
+                        Not Coming
+                    </button>
+                    {statuses[contextMenu.guestId] && (
+                        <button
+                            className={styles.contextMenuItem}
+                            onClick={() => setStatus(contextMenu.guestId, null)}
+                        >
+                            Clear
+                        </button>
+                    )}
                 </div>
             )}
         </div>
