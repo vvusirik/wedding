@@ -10,6 +10,7 @@ type Person = {
     partySlug: string;
     partyLabel: string;
     guestOf: string;
+    declined: boolean;
 };
 
 const GUEST_OF_LABELS: Record<string, string> = {
@@ -105,6 +106,11 @@ export default function SeatingChartPage() {
         return [...values].sort();
     }, [people]);
 
+    const effectiveStatus = useCallback(
+        (p: Person): GuestStatus | undefined => statuses[p.id] ?? (p.declined ? "red" : undefined),
+        [statuses],
+    );
+
     const unseatedPeople = useMemo(() => {
         const q = search.trim().toLowerCase();
         return people
@@ -115,8 +121,13 @@ export default function SeatingChartPage() {
                     ? true
                     : `${p.firstName} ${p.lastName} ${p.partyLabel}`.toLowerCase().includes(q),
             )
-            .sort((a, b) => a.firstName.localeCompare(b.firstName));
-    }, [people, seatedIds, search, guestOfFilter]);
+            .sort((a, b) => {
+                const aRed = effectiveStatus(a) === "red" ? 1 : 0;
+                const bRed = effectiveStatus(b) === "red" ? 1 : 0;
+                if (aRed !== bRed) return aRed - bRed;
+                return a.firstName.localeCompare(b.firstName);
+            });
+    }, [people, seatedIds, search, guestOfFilter, effectiveStatus]);
 
     // Debounced autosave whenever tables or statuses change (skip the initial load).
     useEffect(() => {
@@ -352,7 +363,7 @@ export default function SeatingChartPage() {
                             {unseatedPeople.map((p) => (
                                 <div
                                     key={p.id}
-                                    className={`${styles.guestChip} ${statuses[p.id] === "yellow" ? styles.guestChipYellow : ""} ${statuses[p.id] === "red" ? styles.guestChipRed : ""}`}
+                                    className={`${styles.guestChip} ${effectiveStatus(p) === "yellow" ? styles.guestChipYellow : ""} ${effectiveStatus(p) === "red" ? styles.guestChipRed : ""}`}
                                     draggable
                                     onDragStart={(e) => onDragStartPerson(e, p.id)}
                                     onContextMenu={(e) => openContextMenu(e, p.id)}
