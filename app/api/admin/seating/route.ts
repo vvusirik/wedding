@@ -31,6 +31,7 @@ export interface Person {
     lastName: string;
     partySlug: string;
     partyLabel: string;
+    guestOf: string;
 }
 
 export interface SeatingTable {
@@ -42,7 +43,7 @@ export interface SeatingTable {
 export type GuestStatus = "yellow" | "red";
 
 async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Person[]> {
-    const res = await sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "A:Z" });
+    const res = await sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "A:AZ" });
     const rows = res.data.values ?? [];
     if (rows.length === 0) return [];
 
@@ -50,6 +51,7 @@ async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Per
     const col = (name: string) => headers.indexOf(name);
     const iSlug = col("slug");
     const iEnvelope = col("envelopename");
+    const iGuestOf = col("guestof");
 
     const personCols: Array<{ first: number; last: number }> = [];
     const i1f = col("firstname");
@@ -66,6 +68,7 @@ async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Per
         const slug = String(row[iSlug] ?? "").trim().toLowerCase();
         if (!slug) continue;
         const envelopeName = iEnvelope >= 0 ? String(row[iEnvelope] ?? "").trim() : "";
+        const guestOf = iGuestOf >= 0 ? String(row[iGuestOf] ?? "").trim().toLowerCase() : "";
 
         const members = personCols
             .map(({ first, last }) => ({
@@ -84,6 +87,7 @@ async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Per
                 lastName: m.lastName,
                 partySlug: slug,
                 partyLabel: partyLabel || `${m.firstName} ${m.lastName}`,
+                guestOf,
             });
         });
     }
