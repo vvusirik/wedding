@@ -241,6 +241,19 @@
     gap: 0.4rem;
 }
 
+.dragHandle {
+    cursor: grab;
+    color: var(--color-taupe);
+    font-size: 1rem;
+    line-height: 1;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+}
+
 .tableName {
     flex: 1;
     min-width: 0;

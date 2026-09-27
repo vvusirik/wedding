@@ -38,6 +38,7 @@ type ContextMenuState = {
 const MIN_SEATS = 8;
 const MAX_SEATS = 12;
 const DRAG_MIME = "text/x-guest-id";
+const TABLE_DRAG_MIME = "text/x-table-id";
 
 function newTableId() {
     return `t-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -169,6 +170,20 @@ export default function SeatingChartPage() {
         setTables((prev) => prev.filter((t) => t.id !== tableId));
     }, []);
 
+    const reorderTable = useCallback((draggedId: string, targetId: string) => {
+        if (draggedId === targetId) return;
+        setTables((prev) => {
+            const next = [...prev];
+            const fromIdx = next.findIndex((t) => t.id === draggedId);
+            if (fromIdx === -1) return prev;
+            const [moved] = next.splice(fromIdx, 1);
+            const toIdx = next.findIndex((t) => t.id === targetId);
+            if (toIdx === -1) return prev;
+            next.splice(toIdx, 0, moved);
+            return next;
+        });
+    }, []);
+
     const unseatGuest = useCallback((guestId: string) => {
         setTables((prev) => prev.map((t) => ({ ...t, guestIds: t.guestIds.filter((id) => id !== guestId) })));
     }, []);
@@ -210,9 +225,19 @@ export default function SeatingChartPage() {
         e.dataTransfer.effectAllowed = "move";
     }
 
+    function onDragStartTable(e: React.DragEvent, tableId: string) {
+        e.dataTransfer.setData(TABLE_DRAG_MIME, tableId);
+        e.dataTransfer.effectAllowed = "move";
+    }
+
     function onDropOnTable(e: React.DragEvent, tableId: string) {
         e.preventDefault();
         setDragOverTableId(null);
+        const draggedTableId = e.dataTransfer.getData(TABLE_DRAG_MIME);
+        if (draggedTableId) {
+            reorderTable(draggedTableId, tableId);
+            return;
+        }
         const guestId = e.dataTransfer.getData(DRAG_MIME);
         if (guestId) seatGuest(guestId, tableId);
     }
@@ -359,6 +384,14 @@ export default function SeatingChartPage() {
                                 onDrop={(e) => onDropOnTable(e, table.id)}
                             >
                                 <div className={styles.tableCardHeader}>
+                                    <span
+                                        className={styles.dragHandle}
+                                        draggable
+                                        onDragStart={(e) => onDragStartTable(e, table.id)}
+                                        title="Drag to reorder"
+                                    >
+                                        ⠿
+                                    </span>
                                     <input
                                         className={styles.tableName}
                                         value={table.name}
