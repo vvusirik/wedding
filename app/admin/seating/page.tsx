@@ -9,7 +9,17 @@ type Person = {
     lastName: string;
     partySlug: string;
     partyLabel: string;
+    guestOf: string;
 };
+
+const GUEST_OF_LABELS: Record<string, string> = {
+    vishal_hanna: "Vishal & Hanna",
+    murali_sapna: "Murali & Sapna",
+};
+
+function guestOfLabel(value: string): string {
+    return GUEST_OF_LABELS[value] ?? value;
+}
 
 type SeatingTable = {
     id: string;
@@ -48,6 +58,7 @@ export default function SeatingChartPage() {
     const [tables, setTables] = useState<SeatingTable[]>([]);
     const [statuses, setStatuses] = useState<Record<string, GuestStatus>>({});
     const [search, setSearch] = useState("");
+    const [guestOfFilter, setGuestOfFilter] = useState<string>("all");
     const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
     const [dragOverTableId, setDragOverTableId] = useState<string | null>(null);
     const [dragOverSidebar, setDragOverSidebar] = useState(false);
@@ -87,17 +98,24 @@ export default function SeatingChartPage() {
         return s;
     }, [tables]);
 
+    const guestOfOptions = useMemo(() => {
+        const values = new Set<string>();
+        for (const p of people) if (p.guestOf) values.add(p.guestOf);
+        return [...values].sort();
+    }, [people]);
+
     const unseatedPeople = useMemo(() => {
         const q = search.trim().toLowerCase();
         return people
             .filter((p) => !seatedIds.has(p.id))
+            .filter((p) => guestOfFilter === "all" || p.guestOf === guestOfFilter)
             .filter((p) =>
                 !q
                     ? true
                     : `${p.firstName} ${p.lastName} ${p.partyLabel}`.toLowerCase().includes(q),
             )
             .sort((a, b) => a.firstName.localeCompare(b.firstName));
-    }, [people, seatedIds, search]);
+    }, [people, seatedIds, search, guestOfFilter]);
 
     // Debounced autosave whenever tables or statuses change (skip the initial load).
     useEffect(() => {
@@ -290,6 +308,20 @@ export default function SeatingChartPage() {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
+                        {guestOfOptions.length > 0 && (
+                            <select
+                                className={styles.guestOfSelect}
+                                value={guestOfFilter}
+                                onChange={(e) => setGuestOfFilter(e.target.value)}
+                            >
+                                <option value="all">All Guests</option>
+                                {guestOfOptions.map((v) => (
+                                    <option key={v} value={v}>
+                                        {guestOfLabel(v)}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
                         <p className={styles.sidebarCount}>{unseatedPeople.length} unseated</p>
                         <div className={styles.guestList}>
                             {unseatedPeople.map((p) => (
