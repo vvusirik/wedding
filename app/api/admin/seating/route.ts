@@ -32,6 +32,7 @@ export interface Person {
     partySlug: string;
     partyLabel: string;
     guestOf: string;
+    declined: boolean;
 }
 
 export interface SeatingTable {
@@ -88,10 +89,48 @@ async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Per
                 partySlug: slug,
                 partyLabel: partyLabel || `${m.firstName} ${m.lastName}`,
                 guestOf,
+                declined: false,
             });
         });
     }
     return people;
+}
+
+/** Keys of the form `slug::firstname::lastname` (lowercased) for guests whose
+ * latest RSVP submission marked them as not attending. */
+async function getDeclinedKeys(sheets: sheets_v4.Sheets, sheetId: string): Promise<Set<string>> {
+    let rows: string[][];
+    try {
+        const res = await sheets.spreadsheets.values.get({
+            spreadsheetId: sheetId,
+            range: "RSVPs!A:E",
+        });
+        rows = (res.data.values ?? []).slice(1); // skip header
+    } catch {
+        return new Set(); // RSVPs tab may not exist yet
+    }
+
+    const latestTsBySlug = new Map<string, string>();
+    for (const row of rows) {
+        const ts = String(row[0] ?? "").trim();
+        const slug = String(row[1] ?? "").trim().toLowerCase();
+        if (!slug) continue;
+        const cur = latestTsBySlug.get(slug);
+        if (!cur || ts > cur) latestTsBySlug.set(slug, ts);
+    }
+
+    const declined = new Set<string>();
+    for (const row of rows) {
+        const ts = String(row[0] ?? "").trim();
+        const slug = String(row[1] ?? "").trim().toLowerCase();
+        if (!slug || ts !== latestTsBySlug.get(slug)) continue; // only the latest submission counts
+
+        const firstName = String(row[2] ?? "").trim().toLowerCase();
+        const lastName = String(row[3] ?? "").trim().toLowerCase();
+        const attending = String(row[4] ?? "").trim().toLowerCase() === "yes";
+        if (!attending) declined.add(`${slug}::${firstName}::${lastName}`);
+    }
+    return declined;
 }
 
 async function getTables(sheets: sheets_v4.Sheets, sheetId: string): Promise<SeatingTable[]> {
@@ -149,11 +188,18 @@ export async function GET() {
     try {
         const { credentials, sheetId } = readEnv();
         const sheets = getSheetsClient(credentials);
-        const [people, tables, statuses] = await Promise.all([
+        const [rawPeople, tables, statuses, declinedKeys] = await Promise.all([
             getPeople(sheets, sheetId),
             getTables(sheets, sheetId),
             getStatuses(sheets, sheetId),
+            getDeclinedKeys(sheets, sheetId),
         ]);
+        const people = rawPeople.map((p) => ({
+            ...p,
+            declined: declinedKeys.has(
+                `${p.partySlug}::${p.firstName.toLowerCase()}::${p.lastName.toLowerCase()}`,
+            ),
+        }));
         return NextResponse.json({ people, tables, statuses });
     } catch (err) {
         return NextResponse.json(

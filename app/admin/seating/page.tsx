@@ -10,6 +10,7 @@ type Person = {
     partySlug: string;
     partyLabel: string;
     guestOf: string;
+    declined: boolean;
 };
 
 const GUEST_OF_LABELS: Record<string, string> = {
@@ -38,6 +39,7 @@ type ContextMenuState = {
 const MIN_SEATS = 8;
 const MAX_SEATS = 12;
 const DRAG_MIME = "text/x-guest-id";
+const TABLE_DRAG_MIME = "text/x-table-id";
 
 function newTableId() {
     return `t-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -104,6 +106,11 @@ export default function SeatingChartPage() {
         return [...values].sort();
     }, [people]);
 
+    const effectiveStatus = useCallback(
+        (p: Person): GuestStatus | undefined => statuses[p.id] ?? (p.declined ? "red" : undefined),
+        [statuses],
+    );
+
     const unseatedPeople = useMemo(() => {
         const q = search.trim().toLowerCase();
         return people
@@ -114,8 +121,22 @@ export default function SeatingChartPage() {
                     ? true
                     : `${p.firstName} ${p.lastName} ${p.partyLabel}`.toLowerCase().includes(q),
             )
-            .sort((a, b) => a.firstName.localeCompare(b.firstName));
-    }, [people, seatedIds, search, guestOfFilter]);
+            .sort((a, b) => {
+                const aRed = effectiveStatus(a) === "red" ? 1 : 0;
+                const bRed = effectiveStatus(b) === "red" ? 1 : 0;
+                if (aRed !== bRed) return aRed - bRed;
+                return a.firstName.localeCompare(b.firstName);
+            });
+    }, [people, seatedIds, search, guestOfFilter, effectiveStatus]);
+
+    const unseatedCount = useMemo(
+        () => unseatedPeople.filter((p) => effectiveStatus(p) !== "red").length,
+        [unseatedPeople, effectiveStatus],
+    );
+    const notSureCount = useMemo(
+        () => unseatedPeople.filter((p) => effectiveStatus(p) === "yellow").length,
+        [unseatedPeople, effectiveStatus],
+    );
 
     // Debounced autosave whenever tables or statuses change (skip the initial load).
     useEffect(() => {
@@ -169,6 +190,20 @@ export default function SeatingChartPage() {
         setTables((prev) => prev.filter((t) => t.id !== tableId));
     }, []);
 
+    const reorderTable = useCallback((draggedId: string, targetId: string) => {
+        if (draggedId === targetId) return;
+        setTables((prev) => {
+            const next = [...prev];
+            const fromIdx = next.findIndex((t) => t.id === draggedId);
+            if (fromIdx === -1) return prev;
+            const [moved] = next.splice(fromIdx, 1);
+            const toIdx = next.findIndex((t) => t.id === targetId);
+            if (toIdx === -1) return prev;
+            next.splice(toIdx, 0, moved);
+            return next;
+        });
+    }, []);
+
     const unseatGuest = useCallback((guestId: string) => {
         setTables((prev) => prev.map((t) => ({ ...t, guestIds: t.guestIds.filter((id) => id !== guestId) })));
     }, []);
@@ -210,9 +245,19 @@ export default function SeatingChartPage() {
         e.dataTransfer.effectAllowed = "move";
     }
 
+    function onDragStartTable(e: React.DragEvent, tableId: string) {
+        e.dataTransfer.setData(TABLE_DRAG_MIME, tableId);
+        e.dataTransfer.effectAllowed = "move";
+    }
+
     function onDropOnTable(e: React.DragEvent, tableId: string) {
         e.preventDefault();
         setDragOverTableId(null);
+        const draggedTableId = e.dataTransfer.getData(TABLE_DRAG_MIME);
+        if (draggedTableId) {
+            reorderTable(draggedTableId, tableId);
+            return;
+        }
         const guestId = e.dataTransfer.getData(DRAG_MIME);
         if (guestId) seatGuest(guestId, tableId);
     }
@@ -322,12 +367,17 @@ export default function SeatingChartPage() {
                                 ))}
                             </select>
                         )}
-                        <p className={styles.sidebarCount}>{unseatedPeople.length} unseated</p>
+                        <div className={styles.sidebarStats}>
+                            <p className={styles.sidebarCount}>{unseatedCount} unseated</p>
+                            {notSureCount > 0 && (
+                                <p className={styles.sidebarCountYellow}>{notSureCount} not sure</p>
+                            )}
+                        </div>
                         <div className={styles.guestList}>
                             {unseatedPeople.map((p) => (
                                 <div
                                     key={p.id}
-                                    className={`${styles.guestChip} ${statuses[p.id] === "yellow" ? styles.guestChipYellow : ""} ${statuses[p.id] === "red" ? styles.guestChipRed : ""}`}
+                                    className={`${styles.guestChip} ${effectiveStatus(p) === "yellow" ? styles.guestChipYellow : ""} ${effectiveStatus(p) === "red" ? styles.guestChipRed : ""}`}
                                     draggable
                                     onDragStart={(e) => onDragStartPerson(e, p.id)}
                                     onContextMenu={(e) => openContextMenu(e, p.id)}
@@ -359,6 +409,14 @@ export default function SeatingChartPage() {
                                 onDrop={(e) => onDropOnTable(e, table.id)}
                             >
                                 <div className={styles.tableCardHeader}>
+                                    <span
+                                        className={styles.dragHandle}
+                                        draggable
+                                        onDragStart={(e) => onDragStartTable(e, table.id)}
+                                        title="Drag to reorder"
+                                    >
+                                        ⠿
+                                    </span>
                                     <input
                                         className={styles.tableName}
                                         value={table.name}
