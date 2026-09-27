@@ -129,6 +129,15 @@ export default function SeatingChartPage() {
             });
     }, [people, seatedIds, search, guestOfFilter, effectiveStatus]);
 
+    const unseatedCount = useMemo(
+        () => unseatedPeople.filter((p) => effectiveStatus(p) !== "red").length,
+        [unseatedPeople, effectiveStatus],
+    );
+    const notSureCount = useMemo(
+        () => unseatedPeople.filter((p) => effectiveStatus(p) === "yellow").length,
+        [unseatedPeople, effectiveStatus],
+    );
+
     // Debounced autosave whenever tables or statuses change (skip the initial load).
     useEffect(() => {
         if (skipNextSave.current) {
@@ -358,7 +367,12 @@ export default function SeatingChartPage() {
                                 ))}
                             </select>
                         )}
-                        <p className={styles.sidebarCount}>{unseatedPeople.length} unseated</p>
+                        <div className={styles.sidebarStats}>
+                            <p className={styles.sidebarCount}>{unseatedCount} unseated</p>
+                            {notSureCount > 0 && (
+                                <p className={styles.sidebarCountYellow}>{notSureCount} not sure</p>
+                            )}
+                        </div>
                         <div className={styles.guestList}>
                             {unseatedPeople.map((p) => (
                                 <div
