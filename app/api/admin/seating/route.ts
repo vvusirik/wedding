@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { google, sheets_v4 } from "googleapis";
 
 const SEATING_SHEET_NAME = "SeatingChart";
+const STATUS_SHEET_NAME = "GuestStatus";
+const VALID_STATUSES = new Set(["yellow", "red"]);
 
 function readEnv() {
     const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
@@ -36,6 +38,8 @@ export interface SeatingTable {
     name: string;
     guestIds: string[];
 }
+
+export type GuestStatus = "yellow" | "red";
 
 async function getPeople(sheets: sheets_v4.Sheets, sheetId: string): Promise<Person[]> {
     const res = await sheets.spreadsheets.values.get({ spreadsheetId: sheetId, range: "A:Z" });
@@ -114,15 +118,39 @@ async function getTables(sheets: sheets_v4.Sheets, sheetId: string): Promise<Sea
     return tableOrder.map((id) => byId.get(id)!);
 }
 
+async function getStatuses(
+    sheets: sheets_v4.Sheets,
+    sheetId: string,
+): Promise<Record<string, GuestStatus>> {
+    const meta = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
+    const hasSheet = meta.data.sheets?.some((s) => s.properties?.title === STATUS_SHEET_NAME);
+    if (!hasSheet) return {};
+
+    const res = await sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: `${STATUS_SHEET_NAME}!A:B`,
+    });
+    const rows = (res.data.values ?? []).slice(1); // skip header
+
+    const statuses: Record<string, GuestStatus> = {};
+    for (const row of rows) {
+        const guestId = String(row[0] ?? "").trim();
+        const status = String(row[1] ?? "").trim();
+        if (guestId && VALID_STATUSES.has(status)) statuses[guestId] = status as GuestStatus;
+    }
+    return statuses;
+}
+
 export async function GET() {
     try {
         const { credentials, sheetId } = readEnv();
         const sheets = getSheetsClient(credentials);
-        const [people, tables] = await Promise.all([
+        const [people, tables, statuses] = await Promise.all([
             getPeople(sheets, sheetId),
             getTables(sheets, sheetId),
+            getStatuses(sheets, sheetId),
         ]);
-        return NextResponse.json({ people, tables });
+        return NextResponse.json({ people, tables, statuses });
     } catch (err) {
         return NextResponse.json(
             { error: err instanceof Error ? err.message : "failed to load seating data" },
@@ -131,8 +159,23 @@ export async function GET() {
     }
 }
 
+async function ensureSheet(sheets: sheets_v4.Sheets, sheetId: string, title: string) {
+    const meta = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
+    const hasSheet = meta.data.sheets?.some((s) => s.properties?.title === title);
+    if (!hasSheet) {
+        await sheets.spreadsheets.batchUpdate({
+            spreadsheetId: sheetId,
+            requestBody: { requests: [{ addSheet: { properties: { title } } }] },
+        });
+    }
+}
+
 export async function POST(request: Request) {
-    const { tables } = (await request.json()) as { tables: SeatingTable[] };
+    const body = (await request.json()) as {
+        tables: SeatingTable[];
+        statuses?: Record<string, GuestStatus>;
+    };
+    const { tables, statuses } = body;
     if (!Array.isArray(tables)) {
         return NextResponse.json({ ok: false, error: "tables must be an array" }, { status: 400 });
     }
@@ -141,16 +184,7 @@ export async function POST(request: Request) {
         const { credentials, sheetId } = readEnv();
         const sheets = getSheetsClient(credentials);
 
-        const meta = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
-        const hasSheet = meta.data.sheets?.some((s) => s.properties?.title === SEATING_SHEET_NAME);
-        if (!hasSheet) {
-            await sheets.spreadsheets.batchUpdate({
-                spreadsheetId: sheetId,
-                requestBody: {
-                    requests: [{ addSheet: { properties: { title: SEATING_SHEET_NAME } } }],
-                },
-            });
-        }
+        await ensureSheet(sheets, sheetId, SEATING_SHEET_NAME);
 
         // Clear existing content, then rewrite in full (small dataset, simplest correct approach)
         await sheets.spreadsheets.values.clear({
@@ -175,6 +209,24 @@ export async function POST(request: Request) {
             valueInputOption: "USER_ENTERED",
             requestBody: { values },
         });
+
+        if (statuses) {
+            await ensureSheet(sheets, sheetId, STATUS_SHEET_NAME);
+            await sheets.spreadsheets.values.clear({
+                spreadsheetId: sheetId,
+                range: `${STATUS_SHEET_NAME}!A:B`,
+            });
+            const statusValues: string[][] = [["guest_id", "status"]];
+            for (const [guestId, status] of Object.entries(statuses)) {
+                if (VALID_STATUSES.has(status)) statusValues.push([guestId, status]);
+            }
+            await sheets.spreadsheets.values.update({
+                spreadsheetId: sheetId,
+                range: `${STATUS_SHEET_NAME}!A1`,
+                valueInputOption: "USER_ENTERED",
+                requestBody: { values: statusValues },
+            });
+        }
 
         return NextResponse.json({ ok: true });
     } catch (err) {
