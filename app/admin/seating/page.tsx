@@ -45,6 +45,12 @@ function newTableId() {
     return `t-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
+function autosizeTextarea(el: HTMLTextAreaElement | null) {
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+}
+
 function capacityClass(count: number): string {
     if (count === 0) return styles.capacityEmpty;
     if (count < MIN_SEATS) return styles.capacityLow;
@@ -417,10 +423,18 @@ export default function SeatingChartPage() {
                                     >
                                         ⠿
                                     </span>
-                                    <input
+                                    <textarea
                                         className={styles.tableName}
+                                        rows={1}
                                         value={table.name}
-                                        onChange={(e) => renameTable(table.id, e.target.value)}
+                                        ref={autosizeTextarea}
+                                        onChange={(e) => {
+                                            renameTable(table.id, e.target.value);
+                                            autosizeTextarea(e.currentTarget);
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") e.preventDefault();
+                                        }}
                                     />
                                     <span
                                         className={`${styles.capacity} ${capacityClass(table.guestIds.length)}`}
