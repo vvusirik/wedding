@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
                 destination: "https://vishanna-savethedate.replit.app/savethedate/",
                 permanent: false,
             },
+            {
+                source: "/guestpictures",
+                destination: "https://guestcam.co/guest/6dRm500iMG",
+                permanent: false,
+            },
         ];
     },
 };
